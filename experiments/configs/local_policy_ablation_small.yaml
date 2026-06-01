@@ -1,0 +1,15 @@
+name: local_policy_ablation_small
+tasks:
+  - benchmarks/tasks/local_seed/comb_and_gate.yaml
+  - benchmarks/tasks/local_seed/popcount4.yaml
+  - benchmarks/tasks/local_seed/priority_encoder4.yaml
+  - benchmarks/tasks/local_seed/counter_mod10.yaml
+  - benchmarks/tasks/local_seed/fsm_101_detector.yaml
+  - benchmarks/tasks/local_seed/valid_ready_skid.yaml
+policies:
+  - no_skill
+  - fixed
+  - tag_topk
+  - locality_aware
+max_repair_iters: 3
+skill_token_budget: 4096
