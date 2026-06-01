@@ -19,7 +19,7 @@ def run_task_loop(
     out_dir: Path,
     llm: LLMClient,
 ) -> dict[str, Any]:
-    skills = retrieve_skills(task)
+    skills = retrieve_skills(task, policy=policy)
     run_dir = out_dir / task.id
     start = time.time()
     previous_rtl: str | None = None
