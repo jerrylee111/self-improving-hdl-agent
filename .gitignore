@@ -1,6 +1,7 @@
 .venv/
 .env
 results/runs/
+results/experiments/
 *.pyc
 __pycache__/
 *.egg-info/
