@@ -1,0 +1,17 @@
+id: local_popcount4
+source: local_seed
+license: project-owned
+language: verilog
+family: arithmetic_basic
+tags: [combinational, arithmetic, population_count]
+difficulty: 2
+prompt: |
+  Implement a module named top_module with input in[3:0] and output count[2:0].
+  count should equal the number of bits set to 1 in in.
+top_module: top_module
+ports:
+  - {name: in, dir: input, width: 4}
+  - {name: count, dir: output, width: 3}
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

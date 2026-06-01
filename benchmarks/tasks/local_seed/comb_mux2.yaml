@@ -1,0 +1,19 @@
+id: local_comb_mux2
+source: local_seed
+license: project-owned
+language: verilog
+family: combinational_mux
+tags: [combinational, mux]
+difficulty: 1
+prompt: |
+  Implement a module named top_module with inputs a, b, sel and output y.
+  When sel is 0, y should equal a. When sel is 1, y should equal b.
+top_module: top_module
+ports:
+  - {name: a, dir: input, width: 1}
+  - {name: b, dir: input, width: 1}
+  - {name: sel, dir: input, width: 1}
+  - {name: y, dir: output, width: 1}
+expected: {type: truth_table}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

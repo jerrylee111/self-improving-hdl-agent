@@ -1,0 +1,33 @@
+datasets:
+  local_seed:
+    kind: project_owned
+    path: benchmarks/tasks/local_seed
+    license: project-owned
+    purpose: smoke, development, regression
+    status: active
+  verilogeval:
+    kind: external
+    url: https://github.com/NVlabs/verilog-eval
+    paper: https://arxiv.org/abs/2309.07544
+    license: MIT
+    purpose: main functional correctness benchmark
+    status: planned_import
+    pin: TODO_commit_hash
+  rtllm:
+    kind: external
+    url: https://github.com/hkust-zhiyao/RTLLM
+    paper: https://arxiv.org/abs/2308.05345
+    purpose: out-of-family natural-language RTL design benchmark
+    status: planned_import
+    pin: TODO_commit_hash
+splits:
+  dev:
+    - local_seed
+  evolution:
+    - TODO_verilogeval_families
+  validation:
+    - TODO_verilogeval_families
+  test:
+    - TODO_verilogeval_and_rtllm_families
+  regression:
+    - local_seed

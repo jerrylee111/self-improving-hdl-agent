@@ -1,0 +1,21 @@
+id: local_edge_detect_rise
+source: local_seed
+license: project-owned
+language: verilog
+family: sequential_edge_detect
+tags: [sequential, edge_detect, pulse]
+difficulty: 3
+prompt: |
+  Implement a module named top_module with inputs clk, reset, sig and output rise.
+  The reset is synchronous and active high. rise should be a one-cycle pulse when sig changes from 0 to 1.
+top_module: top_module
+ports:
+  - {name: clk, dir: input, width: 1}
+  - {name: reset, dir: input, width: 1}
+  - {name: sig, dir: input, width: 1}
+  - {name: rise, dir: output, width: 1}
+clock: clk
+reset: reset
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

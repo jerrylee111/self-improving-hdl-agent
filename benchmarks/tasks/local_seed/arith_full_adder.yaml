@@ -1,0 +1,20 @@
+id: local_arith_full_adder
+source: local_seed
+license: project-owned
+language: verilog
+family: arithmetic_basic
+tags: [combinational, arithmetic, adder]
+difficulty: 2
+prompt: |
+  Implement a module named top_module with one-bit inputs a, b, and cin.
+  Output sum should be the one-bit sum and cout should be the carry-out.
+top_module: top_module
+ports:
+  - {name: a, dir: input, width: 1}
+  - {name: b, dir: input, width: 1}
+  - {name: cin, dir: input, width: 1}
+  - {name: sum, dir: output, width: 1}
+  - {name: cout, dir: output, width: 1}
+expected: {type: truth_table}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

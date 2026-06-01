@@ -1,0 +1,23 @@
+id: local_counter_mod10
+source: local_seed
+license: project-owned
+language: verilog
+family: sequential_counter
+tags: [sequential, counter, reset, off_by_one]
+difficulty: 3
+prompt: |
+  Implement a module named top_module with inputs clk, reset, enable and output count[3:0].
+  The reset is synchronous and active high. When reset is high, count becomes 0.
+  When enable is high, count increments each cycle from 0 to 9 and then wraps to 0.
+  When enable is low, count holds its value.
+top_module: top_module
+ports:
+  - {name: clk, dir: input, width: 1}
+  - {name: reset, dir: input, width: 1}
+  - {name: enable, dir: input, width: 1}
+  - {name: count, dir: output, width: 4}
+clock: clk
+reset: reset
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

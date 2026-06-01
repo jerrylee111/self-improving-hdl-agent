@@ -1,0 +1,22 @@
+id: local_dff_sync_reset
+source: local_seed
+license: project-owned
+language: verilog
+family: sequential_register
+tags: [sequential, dff, reset]
+difficulty: 2
+prompt: |
+  Implement a module named top_module with inputs clk, reset, d and output q.
+  On the rising edge of clk, q should become 0 if reset is high; otherwise q should become d.
+  The reset is synchronous and active high.
+top_module: top_module
+ports:
+  - {name: clk, dir: input, width: 1}
+  - {name: reset, dir: input, width: 1}
+  - {name: d, dir: input, width: 1}
+  - {name: q, dir: output, width: 1}
+clock: clk
+reset: reset
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

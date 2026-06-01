@@ -1,0 +1,18 @@
+id: local_comb_and_gate
+source: local_seed
+license: project-owned
+language: verilog
+family: combinational_basic
+tags: [combinational, boolean]
+difficulty: 1
+prompt: |
+  Implement a module named top_module with inputs a and b and output y.
+  The output y should be the logical AND of a and b.
+top_module: top_module
+ports:
+  - {name: a, dir: input, width: 1}
+  - {name: b, dir: input, width: 1}
+  - {name: y, dir: output, width: 1}
+expected: {type: truth_table}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

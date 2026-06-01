@@ -1,0 +1,17 @@
+id: local_vector_reverse8
+source: local_seed
+license: project-owned
+language: verilog
+family: vector_ops
+tags: [combinational, vector, bit_order]
+difficulty: 2
+prompt: |
+  Implement a module named top_module with input in[7:0] and output out[7:0].
+  The output should reverse the bit order: out[0] equals in[7], out[1] equals in[6], and so on.
+top_module: top_module
+ports:
+  - {name: in, dir: input, width: 8}
+  - {name: out, dir: output, width: 8}
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}
