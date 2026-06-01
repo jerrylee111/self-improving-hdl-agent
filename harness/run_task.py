@@ -48,7 +48,7 @@ def main(
         return
 
     assert loaded_task is not None
-    skills = retrieve_skills(loaded_task)
+    skills = retrieve_skills(loaded_task, policy=policy)
     console.print(f"retrieved_skills={[skill['id'] for skill in skills]}")
 
     llm = LLMClient()
