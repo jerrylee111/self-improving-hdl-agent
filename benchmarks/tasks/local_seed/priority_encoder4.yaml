@@ -1,0 +1,19 @@
+id: local_priority_encoder4
+source: local_seed
+license: project-owned
+language: verilog
+family: combinational_encoder
+tags: [combinational, priority_encoder]
+difficulty: 2
+prompt: |
+  Implement a module named top_module with input in[3:0], output pos[1:0], and output valid.
+  If any input bit is 1, valid should be 1 and pos should be the index of the highest set bit.
+  If no input bit is 1, valid should be 0 and pos should be 0.
+top_module: top_module
+ports:
+  - {name: in, dir: input, width: 4}
+  - {name: pos, dir: output, width: 2}
+  - {name: valid, dir: output, width: 1}
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

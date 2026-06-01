@@ -1,0 +1,18 @@
+name: smoke
+tasks:
+  - benchmarks/tasks/local_seed/arith_full_adder.yaml
+  - benchmarks/tasks/local_seed/arith_half_adder.yaml
+  - benchmarks/tasks/local_seed/comb_and_gate.yaml
+  - benchmarks/tasks/local_seed/comb_mux2.yaml
+  - benchmarks/tasks/local_seed/counter_mod10.yaml
+  - benchmarks/tasks/local_seed/dff_sync_reset.yaml
+  - benchmarks/tasks/local_seed/edge_detect_rise.yaml
+  - benchmarks/tasks/local_seed/fsm_101_detector.yaml
+  - benchmarks/tasks/local_seed/popcount4.yaml
+  - benchmarks/tasks/local_seed/priority_encoder4.yaml
+  - benchmarks/tasks/local_seed/valid_ready_skid.yaml
+  - benchmarks/tasks/local_seed/vector_reverse8.yaml
+policies:
+  - fixed
+max_repair_iters: 3
+skill_token_budget: 4096

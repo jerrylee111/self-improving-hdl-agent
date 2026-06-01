@@ -1,0 +1,22 @@
+id: local_fsm_101_detector
+source: local_seed
+license: project-owned
+language: verilog
+family: sequential_fsm
+tags: [sequential, fsm, pattern_detect, reset]
+difficulty: 4
+prompt: |
+  Implement a module named top_module with inputs clk, reset, bit_in and output found.
+  The reset is synchronous and active high.
+  found should be a one-cycle pulse whenever the serial input stream contains the overlapping pattern 101.
+top_module: top_module
+ports:
+  - {name: clk, dir: input, width: 1}
+  - {name: reset, dir: input, width: 1}
+  - {name: bit_in, dir: input, width: 1}
+  - {name: found, dir: output, width: 1}
+clock: clk
+reset: reset
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

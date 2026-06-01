@@ -1,0 +1,92 @@
+skills:
+  - id: skill.rtl.interface_exact.001
+    name: keep_interface_exact
+    agent: coder
+    domain: {language: verilog, topic: [interface]}
+    task_patterns: ["all RTL tasks"]
+    preconditions: []
+    anti_patterns: ["renaming ports", "changing top module name"]
+    payload:
+      type: rule
+      content: |
+        Preserve the requested module name, port names, directions, and widths exactly.
+        Do not add extra ports.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 1.0, token_cost_ema: 24}
+    cache: {pin: true}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.rtl.comb_complete.001
+    name: complete_combinational_assignments
+    agent: coder
+    domain: {language: verilog, topic: [combinational, latch]}
+    task_patterns: ["combinational", "mux", "encoder", "decoder"]
+    preconditions: ["combinational logic"]
+    anti_patterns: ["partial assignment in always @(*)", "missing default"]
+    payload:
+      type: rule
+      content: |
+        For combinational logic, every output must be assigned on every path.
+        Use continuous assignment for simple expressions, or provide defaults before case/if logic.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.9, token_cost_ema: 34}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.rtl.seq_nonblocking.001
+    name: sequential_nonblocking
+    agent: coder
+    domain: {language: verilog, topic: [sequential, reset]}
+    task_patterns: ["clk", "reset", "dff", "counter", "fsm"]
+    preconditions: ["posedge clocked logic"]
+    anti_patterns: ["blocking assignment in clocked always block"]
+    payload:
+      type: rule
+      content: |
+        In posedge clocked always blocks, update registers using nonblocking assignments.
+        Implement reset behavior exactly as specified, including synchronous/asynchronous and polarity.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.95, token_cost_ema: 38}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.rtl.width_signedness.001
+    name: width_and_signedness
+    agent: coder
+    domain: {language: verilog, topic: [width, arithmetic]}
+    task_patterns: ["arithmetic", "adder", "counter", "population_count"]
+    preconditions: []
+    anti_patterns: ["implicit truncation", "wrong output width"]
+    payload:
+      type: checklist
+      content: |
+        Before finalizing arithmetic RTL, check result widths explicitly.
+        Carries need an extra bit. Population count of N bits needs ceil(log2(N+1)) bits.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.85, token_cost_ema: 37}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.rtl.fsm_overlap.001
+    name: overlapping_sequence_fsm
+    agent: coder
+    domain: {language: verilog, topic: [fsm, pattern_detect]}
+    task_patterns: ["pattern detect", "serial input", "overlapping"]
+    preconditions: ["sequential fsm"]
+    anti_patterns: ["forgetting overlap transition"]
+    payload:
+      type: repair_pattern
+      content: |
+        For overlapping sequence detectors, next state after a match should preserve the longest suffix
+        that is also a prefix of the target pattern. For pattern 101, after detecting 101, keep state
+        representing that the latest bit is 1.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.8, token_cost_ema: 49}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.rtl.valid_ready.001
+    name: valid_ready_stability
+    agent: coder
+    domain: {language: systemverilog, topic: [valid_ready, handshake, backpressure]}
+    task_patterns: ["valid/ready", "backpressure", "skid buffer"]
+    preconditions: ["single clock domain"]
+    anti_patterns: ["changing data while valid high and ready low", "dropping valid before acceptance"]
+    payload:
+      type: rule
+      content: |
+        In valid/ready protocols, data must remain stable while valid is high and ready is low.
+        A transfer happens only when valid and ready are both high on the clock edge.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.9, token_cost_ema: 39}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}

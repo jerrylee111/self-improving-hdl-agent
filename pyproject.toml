@@ -1,0 +1,49 @@
+[project]
+name = "selfimprovecoderandevaluator"
+version = "0.1.0"
+description = "Self-improving Verilog/SystemVerilog coder and evaluator agents with a skill-cache memory layer."
+readme = "docs/skill_cache_agent_research_plan.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "jinja2>=3.1.4",
+    "numpy>=2.0.0",
+    "openai>=1.0.0",
+    "pydantic>=2.8.0",
+    "pyyaml>=6.0.2",
+    "rich>=13.7.0",
+    "typer>=0.12.0",
+]
+
+[project.optional-dependencies]
+retrieval = [
+    "chromadb>=0.5.0",
+    "scikit-learn>=1.5.0",
+]
+analysis = [
+    "matplotlib>=3.9.0",
+    "pandas>=2.2.0",
+    "scipy>=1.14.0",
+]
+dev = [
+    "pytest>=8.2.0",
+    "ruff>=0.5.0",
+]
+
+[project.scripts]
+sic-run-task = "harness.run_task:app"
+sic-run-experiment = "experiments.run_experiment:app"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["agents*", "cache*", "harness*", "experiments*"]
+exclude = ["skills*", "results*", "benchmarks*", "docs*"]
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
