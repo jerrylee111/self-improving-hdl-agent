@@ -1,0 +1,52 @@
+id: candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780387764
+name: check_pattern_sequential_arbiter
+agent: evaluator
+domain:
+  language: verilog
+  topic:
+  - sequential
+  - arbiter
+  - fairness
+  - priority
+  - reset
+  - enable
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+- enable
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: Preserve this failure signature as a regression check for similar tasks.
+    Emphasize the observed mismatch class when generating future tests.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "ecting case or casex or casez or if\n   13 |             priority\
+      \ <= 1'b0;\n      |                      ^~\n%Error: design.v:22:21: syntax\
+      \ error, unexpected priority, expecting IDENTIFIER-for-type\n   22 |       \
+      \          if (priority == 1'b0) begin\n      |                     ^~~~~~~~\n\
+      %Error: design.v:30:9: syntax error, unexpected end\n   30 |         end else\
+      \ begin\n      |         ^~~\n%Error: Cannot continue\n        ... This fatal\
+      \ error may be caused by the earlier error(s); resolve those first.\n"

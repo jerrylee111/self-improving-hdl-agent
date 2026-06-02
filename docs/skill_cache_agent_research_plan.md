@@ -5,7 +5,7 @@
 我们要构建两个协作的硬件代码 agent：
 
 - `coder`：负责生成、修改、修复 Verilog/SystemVerilog RTL 代码。
-- `evaluator`：负责构建测试平台、运行仿真/形式验证/lint、诊断失败原因，并给出结构化反馈。
+- `evaluator`：负责构建测试平台、运行仿真/形式验证/lint、诊断失败原因，并给出结构化反馈。更准确地说，evaluator 不是 approval agent，而是 adversarial verifier：它的目标不是证明代码正确，而是尽可能证明代码错误。
 
 本项目的核心研究点不是简单证明“大模型可以写 HDL 代码”，而是证明：
 
@@ -80,6 +80,12 @@
 - 结构化 verdict。
 - 失败定位。
 - 给 coder 的修复建议。
+
+重要原则：
+
+> coder skill 的目标是写对代码；evaluator skill 的目标是证明代码是错的。
+
+因此，evaluator 的 `pass` 不能被解释为“代码正确”，只能解释为“当前 evaluator 没有找到错误”。后续实验记录中应使用 `accepted_by_current_evaluator` 描述这一状态，并同时记录 `correctness_claim: not_proven`。只有当 hidden tests、coverage、assertions 或 formal proof 逐步增强时，系统才能提高对 RTL 正确性的置信度。
 
 Evaluator 应该进行多层检查：
 

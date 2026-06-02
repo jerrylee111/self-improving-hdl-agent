@@ -1,0 +1,50 @@
+id: candidate.local_round_robin_arbiter2.evaluator.check_pattern_sequential_arbiter.1780387472
+name: check_pattern_sequential_arbiter
+agent: evaluator
+domain:
+  language: verilog
+  topic:
+  - sequential
+  - arbiter
+  - fairness
+  - priority
+  - reset
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: Preserve this failure signature as a regression check for similar tasks.
+    Emphasize the observed mismatch class when generating future tests.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "0) begin\n      |                         ^~~~~~~~\n%Error:\
+      \ design.v:31:30: syntax error, unexpected <=, expecting case or casex or casez\
+      \ or if\n   31 |                     priority <= ~priority;  \n      |     \
+      \                         ^~\n%Error: design.v:33:24: syntax error, unexpected\
+      \ ':', expecting clocking or disable\n   33 |                 default: ;\n \
+      \     |                        ^\n%Error: Cannot continue\n        ... This\
+      \ fatal error may be caused by the earlier error(s); resolve those first.\n"

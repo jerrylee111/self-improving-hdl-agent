@@ -1,0 +1,51 @@
+id: candidate.local_round_robin_arbiter2_enable.evaluator.arbiter_registered_grant_check.1780387716
+name: arbiter_registered_grant_check
+agent: evaluator
+domain:
+  language: verilog
+  topic:
+  - arbiter
+  - sequential
+  - fairness
+  - registered_output
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+- enable
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- combinational grant sampled after clock edge
+payload:
+  type: test_strategy
+  content: For round-robin arbiters, include tests that hold both requests high across
+    multiple clock cycles and sample grant after the clock edge. This catches designs
+    that expose next-cycle priority through a combinational grant.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: " match MODULE name: 'top_module'\n    1 | module top_module\
+      \ (\n      |        ^~~~~~~~~~\n                       ... For warning description\
+      \ see https://verilator.org/warn/DECLFILENAME?v=5.048\n                    \
+      \   ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on around source\
+      \ to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv design.v\n\
+      returncode=0\nstdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=1\nstdout:\n\
+      FATAL: tb.sv:21: grant mismatch\n       Time: 3100  Scope: tb.step\n\nstderr:\n"

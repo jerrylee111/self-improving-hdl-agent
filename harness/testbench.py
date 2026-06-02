@@ -64,9 +64,42 @@ endmodule
     raise ValueError(f"No truth-table generator for {task.id}")
 
 
+def _with_timescale(body: str) -> str:
+    return "`timescale 1ns/1ps\n" + body.lstrip()
+
+
+def generate_basic_testbench(task: HDLTask) -> str:
+    if task.id != "local_round_robin_arbiter2":
+        return generate_testbench(task)
+    return _with_timescale("""
+module tb;
+  reg clk=0, reset=0; reg [1:0] req=0; wire [1:0] grant;
+  top_module dut(.clk(clk), .reset(reset), .req(req), .grant(grant));
+  always #1 clk = ~clk;
+  task step(input [1:0] r, input [1:0] exp);
+    begin
+      req=r; @(posedge clk); #0.1;
+      if (grant !== exp) $fatal(1, "grant mismatch");
+    end
+  endtask
+  initial begin
+    reset=1; step(2'b00,2'b00); reset=0;
+    step(2'b01,2'b01);
+    step(2'b10,2'b10);
+    step(2'b11,2'b01);
+    step(2'b11,2'b10);
+    step(2'b11,2'b01);
+    step(2'b00,2'b00);
+    step(2'b11,2'b10);
+    $display("PASS"); $finish;
+  end
+endmodule
+""")
+
+
 def generate_testbench(task: HDLTask) -> str:
     def with_timescale(body: str) -> str:
-        return "`timescale 1ns/1ps\n" + body.lstrip()
+        return _with_timescale(body)
 
     if task.expected.type == "truth_table":
         return with_timescale(_comb_truth_table(task))
@@ -271,21 +304,115 @@ module tb;
   reg clk=0, reset=0; reg [1:0] req=0; wire [1:0] grant;
   top_module dut(.clk(clk), .reset(reset), .req(req), .grant(grant));
   always #1 clk = ~clk;
+
+  integer covered_both_01 = 0;
+  integer covered_both_10 = 0;
+  integer covered_idle_after_grant = 0;
+  integer covered_reset_reentry = 0;
+  integer seed = 32'h1234abcd;
+  integer i;
+
+  task check_invariants;
+    begin
+      if ((grant & ~req) !== 2'b00) $fatal(1, "grant to inactive requester");
+      if (grant === 2'b11) $fatal(1, "grant must be onehot0");
+      if (req === 2'b00 && grant !== 2'b00) $fatal(1, "idle grant mismatch");
+      if (req === 2'b01 && grant !== 2'b01) $fatal(1, "single requester 0 mismatch");
+      if (req === 2'b10 && grant !== 2'b10) $fatal(1, "single requester 1 mismatch");
+      if (req === 2'b11 && grant === 2'b01) covered_both_01 = 1;
+      if (req === 2'b11 && grant === 2'b10) covered_both_10 = 1;
+    end
+  endtask
+
   task step(input [1:0] r, input [1:0] exp);
     begin
       req=r; @(posedge clk); #0.1;
       if (grant !== exp) $fatal(1, "grant mismatch");
+      check_invariants();
     end
   endtask
+
+  task step_any(input [1:0] r);
+    begin
+      req=r; @(posedge clk); #0.1;
+      check_invariants();
+    end
+  endtask
+
   initial begin
     reset=1; step(2'b00,2'b00); reset=0;
     step(2'b01,2'b01);
     step(2'b10,2'b10);
     step(2'b11,2'b01);
+    reset=1; step(2'b00,2'b00); reset=0;
+    covered_reset_reentry = 1;
+    step(2'b11,2'b01);
     step(2'b11,2'b10);
     step(2'b11,2'b01);
     step(2'b00,2'b00);
+    covered_idle_after_grant = 1;
     step(2'b11,2'b10);
+    step(2'b11,2'b01);
+    step(2'b11,2'b10);
+
+    step_any(2'b01);
+    step_any(2'b00);
+    step_any(2'b10);
+    step_any(2'b11);
+    step_any(2'b00);
+    step_any(2'b11);
+    step_any(2'b01);
+    step_any(2'b10);
+
+    for (i = 0; i < 32; i = i + 1) begin
+      seed = (seed * 1103515245 + 12345);
+      step_any(seed[1:0]);
+    end
+
+    if (!covered_both_01 || !covered_both_10) $fatal(1, "both-request coverage missing");
+    if (!covered_idle_after_grant) $fatal(1, "idle-after-grant coverage missing");
+    if (!covered_reset_reentry) $fatal(1, "reset reentry coverage missing");
+    $display("PASS"); $finish;
+  end
+endmodule
+""")
+    if task.id == "local_round_robin_arbiter2_enable":
+        return with_timescale("""
+module tb;
+  reg clk=0, reset=0, enable=0; reg [1:0] req=0; wire [1:0] grant;
+  top_module dut(.clk(clk), .reset(reset), .enable(enable), .req(req), .grant(grant));
+  always #1 clk = ~clk;
+
+  task check_invariants;
+    begin
+      if ((grant & ~req) !== 2'b00) $fatal(1, "grant to inactive requester");
+      if (grant === 2'b11) $fatal(1, "grant must be onehot0");
+      if (!enable && grant !== 2'b00) $fatal(1, "disabled grant mismatch");
+      if (enable && req === 2'b00 && grant !== 2'b00) $fatal(1, "idle grant mismatch");
+      if (enable && req === 2'b01 && grant !== 2'b01) $fatal(1, "single requester 0 mismatch");
+      if (enable && req === 2'b10 && grant !== 2'b10) $fatal(1, "single requester 1 mismatch");
+    end
+  endtask
+
+  task step(input en, input [1:0] r, input [1:0] exp);
+    begin
+      enable=en; req=r; @(posedge clk); #0.1;
+      if (grant !== exp) $fatal(1, "grant mismatch");
+      check_invariants();
+    end
+  endtask
+
+  initial begin
+    reset=1; step(0,2'b00,2'b00); reset=0;
+    step(1,2'b11,2'b01);
+    step(0,2'b11,2'b00);
+    step(0,2'b11,2'b00);
+    step(1,2'b11,2'b10);
+    step(1,2'b01,2'b01);
+    step(1,2'b00,2'b00);
+    step(1,2'b11,2'b01);
+    reset=1; step(1,2'b11,2'b00); reset=0;
+    step(1,2'b11,2'b01);
     $display("PASS"); $finish;
   end
 endmodule

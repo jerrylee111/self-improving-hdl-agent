@@ -6,9 +6,10 @@ from typing import Any
 
 from agents.coder import generate_rtl
 from agents.llm import LLMClient
-from cache.retrieve import retrieve_skills
+from cache.skill_cache import L1SkillCache
 from harness.evaluate import evaluate_rtl
 from harness.task_schema import HDLTask
+from skills.mine import mine_candidate_skills_from_failure
 
 
 def run_task_loop(
@@ -18,14 +19,20 @@ def run_task_loop(
     max_iters: int,
     out_dir: Path,
     llm: LLMClient,
+    skill_cache: L1SkillCache | None = None,
+    evaluator_profile: str = "adversarial_v2",
 ) -> dict[str, Any]:
-    skills = retrieve_skills(task, policy=policy)
+    skill_cache = skill_cache or L1SkillCache()
+    cache_event = skill_cache.lookup(task, policy=policy)
+    skills = list(skill_cache.entries)
     run_dir = out_dir / task.id
     start = time.time()
     previous_rtl: str | None = None
     feedback: str | None = None
     final_passed = False
     final_summary = ""
+    first_failure_summary = ""
+    final_evaluator_strength: dict[str, Any] | None = None
     attempts = 0
 
     for attempt in range(1, max_iters + 1):
@@ -36,13 +43,23 @@ def run_task_loop(
             final_summary = f"LLM call failed: {type(exc).__name__}: {exc}"
             break
         attempt_dir = run_dir / f"attempt_{attempt}"
-        result = evaluate_rtl(task, rtl, attempt_dir)
+        result = evaluate_rtl(task, rtl, attempt_dir, evaluator_profile=evaluator_profile)
         final_passed = result.passed
         final_summary = result.summary
+        final_evaluator_strength = result.strength
+        if (not result.passed) and not first_failure_summary:
+            first_failure_summary = result.summary
         if result.passed:
             break
         previous_rtl = rtl
         feedback = result.summary[-6000:]
+
+    candidate_skills = mine_candidate_skills_from_failure(
+        task,
+        policy=policy,
+        attempts=attempts,
+        failure_summary=first_failure_summary,
+    )
 
     return {
         "task_id": task.id,
@@ -50,13 +67,40 @@ def run_task_loop(
         "family": task.family,
         "tags": task.tags,
         "policy": policy,
+        "evaluator_profile": evaluator_profile,
+        "active_skills_enabled": skill_cache.include_active,
         "retrieved_skills": [skill["id"] for skill in skills],
+        "l1_skill_ids": [skill["id"] for skill in skills],
+        "skill_cache_event": cache_event["event"],
+        "skill_cache_miss": cache_event["miss"],
+        "skill_retrieval": {
+            "policy": policy,
+            "budget": skill_cache.capacity,
+            "candidate_count": 0 if cache_event["retrieval"] is None else cache_event["retrieval"]["candidate_count"],
+            "candidates": [] if cache_event["retrieval"] is None else cache_event["retrieval"]["candidates"],
+            "evicted_skill_ids": [] if cache_event["retrieval"] is None else cache_event["retrieval"]["evicted_skill_ids"],
+        },
         "passed": final_passed,
+        "accepted_by_current_evaluator": final_passed,
+        "correctness_claim": "not_proven",
+        "evaluator_goal": "find_counterexample_or_bug",
+        "evaluator_strength": final_evaluator_strength
+        or {
+            "lint": False,
+            "directed_simulation": False,
+            "random_simulation": False,
+            "reference_model": False,
+            "assertions": False,
+            "formal": False,
+            "coverage": None,
+            "correctness_claim": "not_proven",
+        },
         "iterations": attempts,
         "max_iters": max_iters,
         "wall_time_s": round(time.time() - start, 3),
         "workdir": str(run_dir),
         "failure_summary_tail": "" if final_passed else final_summary[-2000:],
+        "candidate_skills_generated": [skill["id"] for skill in candidate_skills],
     }
 
 
