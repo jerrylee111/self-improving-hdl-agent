@@ -1,0 +1,28 @@
+id: local_round_robin_arbiter2_enable
+source: local_seed
+license: project-owned
+language: verilog
+family: sequential_arbiter
+tags: [sequential, arbiter, fairness, priority, reset, enable]
+difficulty: 4
+prompt: |
+  Implement a two-requester round-robin arbiter named top_module.
+  Inputs are clk, reset, enable, req[1:0]. Output is grant[1:0].
+  The reset is synchronous and active high.
+  If enable is low, grant should be 2'b00 and the round-robin priority should not change.
+  If enable is high and no request is active, grant should be 2'b00 and priority should not change.
+  If exactly one request is active while enable is high, grant that requester and priority should not change.
+  If both requests are active while enable is high, alternate the grant between requester 0 and requester 1 on successive granted cycles.
+  After reset, requester 0 has priority when both request simultaneously.
+top_module: top_module
+ports:
+  - {name: clk, dir: input, width: 1}
+  - {name: reset, dir: input, width: 1}
+  - {name: enable, dir: input, width: 1}
+  - {name: req, dir: input, width: 2}
+  - {name: grant, dir: output, width: 2}
+clock: clk
+reset: reset
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

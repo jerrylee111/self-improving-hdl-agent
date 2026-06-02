@@ -30,6 +30,8 @@ def main(
     tasks = [Path(path) for path in data.get("tasks", [])]
     policies = data.get("policies", ["fixed"])
     max_iters = int(data.get("max_repair_iters", 3))
+    evaluator_profile = data.get("evaluator_profile", "adversarial_v2")
+    active_skills = bool(data.get("active_skills", True))
 
     table = Table(title="Experiment Plan")
     table.add_column("Field")
@@ -37,6 +39,8 @@ def main(
     table.add_row("config", str(config))
     table.add_row("tasks", str(len(tasks)))
     table.add_row("policies", ", ".join(policies))
+    table.add_row("evaluator_profile", evaluator_profile)
+    table.add_row("active_skills", str(active_skills))
     table.add_row("max_iters", str(max_iters))
     table.add_row("dry_run", str(dry_run))
     console.print(table)
@@ -56,7 +60,10 @@ def main(
     records: list[dict] = []
     with records_path.open("w") as f:
         for policy in policies:
-            skill_cache = L1SkillCache(capacity=int(data.get("skill_l1_capacity", 6)))
+            skill_cache = L1SkillCache(
+                capacity=int(data.get("skill_l1_capacity", 6)),
+                include_active=active_skills,
+            )
             for task_path in tasks:
                 task = load_task(task_path)
                 console.print(f"running task={task.id} policy={policy}")
@@ -67,6 +74,7 @@ def main(
                     out_dir=run_dir / "artifacts" / policy,
                     llm=llm,
                     skill_cache=skill_cache,
+                    evaluator_profile=evaluator_profile,
                 )
                 records.append(record)
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")
@@ -75,6 +83,7 @@ def main(
                     {
                         "task_id": record["task_id"],
                         "passed": record["passed"],
+                        "accepted_by_current_evaluator": record["accepted_by_current_evaluator"],
                         "iterations": record["iterations"],
                         "wall_time_s": record["wall_time_s"],
                     }

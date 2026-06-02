@@ -20,6 +20,7 @@ def run_task_loop(
     out_dir: Path,
     llm: LLMClient,
     skill_cache: L1SkillCache | None = None,
+    evaluator_profile: str = "adversarial_v2",
 ) -> dict[str, Any]:
     skill_cache = skill_cache or L1SkillCache()
     cache_event = skill_cache.lookup(task, policy=policy)
@@ -31,6 +32,7 @@ def run_task_loop(
     final_passed = False
     final_summary = ""
     first_failure_summary = ""
+    final_evaluator_strength: dict[str, Any] | None = None
     attempts = 0
 
     for attempt in range(1, max_iters + 1):
@@ -41,9 +43,10 @@ def run_task_loop(
             final_summary = f"LLM call failed: {type(exc).__name__}: {exc}"
             break
         attempt_dir = run_dir / f"attempt_{attempt}"
-        result = evaluate_rtl(task, rtl, attempt_dir)
+        result = evaluate_rtl(task, rtl, attempt_dir, evaluator_profile=evaluator_profile)
         final_passed = result.passed
         final_summary = result.summary
+        final_evaluator_strength = result.strength
         if (not result.passed) and not first_failure_summary:
             first_failure_summary = result.summary
         if result.passed:
@@ -64,6 +67,8 @@ def run_task_loop(
         "family": task.family,
         "tags": task.tags,
         "policy": policy,
+        "evaluator_profile": evaluator_profile,
+        "active_skills_enabled": skill_cache.include_active,
         "retrieved_skills": [skill["id"] for skill in skills],
         "l1_skill_ids": [skill["id"] for skill in skills],
         "skill_cache_event": cache_event["event"],
@@ -76,6 +81,20 @@ def run_task_loop(
             "evicted_skill_ids": [] if cache_event["retrieval"] is None else cache_event["retrieval"]["evicted_skill_ids"],
         },
         "passed": final_passed,
+        "accepted_by_current_evaluator": final_passed,
+        "correctness_claim": "not_proven",
+        "evaluator_goal": "find_counterexample_or_bug",
+        "evaluator_strength": final_evaluator_strength
+        or {
+            "lint": False,
+            "directed_simulation": False,
+            "random_simulation": False,
+            "reference_model": False,
+            "assertions": False,
+            "formal": False,
+            "coverage": None,
+            "correctness_claim": "not_proven",
+        },
         "iterations": attempts,
         "max_iters": max_iters,
         "wall_time_s": round(time.time() - start, 3),

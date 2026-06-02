@@ -25,6 +25,8 @@ def main(
     dry_run: bool = typer.Option(True, help="Only validate environment and task path."),
     max_iters: int = typer.Option(3, help="Maximum coder/evaluator attempts."),
     out_dir: Path = typer.Option(Path("results/runs"), help="Directory for run artifacts."),
+    evaluator_profile: str = typer.Option("adversarial_v2", help="Evaluator profile: basic or adversarial_v2."),
+    active_skills: bool = typer.Option(True, help="Load active skills in addition to seed skills."),
 ) -> None:
     table = Table(title="HDL Agent Task Smoke Check")
     loaded_task = load_task(task) if task.exists() else None
@@ -38,6 +40,8 @@ def main(
         table.add_row("tags", ", ".join(loaded_task.tags))
         table.add_row("language", loaded_task.language)
     table.add_row("policy", policy)
+    table.add_row("evaluator_profile", evaluator_profile)
+    table.add_row("active_skills", str(active_skills))
     table.add_row("dry_run", str(dry_run))
     for name, path in check_hdl_tools().items():
         table.add_row(name, path or "not found")
@@ -49,7 +53,7 @@ def main(
         return
 
     assert loaded_task is not None
-    skills = retrieve_skills(loaded_task, policy=policy)
+    skills = retrieve_skills(loaded_task, policy=policy, include_active=active_skills)
     console.print(f"retrieved_skills={[skill['id'] for skill in skills]}")
 
     llm = LLMClient()
@@ -60,7 +64,8 @@ def main(
         max_iters=max_iters,
         out_dir=out_dir,
         llm=llm,
-        skill_cache=L1SkillCache(),
+        skill_cache=L1SkillCache(include_active=active_skills),
+        evaluator_profile=evaluator_profile,
     )
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "result.json").write_text(json.dumps(record, indent=2, ensure_ascii=False))

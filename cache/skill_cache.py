@@ -16,6 +16,8 @@ class L1SkillCache:
     """
 
     capacity: int = 6
+    agent: str = "coder"
+    include_active: bool = True
     entries: list[dict[str, Any]] = field(default_factory=list)
 
     def lookup(self, task: HDLTask, *, policy: str) -> dict[str, Any]:
@@ -30,7 +32,13 @@ class L1SkillCache:
                 "retrieval": None,
             }
 
-        retrieval = retrieve_skill_candidates(task, policy=policy, budget=self.capacity)
+        retrieval = retrieve_skill_candidates(
+            task,
+            policy=policy,
+            budget=self.capacity,
+            agent=self.agent,
+            include_active=self.include_active,
+        )
         selected = retrieval["selected_skills"]
         self.entries = selected[: self.capacity]
         return {
@@ -44,11 +52,13 @@ class L1SkillCache:
 
 
 def _skill_matches_task(skill: dict[str, Any], task: HDLTask) -> bool:
-    if skill.get("cache", {}).get("pin"):
-        return True
+    # Pinned or very generic skills are useful L1 residents, but they should not
+    # by themselves prevent a miss when a new task needs more specific skills.
     task_terms = set(task.tags + [task.family, task.language, task.id])
+    generic_terms = {"verilog", "systemverilog", "sequential", "combinational", "reset"}
+    specific_terms = task_terms - generic_terms
     topics = set(skill.get("domain", {}).get("topic", []))
     patterns = " ".join(skill.get("task_patterns", [])).lower()
-    if task_terms & topics:
+    if specific_terms & topics:
         return True
-    return any(str(term).lower() in patterns for term in task_terms)
+    return any(str(term).lower() in patterns for term in specific_terms)

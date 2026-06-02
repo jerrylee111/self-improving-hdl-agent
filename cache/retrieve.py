@@ -13,6 +13,30 @@ def load_seed_skills(path: Path = Path("skills/seed/rtl_rules.yaml")) -> list[di
     return list(data.get("skills", []))
 
 
+def load_active_skills(path: Path = Path("skills/active")) -> list[dict[str, Any]]:
+    skills: list[dict[str, Any]] = []
+    for skill_path in sorted(path.glob("*.yaml")):
+        data = yaml.safe_load(skill_path.read_text())
+        if not data:
+            continue
+        if data.get("version", {}).get("status") == "active":
+            skills.append(data)
+    return skills
+
+
+def load_skill_store(agent: str | None = None, include_active: bool = True) -> list[dict[str, Any]]:
+    skills = [*load_seed_skills()]
+    if include_active:
+        skills.extend(load_active_skills())
+    if agent is None:
+        return skills
+    return [
+        skill
+        for skill in skills
+        if skill.get("agent", "both") in {agent, "both"}
+    ]
+
+
 def _score_skill(task: HDLTask, skill: dict[str, Any]) -> tuple[float, list[str]]:
     task_terms = set(task.tags + [task.family, task.language, task.id])
     reasons: list[str] = []
@@ -33,8 +57,14 @@ def _score_skill(task: HDLTask, skill: dict[str, Any]) -> tuple[float, list[str]
     return score, reasons
 
 
-def retrieve_skill_candidates(task: HDLTask, policy: str = "fixed", budget: int = 6) -> dict[str, Any]:
-    skills = load_seed_skills()
+def retrieve_skill_candidates(
+    task: HDLTask,
+    policy: str = "fixed",
+    budget: int = 6,
+    agent: str | None = "coder",
+    include_active: bool = True,
+) -> dict[str, Any]:
+    skills = load_skill_store(agent=agent, include_active=include_active)
 
     if policy == "no_skill":
         return {
@@ -110,5 +140,19 @@ def retrieve_skill_candidates(task: HDLTask, policy: str = "fixed", budget: int 
     }
 
 
-def retrieve_skills(task: HDLTask, policy: str = "fixed", budget: int = 6) -> list[dict[str, Any]]:
-    return list(retrieve_skill_candidates(task, policy=policy, budget=budget)["selected_skills"])
+def retrieve_skills(
+    task: HDLTask,
+    policy: str = "fixed",
+    budget: int = 6,
+    agent: str | None = "coder",
+    include_active: bool = True,
+) -> list[dict[str, Any]]:
+    return list(
+        retrieve_skill_candidates(
+            task,
+            policy=policy,
+            budget=budget,
+            agent=agent,
+            include_active=include_active,
+        )["selected_skills"]
+    )

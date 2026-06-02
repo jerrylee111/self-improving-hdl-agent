@@ -3,6 +3,8 @@
 results/runs/
 results/runs*/
 results/experiments/
+results/mutant_eval*/
+results/four_phase/
 *.pyc
 __pycache__/
 *.egg-info/
