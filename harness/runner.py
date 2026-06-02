@@ -6,7 +6,7 @@ from typing import Any
 
 from agents.coder import generate_rtl
 from agents.llm import LLMClient
-from cache.retrieve import retrieve_skill_candidates
+from cache.skill_cache import L1SkillCache
 from harness.evaluate import evaluate_rtl
 from harness.task_schema import HDLTask
 from skills.mine import mine_candidate_skills_from_failure
@@ -19,9 +19,11 @@ def run_task_loop(
     max_iters: int,
     out_dir: Path,
     llm: LLMClient,
+    skill_cache: L1SkillCache | None = None,
 ) -> dict[str, Any]:
-    retrieval = retrieve_skill_candidates(task, policy=policy)
-    skills = retrieval["selected_skills"]
+    skill_cache = skill_cache or L1SkillCache()
+    cache_event = skill_cache.lookup(task, policy=policy)
+    skills = list(skill_cache.entries)
     run_dir = out_dir / task.id
     start = time.time()
     previous_rtl: str | None = None
@@ -63,12 +65,15 @@ def run_task_loop(
         "tags": task.tags,
         "policy": policy,
         "retrieved_skills": [skill["id"] for skill in skills],
+        "l1_skill_ids": [skill["id"] for skill in skills],
+        "skill_cache_event": cache_event["event"],
+        "skill_cache_miss": cache_event["miss"],
         "skill_retrieval": {
-            "policy": retrieval["policy"],
-            "budget": retrieval["budget"],
-            "candidate_count": retrieval["candidate_count"],
-            "candidates": retrieval["candidates"],
-            "evicted_skill_ids": retrieval["evicted_skill_ids"],
+            "policy": policy,
+            "budget": skill_cache.capacity,
+            "candidate_count": 0 if cache_event["retrieval"] is None else cache_event["retrieval"]["candidate_count"],
+            "candidates": [] if cache_event["retrieval"] is None else cache_event["retrieval"]["candidates"],
+            "evicted_skill_ids": [] if cache_event["retrieval"] is None else cache_event["retrieval"]["evicted_skill_ids"],
         },
         "passed": final_passed,
         "iterations": attempts,

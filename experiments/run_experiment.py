@@ -10,6 +10,7 @@ from rich.table import Table
 import yaml
 
 from agents.llm import LLMClient
+from cache.skill_cache import L1SkillCache
 from harness.runner import run_task_loop, summarize_records
 from harness.task_schema import load_task
 
@@ -55,6 +56,7 @@ def main(
     records: list[dict] = []
     with records_path.open("w") as f:
         for policy in policies:
+            skill_cache = L1SkillCache(capacity=int(data.get("skill_l1_capacity", 6)))
             for task_path in tasks:
                 task = load_task(task_path)
                 console.print(f"running task={task.id} policy={policy}")
@@ -64,6 +66,7 @@ def main(
                     max_iters=max_iters,
                     out_dir=run_dir / "artifacts" / policy,
                     llm=llm,
+                    skill_cache=skill_cache,
                 )
                 records.append(record)
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")

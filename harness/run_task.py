@@ -8,6 +8,7 @@ from rich.console import Console
 from rich.table import Table
 
 from agents.llm import LLMClient
+from cache.skill_cache import L1SkillCache
 from cache.retrieve import retrieve_skills
 from harness.runner import run_task_loop
 from harness.task_schema import load_task
@@ -59,6 +60,7 @@ def main(
         max_iters=max_iters,
         out_dir=out_dir,
         llm=llm,
+        skill_cache=L1SkillCache(),
     )
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "result.json").write_text(json.dumps(record, indent=2, ensure_ascii=False))
