@@ -1,0 +1,31 @@
+id: local_valid_ready_pipeline2
+source: local_seed
+license: project-owned
+language: systemverilog
+family: handshake_pipeline
+tags: [sequential, valid_ready, handshake, backpressure, pipeline]
+difficulty: 5
+prompt: |
+  Implement a two-entry valid/ready pipeline named top_module.
+  Inputs are clk, reset, in_valid, in_data[7:0], out_ready.
+  Outputs are in_ready, out_valid, out_data[7:0].
+  The reset is synchronous and active high.
+  Data transfers into the pipeline when in_valid and in_ready are high.
+  Data transfers out when out_valid and out_ready are high.
+  The module must preserve input order and must keep out_data stable while out_valid is high and out_ready is low.
+  It should accept up to two items while the output is stalled.
+top_module: top_module
+ports:
+  - {name: clk, dir: input, width: 1}
+  - {name: reset, dir: input, width: 1}
+  - {name: in_valid, dir: input, width: 1}
+  - {name: in_data, dir: input, width: 8}
+  - {name: in_ready, dir: output, width: 1}
+  - {name: out_valid, dir: output, width: 1}
+  - {name: out_data, dir: output, width: 8}
+  - {name: out_ready, dir: input, width: 1}
+clock: clk
+reset: reset
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}
