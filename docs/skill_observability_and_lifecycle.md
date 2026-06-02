@@ -84,13 +84,18 @@
 
 ### 2.3 生成过程可观测
 
-每个任务结束后，skill miner 应产生候选 skill，记录：
+失败本身就是完整信息，不需要等到“失败后成功”才生成 skill。每当 evaluator 观察到失败，就应该生成两类候选：
+
+- coder skill：下次 coder 应该如何避免或修复这类错误。
+- evaluator skill：下次 evaluator 应该重点检查什么。
+
+每次失败后，skill miner 应产生候选 skill，记录：
 
 ```json
 {
   "event": "skill_candidate_generated",
   "task_id": "local_round_robin_arbiter2",
-  "source": "failure_then_repair",
+  "source": "failure_observed",
   "candidate": {
     "name": "registered_round_robin_grant",
     "agent": "coder",
@@ -201,7 +206,8 @@ results/experiments/<run_name>/
    - 记录 score。
    - 记录 selected/evicted。
 2. Failure-to-skill mining：
-   - 如果某任务先失败后成功，生成 candidate skill。
+   - evaluator 一旦观察到失败，就生成 candidate skill。
+   - 同时生成 coder skill 和 evaluator skill。
    - 先用规则模板生成，不必完全依赖 LLM。
 3. Candidate store：
    - 写入 `skills/candidate/*.yaml`。

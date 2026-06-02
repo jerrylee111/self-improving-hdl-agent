@@ -1,0 +1,45 @@
+id: candidate.local_round_robin_arbiter2.coder.registered_round_robin_grant.example
+name: registered_round_robin_grant
+agent: coder
+domain:
+  language: verilog
+  topic:
+  - arbiter
+  - sequential
+  - fairness
+  - registered_output
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- combinational grant sampled after clock edge
+payload:
+  type: repair_pattern
+  content: When an arbiter testbench samples grant after posedge clk, prefer registering
+    grant and updating the priority pointer in the sequential block. A purely combinational
+    grant derived from a priority bit that also updates on the same edge can expose
+    the next-cycle priority too early.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2
+    policy: no_skill
+    attempts: 1
+    failure_signature: 'FATAL: tb.sv:9: grant mismatch'

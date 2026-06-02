@@ -9,7 +9,7 @@ from agents.llm import LLMClient
 from cache.retrieve import retrieve_skill_candidates
 from harness.evaluate import evaluate_rtl
 from harness.task_schema import HDLTask
-from skills.mine import mine_candidate_skill
+from skills.mine import mine_candidate_skills_from_failure
 
 
 def run_task_loop(
@@ -49,11 +49,10 @@ def run_task_loop(
         previous_rtl = rtl
         feedback = result.summary[-6000:]
 
-    candidate_skill = mine_candidate_skill(
+    candidate_skills = mine_candidate_skills_from_failure(
         task,
         policy=policy,
         attempts=attempts,
-        passed=final_passed,
         failure_summary=first_failure_summary,
     )
 
@@ -77,7 +76,7 @@ def run_task_loop(
         "wall_time_s": round(time.time() - start, 3),
         "workdir": str(run_dir),
         "failure_summary_tail": "" if final_passed else final_summary[-2000:],
-        "candidate_skill_generated": candidate_skill["id"] if candidate_skill else None,
+        "candidate_skills_generated": [skill["id"] for skill in candidate_skills],
     }
 
 
