@@ -1,0 +1,31 @@
+id: local_mul4_shift_add
+source: local_seed
+license: project-owned
+language: verilog
+family: sequential_arithmetic
+tags: [sequential, arithmetic, multiplier, handshake, latency]
+difficulty: 5
+prompt: |
+  Implement a sequential unsigned 4-bit multiplier named top_module.
+  Inputs are clk, reset, start, a[3:0], b[3:0].
+  Outputs are product[7:0], busy, done.
+  The reset is synchronous and active high.
+  When start is asserted while busy is low, the module should capture a and b and begin multiplication.
+  busy should be high while the multiplication is in progress.
+  done should pulse high for exactly one cycle when product becomes valid.
+  The product must equal a * b. New starts while busy is high should be ignored.
+top_module: top_module
+ports:
+  - {name: clk, dir: input, width: 1}
+  - {name: reset, dir: input, width: 1}
+  - {name: start, dir: input, width: 1}
+  - {name: a, dir: input, width: 4}
+  - {name: b, dir: input, width: 4}
+  - {name: product, dir: output, width: 8}
+  - {name: busy, dir: output, width: 1}
+  - {name: done, dir: output, width: 1}
+clock: clk
+reset: reset
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

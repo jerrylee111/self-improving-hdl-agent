@@ -1,0 +1,31 @@
+id: local_fifo_sync_depth4
+source: local_seed
+license: project-owned
+language: systemverilog
+family: sequential_fifo
+tags: [sequential, fifo, pointer, full_empty, reset]
+difficulty: 5
+prompt: |
+  Implement a synchronous FIFO named top_module.
+  Inputs are clk, reset, wr_en, rd_en, din[7:0].
+  Outputs are dout[7:0], full, empty.
+  The FIFO depth is 4 entries. The reset is synchronous and active high.
+  A write occurs on a rising clock edge when wr_en is high and full is low.
+  A read occurs on a rising clock edge when rd_en is high and empty is low.
+  When reading, dout should update to the value removed from the FIFO.
+  The FIFO should support simultaneous read and write in the same cycle when legal.
+top_module: top_module
+ports:
+  - {name: clk, dir: input, width: 1}
+  - {name: reset, dir: input, width: 1}
+  - {name: wr_en, dir: input, width: 1}
+  - {name: rd_en, dir: input, width: 1}
+  - {name: din, dir: input, width: 8}
+  - {name: dout, dir: output, width: 8}
+  - {name: full, dir: output, width: 1}
+  - {name: empty, dir: output, width: 1}
+clock: clk
+reset: reset
+expected: {type: reference_model}
+evaluation: {lint: true, simulation: true, formal: false}
+split: {default: dev}

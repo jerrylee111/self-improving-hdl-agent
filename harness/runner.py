@@ -30,7 +30,11 @@ def run_task_loop(
 
     for attempt in range(1, max_iters + 1):
         attempts = attempt
-        rtl = generate_rtl(task, skills, llm, previous_rtl=previous_rtl, feedback=feedback)
+        try:
+            rtl = generate_rtl(task, skills, llm, previous_rtl=previous_rtl, feedback=feedback)
+        except Exception as exc:
+            final_summary = f"LLM call failed: {type(exc).__name__}: {exc}"
+            break
         attempt_dir = run_dir / f"attempt_{attempt}"
         result = evaluate_rtl(task, rtl, attempt_dir)
         final_passed = result.passed
@@ -59,8 +63,14 @@ def run_task_loop(
 def summarize_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     total = len(records)
     solved = sum(1 for record in records if record["passed"])
+    api_failures = sum(
+        1
+        for record in records
+        if (not record["passed"]) and "LLM call failed" in record.get("failure_summary_tail", "")
+    )
     total_iterations = sum(record["iterations"] for record in records)
     failed = total - solved
+    hdl_failed = failed - api_failures
     pass_at_k = solved / total if total else 0.0
     acps_iter = total_iterations / solved if solved else float("inf")
     ast_iter = solved / total_iterations if total_iterations else 0.0
@@ -68,6 +78,8 @@ def summarize_records(records: list[dict[str, Any]]) -> dict[str, Any]:
         "tasks": total,
         "solved": solved,
         "failed": failed,
+        "hdl_failed": hdl_failed,
+        "api_failures": api_failures,
         "pass_at_k": round(pass_at_k, 4),
         "total_iterations": total_iterations,
         "acps_iter": round(acps_iter, 4) if solved else None,

@@ -1,0 +1,9 @@
+name: local_hard_ablation_remaining
+tasks:
+  - benchmarks/tasks/local_seed/valid_ready_pipeline2.yaml
+  - benchmarks/tasks/local_seed/mul4_shift_add.yaml
+policies:
+  - tag_topk
+  - locality_aware
+max_repair_iters: 3
+skill_token_budget: 4096

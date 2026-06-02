@@ -219,4 +219,145 @@ module tb;
   end
 endmodule
 """)
+    if task.id == "local_fifo_sync_depth4":
+        return with_timescale("""
+module tb;
+  reg clk=0, reset=0, wr_en=0, rd_en=0; reg [7:0] din=0;
+  wire [7:0] dout; wire full, empty;
+  top_module dut(.clk(clk), .reset(reset), .wr_en(wr_en), .rd_en(rd_en),
+                 .din(din), .dout(dout), .full(full), .empty(empty));
+  always #1 clk = ~clk;
+
+  reg [7:0] q [0:31];
+  integer head, tail, count;
+
+  task check_flags;
+    begin
+      if (empty !== (count == 0)) $fatal(1, "empty flag mismatch");
+      if (full !== (count == 4)) $fatal(1, "full flag mismatch");
+    end
+  endtask
+
+  task cycle(input w, input r, input [7:0] data);
+    reg [7:0] exp_dout;
+    reg expect_read;
+    begin
+      exp_dout = q[head];
+      expect_read = r && (count > 0);
+      wr_en=w; rd_en=r; din=data; @(posedge clk); #0.1;
+      if (expect_read && dout !== exp_dout) $fatal(1, "dout mismatch");
+      if (expect_read) begin head = head + 1; count = count - 1; end
+      if (w && count < 4) begin q[tail] = data; tail = tail + 1; count = count + 1; end
+      check_flags();
+    end
+  endtask
+
+  initial begin
+    head=0; tail=0; count=0;
+    reset=1; @(posedge clk); #0.1; reset=0; check_flags();
+    cycle(1,0,8'h11); cycle(1,0,8'h22); cycle(1,0,8'h33); cycle(1,0,8'h44);
+    if (!full) $fatal(1, "expected full");
+    cycle(1,0,8'h55);
+    cycle(0,1,8'h00); cycle(1,1,8'h55); cycle(0,1,8'h00); cycle(0,1,8'h00);
+    cycle(0,1,8'h00); cycle(0,1,8'h00);
+    if (!empty) $fatal(1, "expected empty");
+    $display("PASS"); $finish;
+  end
+endmodule
+""")
+    if task.id == "local_round_robin_arbiter2":
+        return with_timescale("""
+module tb;
+  reg clk=0, reset=0; reg [1:0] req=0; wire [1:0] grant;
+  top_module dut(.clk(clk), .reset(reset), .req(req), .grant(grant));
+  always #1 clk = ~clk;
+  task step(input [1:0] r, input [1:0] exp);
+    begin
+      req=r; @(posedge clk); #0.1;
+      if (grant !== exp) $fatal(1, "grant mismatch");
+    end
+  endtask
+  initial begin
+    reset=1; step(2'b00,2'b00); reset=0;
+    step(2'b01,2'b01);
+    step(2'b10,2'b10);
+    step(2'b11,2'b01);
+    step(2'b11,2'b10);
+    step(2'b11,2'b01);
+    step(2'b00,2'b00);
+    step(2'b11,2'b10);
+    $display("PASS"); $finish;
+  end
+endmodule
+""")
+    if task.id == "local_valid_ready_pipeline2":
+        return with_timescale("""
+module tb;
+  reg clk=0, reset=0, in_valid=0, out_ready=0; reg [7:0] in_data=0;
+  wire in_ready, out_valid; wire [7:0] out_data;
+  top_module dut(.clk(clk), .reset(reset), .in_valid(in_valid), .in_data(in_data),
+                 .in_ready(in_ready), .out_valid(out_valid), .out_data(out_data),
+                 .out_ready(out_ready));
+  always #1 clk = ~clk;
+
+  task step(input iv, input [7:0] data, input ordy);
+    begin
+      in_valid=iv; in_data=data; out_ready=ordy; @(posedge clk); #0.1;
+    end
+  endtask
+
+  initial begin
+    reset=1; step(0,8'h00,0); reset=0;
+    step(1,8'h10,0);
+    step(1,8'h20,0);
+    if (!out_valid || out_data !== 8'h10) $fatal(1, "first item not visible");
+    if (in_ready) $fatal(1, "pipeline should be full");
+    repeat (3) begin
+      step(1,8'h30,0);
+      if (!out_valid || out_data !== 8'h10) $fatal(1, "data changed under stall");
+    end
+    step(0,8'h00,1); if (!out_valid || out_data !== 8'h20) $fatal(1, "second item missing");
+    step(1,8'h30,1); if (!out_valid || out_data !== 8'h30) $fatal(1, "third item missing");
+    step(0,8'h00,1); if (out_valid) $fatal(1, "pipeline should be empty");
+    $display("PASS"); $finish;
+  end
+endmodule
+""")
+    if task.id == "local_mul4_shift_add":
+        return with_timescale("""
+module tb;
+  reg clk=0, reset=0, start=0; reg [3:0] a=0, b=0;
+  wire [7:0] product; wire busy, done;
+  top_module dut(.clk(clk), .reset(reset), .start(start), .a(a), .b(b),
+                 .product(product), .busy(busy), .done(done));
+  always #1 clk = ~clk;
+
+  task tick;
+    begin @(posedge clk); #0.1; end
+  endtask
+
+  task run_case(input [3:0] aa, input [3:0] bb);
+    integer cycles;
+    begin
+      a=aa; b=bb; start=1; tick(); start=0;
+      cycles=0;
+      while (!done && cycles < 12) begin
+        if (!busy && cycles < 3) $fatal(1, "busy dropped too early");
+        tick(); cycles = cycles + 1;
+      end
+      if (!done) $fatal(1, "done timeout");
+      if (product !== aa * bb) $fatal(1, "product mismatch");
+      tick(); if (done) $fatal(1, "done not one-cycle pulse");
+    end
+  endtask
+
+  initial begin
+    reset=1; tick(); reset=0;
+    run_case(4'd0, 4'd9);
+    run_case(4'd3, 4'd5);
+    run_case(4'd15, 4'd15);
+    $display("PASS"); $finish;
+  end
+endmodule
+""")
     raise ValueError(f"No testbench generator for {task.id}")

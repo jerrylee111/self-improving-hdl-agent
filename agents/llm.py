@@ -23,6 +23,8 @@ class LLMConfig:
     api_key: str
     base_url: str = "https://api.deepseek.com"
     model: str = "deepseek-v4-pro"
+    timeout_s: float = 120.0
+    max_retries: int = 0
 
     @classmethod
     def from_env(cls) -> "LLMConfig":
@@ -34,13 +36,20 @@ class LLMConfig:
             api_key=api_key,
             base_url=os.environ.get("DEEPSEEK_BASE_URL", cls.base_url),
             model=os.environ.get("DEEPSEEK_MODEL", cls.model),
+            timeout_s=float(os.environ.get("DEEPSEEK_TIMEOUT_S", cls.timeout_s)),
+            max_retries=int(os.environ.get("DEEPSEEK_MAX_RETRIES", cls.max_retries)),
         )
 
 
 class LLMClient:
     def __init__(self, config: LLMConfig | None = None) -> None:
         self.config = config or LLMConfig.from_env()
-        self.client = OpenAI(api_key=self.config.api_key, base_url=self.config.base_url)
+        self.client = OpenAI(
+            api_key=self.config.api_key,
+            base_url=self.config.base_url,
+            timeout=self.config.timeout_s,
+            max_retries=self.config.max_retries,
+        )
 
     def complete(self, system: str, user: str) -> str:
         response = self.client.chat.completions.create(
@@ -49,6 +58,7 @@ class LLMClient:
                 {"role": "system", "content": system},
                 {"role": "user", "content": user},
             ],
+            timeout=self.config.timeout_s,
         )
         content = response.choices[0].message.content
         return content or ""
