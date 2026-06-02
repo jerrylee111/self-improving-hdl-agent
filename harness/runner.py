@@ -6,9 +6,10 @@ from typing import Any
 
 from agents.coder import generate_rtl
 from agents.llm import LLMClient
-from cache.retrieve import retrieve_skills
+from cache.retrieve import retrieve_skill_candidates
 from harness.evaluate import evaluate_rtl
 from harness.task_schema import HDLTask
+from skills.mine import mine_candidate_skill
 
 
 def run_task_loop(
@@ -19,13 +20,15 @@ def run_task_loop(
     out_dir: Path,
     llm: LLMClient,
 ) -> dict[str, Any]:
-    skills = retrieve_skills(task, policy=policy)
+    retrieval = retrieve_skill_candidates(task, policy=policy)
+    skills = retrieval["selected_skills"]
     run_dir = out_dir / task.id
     start = time.time()
     previous_rtl: str | None = None
     feedback: str | None = None
     final_passed = False
     final_summary = ""
+    first_failure_summary = ""
     attempts = 0
 
     for attempt in range(1, max_iters + 1):
@@ -39,10 +42,20 @@ def run_task_loop(
         result = evaluate_rtl(task, rtl, attempt_dir)
         final_passed = result.passed
         final_summary = result.summary
+        if (not result.passed) and not first_failure_summary:
+            first_failure_summary = result.summary
         if result.passed:
             break
         previous_rtl = rtl
         feedback = result.summary[-6000:]
+
+    candidate_skill = mine_candidate_skill(
+        task,
+        policy=policy,
+        attempts=attempts,
+        passed=final_passed,
+        failure_summary=first_failure_summary,
+    )
 
     return {
         "task_id": task.id,
@@ -51,12 +64,20 @@ def run_task_loop(
         "tags": task.tags,
         "policy": policy,
         "retrieved_skills": [skill["id"] for skill in skills],
+        "skill_retrieval": {
+            "policy": retrieval["policy"],
+            "budget": retrieval["budget"],
+            "candidate_count": retrieval["candidate_count"],
+            "candidates": retrieval["candidates"],
+            "evicted_skill_ids": retrieval["evicted_skill_ids"],
+        },
         "passed": final_passed,
         "iterations": attempts,
         "max_iters": max_iters,
         "wall_time_s": round(time.time() - start, 3),
         "workdir": str(run_dir),
         "failure_summary_tail": "" if final_passed else final_summary[-2000:],
+        "candidate_skill_generated": candidate_skill["id"] if candidate_skill else None,
     }
 
 
