@@ -1,0 +1,23 @@
+name: verilogeval_evolution_short_stress6
+max_repair_iters: 2
+skill_l1_capacity: 6
+max_task_wall_time_s: 180
+hard_timeout: true
+evaluator_profile: adversarial_v2
+conditions:
+- id: short_stress6_no_skill
+  active_skills: false
+  policy: no_skill
+- id: short_stress6_seed_only
+  active_skills: false
+  policy: locality_aware
+- id: short_stress6_active
+  active_skills: true
+  policy: locality_aware
+tasks:
+- benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob104_mt2015_muxdff.yaml
+- benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob031_dff.yaml
+- benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob034_dff8.yaml
+- benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob111_fsm2s.yaml
+- benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob096_review2015_fsmseq.yaml
+- benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob063_review2015_shiftcount.yaml

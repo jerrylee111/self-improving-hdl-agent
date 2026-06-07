@@ -28,8 +28,8 @@ metrics:
   failures: 0
   utility_ema: 0.0
   token_cost_ema: 0.0
-  merged_candidate_count: 1
-  evidence_count: 1
+  merged_candidate_count: 2
+  evidence_count: 2
 cache:
   pin: false
 version:
@@ -37,6 +37,7 @@ version:
   revision: 1
   parent_ids:
   - candidate.verilogeval_spec_to_rtl_prob082_lfsr32.evaluator.check_pattern_sequential_shift.1780450590
+  - candidate.verilogeval_spec_to_rtl_prob086_lfsr5.evaluator.check_pattern_sequential_shift.1780816292
   fingerprint: 25f050b7fca15b4d
 validation:
   evidence:
@@ -82,6 +83,47 @@ validation:
       stderr:
 
       '
+  - task_id: verilogeval_spec_to_rtl_prob086_lfsr5
+    policy: no_skill
+    attempts: 2
+    failure_signature: '                  ... Use "/* verilator lint_off DECLFILENAME
+      */" and lint_on around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob086_lfsr5_ref.sv
+
+      returncode=0
+
+      stdout:
+
+
+      stderr:
+
+
+
+      $ vvp sim.out
+
+      returncode=0
+
+      stdout:
+
+      tb.sv:65: $finish called at 22216 (1ps)
+
+      Hint: Output ''q'' has 4280 mismatches. First mismatch occurred at time 40.
+
+      Hint: Total mismatched samples is 4280 out of 4443 samples
+
+
+      Simulation finished at 22216 ps
+
+      Mismatches: 4280 in 4443 samples
+
+
+      stderr:
+
+      '
 provenance:
   source_paths:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob082_lfsr32.evaluator.check_pattern_sequential_shift.1780450590.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob086_lfsr5.evaluator.check_pattern_sequential_shift.1780816292.yaml

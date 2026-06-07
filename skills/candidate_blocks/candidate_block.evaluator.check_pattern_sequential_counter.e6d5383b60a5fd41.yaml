@@ -28,7 +28,7 @@ metrics:
   failures: 0
   utility_ema: 0.0
   token_cost_ema: 0.0
-  merged_candidate_count: 12
+  merged_candidate_count: 15
   evidence_count: 2
 cache:
   pin: false
@@ -48,6 +48,9 @@ version:
   - candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780650622
   - candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780651771
   - candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780654040
+  - candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780816069
+  - candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780816892
+  - candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780817914
   fingerprint: e6d5383b60a5fd41
 validation:
   evidence:
@@ -145,3 +148,6 @@ provenance:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780650622.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780651771.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780654040.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780816069.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780816892.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780817914.yaml

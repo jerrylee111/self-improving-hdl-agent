@@ -1,11 +1,11 @@
 {
-  "candidate_count": 172,
+  "candidate_count": 212,
   "unique_fingerprints": 28,
-  "duplicate_groups": 16,
+  "duplicate_groups": 18,
   "groups": [
     {
       "fingerprint": "334139cff2d85b49",
-      "count": 23,
+      "count": 30,
       "agent": "coder",
       "name": "repair_pattern_sequential_register",
       "task_patterns": [
@@ -27,6 +27,7 @@
         "candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780649599",
         "candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780650206",
         "candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780653956",
+        "candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780817521",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780446808",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780447028",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780447191",
@@ -39,11 +40,17 @@
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780651681",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780652790",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780653886",
+        "candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780815842",
+        "candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780816712",
+        "candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780817590",
         "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780449677",
         "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780451220",
         "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780456574",
         "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780652691",
-        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780653816"
+        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780653816",
+        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780815705",
+        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780816434",
+        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780817360"
       ],
       "paths": [
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780446935.yaml",
@@ -52,6 +59,7 @@
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780649599.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780650206.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780653956.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780817521.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780446808.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780447028.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780447191.yaml",
@@ -64,16 +72,22 @@
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780651681.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780652790.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780653886.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780815842.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780816712.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780817590.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780449677.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780451220.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780456574.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780652691.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780653816.yaml"
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780653816.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780815705.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780816434.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780817360.yaml"
       ]
     },
     {
       "fingerprint": "3bb35abf3cd1f91e",
-      "count": 23,
+      "count": 30,
       "agent": "evaluator",
       "name": "check_pattern_sequential_register",
       "task_patterns": [
@@ -95,6 +109,7 @@
         "candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780649599",
         "candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780650206",
         "candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780653956",
+        "candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780817521",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780446808",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447028",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447191",
@@ -107,11 +122,17 @@
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780651681",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780652790",
         "candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780653886",
+        "candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780815842",
+        "candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780816712",
+        "candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780817590",
         "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780449677",
         "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780451220",
         "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780456574",
         "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780652691",
-        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780653816"
+        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780653816",
+        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780815705",
+        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780816434",
+        "candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780817360"
       ],
       "paths": [
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780446935.yaml",
@@ -120,6 +141,7 @@
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780649599.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780650206.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780653956.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780817521.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780446808.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447028.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447191.yaml",
@@ -132,11 +154,133 @@
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780651681.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780652790.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780653886.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780815842.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780816712.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780817590.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780449677.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780451220.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780456574.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780652691.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780653816.yaml"
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780653816.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780815705.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780816434.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780817360.yaml"
+      ]
+    },
+    {
+      "fingerprint": "43e4ce22df583720",
+      "count": 18,
+      "agent": "coder",
+      "name": "repair_pattern_sequential_fsm",
+      "task_patterns": [
+        "sequential_fsm",
+        "fsm",
+        "sequential",
+        "state_machine",
+        "verilog"
+      ],
+      "source_tasks": [
+        "verilogeval_spec_to_rtl_prob096_review2015_fsmseq",
+        "verilogeval_spec_to_rtl_prob107_fsm1s",
+        "verilogeval_spec_to_rtl_prob111_fsm2s"
+      ],
+      "candidate_ids": [
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780449282",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780450680",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780456178",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780651130",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780653601",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780815993",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780816809",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780817702",
+        "candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780814333",
+        "candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780814348",
+        "candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780815152",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780456054",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780651037",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780652283",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780653485",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780815868",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780816733",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780817625"
+      ],
+      "paths": [
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780449282.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780450680.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780456178.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780651130.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780653601.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780815993.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780816809.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780817702.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780814333.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780814348.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780815152.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780456054.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780651037.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780652283.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780653485.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780815868.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780816733.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780817625.yaml"
+      ]
+    },
+    {
+      "fingerprint": "9aa0747c6b78fce4",
+      "count": 18,
+      "agent": "evaluator",
+      "name": "check_pattern_sequential_fsm",
+      "task_patterns": [
+        "sequential_fsm",
+        "fsm",
+        "sequential",
+        "state_machine",
+        "verilog"
+      ],
+      "source_tasks": [
+        "verilogeval_spec_to_rtl_prob096_review2015_fsmseq",
+        "verilogeval_spec_to_rtl_prob107_fsm1s",
+        "verilogeval_spec_to_rtl_prob111_fsm2s"
+      ],
+      "candidate_ids": [
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780449282",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780450680",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780456178",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780651130",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780653601",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780815993",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780816809",
+        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780817702",
+        "candidate.verilogeval_spec_to_rtl_prob107_fsm1s.evaluator.check_pattern_sequential_fsm.1780814333",
+        "candidate.verilogeval_spec_to_rtl_prob107_fsm1s.evaluator.check_pattern_sequential_fsm.1780814348",
+        "candidate.verilogeval_spec_to_rtl_prob107_fsm1s.evaluator.check_pattern_sequential_fsm.1780815152",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780456054",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780651037",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780652283",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780653485",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780815868",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780816733",
+        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780817625"
+      ],
+      "paths": [
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780449282.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780450680.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780456178.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780651130.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780653601.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780815993.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780816809.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780817702.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.evaluator.check_pattern_sequential_fsm.1780814333.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.evaluator.check_pattern_sequential_fsm.1780814348.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.evaluator.check_pattern_sequential_fsm.1780815152.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780456054.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780651037.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780652283.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780653485.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780815868.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780816733.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780817625.yaml"
       ]
     },
     {
@@ -253,7 +397,7 @@
     },
     {
       "fingerprint": "656235d51905af14",
-      "count": 12,
+      "count": 15,
       "agent": "coder",
       "name": "repair_pattern_sequential_counter",
       "task_patterns": [
@@ -277,7 +421,10 @@
         "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780650321",
         "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780650622",
         "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780651771",
-        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780654040"
+        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780654040",
+        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780816069",
+        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780816892",
+        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780817914"
       ],
       "paths": [
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780409950.yaml",
@@ -291,12 +438,15 @@
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780650321.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780650622.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780651771.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780654040.yaml"
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780654040.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780816069.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780816892.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.coder.repair_pattern_sequential_counter.1780817914.yaml"
       ]
     },
     {
       "fingerprint": "e6d5383b60a5fd41",
-      "count": 12,
+      "count": 15,
       "agent": "evaluator",
       "name": "check_pattern_sequential_counter",
       "task_patterns": [
@@ -320,7 +470,10 @@
         "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780650321",
         "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780650622",
         "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780651771",
-        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780654040"
+        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780654040",
+        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780816069",
+        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780816892",
+        "candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780817914"
       ],
       "paths": [
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780409950.yaml",
@@ -334,85 +487,10 @@
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780650321.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780650622.yaml",
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780651771.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780654040.yaml"
-      ]
-    },
-    {
-      "fingerprint": "43e4ce22df583720",
-      "count": 9,
-      "agent": "coder",
-      "name": "repair_pattern_sequential_fsm",
-      "task_patterns": [
-        "sequential_fsm",
-        "fsm",
-        "sequential",
-        "state_machine",
-        "verilog"
-      ],
-      "source_tasks": [
-        "verilogeval_spec_to_rtl_prob096_review2015_fsmseq",
-        "verilogeval_spec_to_rtl_prob111_fsm2s"
-      ],
-      "candidate_ids": [
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780449282",
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780450680",
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780456178",
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780651130",
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780653601",
-        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780456054",
-        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780651037",
-        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780652283",
-        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780653485"
-      ],
-      "paths": [
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780449282.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780450680.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780456178.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780651130.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780653601.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780456054.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780651037.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780652283.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780653485.yaml"
-      ]
-    },
-    {
-      "fingerprint": "9aa0747c6b78fce4",
-      "count": 9,
-      "agent": "evaluator",
-      "name": "check_pattern_sequential_fsm",
-      "task_patterns": [
-        "sequential_fsm",
-        "fsm",
-        "sequential",
-        "state_machine",
-        "verilog"
-      ],
-      "source_tasks": [
-        "verilogeval_spec_to_rtl_prob096_review2015_fsmseq",
-        "verilogeval_spec_to_rtl_prob111_fsm2s"
-      ],
-      "candidate_ids": [
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780449282",
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780450680",
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780456178",
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780651130",
-        "candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780653601",
-        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780456054",
-        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780651037",
-        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780652283",
-        "candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780653485"
-      ],
-      "paths": [
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780449282.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780450680.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780456178.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780651130.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.evaluator.check_pattern_sequential_fsm.1780653601.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780456054.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780651037.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780652283.yaml",
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1780653485.yaml"
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780654040.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780816069.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780816892.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780817914.yaml"
       ]
     },
     {
@@ -632,6 +710,30 @@
       ]
     },
     {
+      "fingerprint": "c36788a9cf747916",
+      "count": 2,
+      "agent": "coder",
+      "name": "repair_pattern_sequential_shift",
+      "task_patterns": [
+        "sequential_shift",
+        "sequential",
+        "shift_register",
+        "verilog"
+      ],
+      "source_tasks": [
+        "verilogeval_spec_to_rtl_prob082_lfsr32",
+        "verilogeval_spec_to_rtl_prob086_lfsr5"
+      ],
+      "candidate_ids": [
+        "candidate.verilogeval_spec_to_rtl_prob082_lfsr32.coder.repair_pattern_sequential_shift.1780450590",
+        "candidate.verilogeval_spec_to_rtl_prob086_lfsr5.coder.repair_pattern_sequential_shift.1780816292"
+      ],
+      "paths": [
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob082_lfsr32.coder.repair_pattern_sequential_shift.1780450590.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob086_lfsr5.coder.repair_pattern_sequential_shift.1780816292.yaml"
+      ]
+    },
+    {
       "fingerprint": "8cde1eb0097b3d78",
       "count": 2,
       "agent": "evaluator",
@@ -655,6 +757,30 @@
       "paths": [
         "skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.arbiter_registered_grant_check.1780387716.yaml",
         "skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.arbiter_registered_grant_check.1780388453.yaml"
+      ]
+    },
+    {
+      "fingerprint": "25f050b7fca15b4d",
+      "count": 2,
+      "agent": "evaluator",
+      "name": "check_pattern_sequential_shift",
+      "task_patterns": [
+        "sequential_shift",
+        "sequential",
+        "shift_register",
+        "verilog"
+      ],
+      "source_tasks": [
+        "verilogeval_spec_to_rtl_prob082_lfsr32",
+        "verilogeval_spec_to_rtl_prob086_lfsr5"
+      ],
+      "candidate_ids": [
+        "candidate.verilogeval_spec_to_rtl_prob082_lfsr32.evaluator.check_pattern_sequential_shift.1780450590",
+        "candidate.verilogeval_spec_to_rtl_prob086_lfsr5.evaluator.check_pattern_sequential_shift.1780816292"
+      ],
+      "paths": [
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob082_lfsr32.evaluator.check_pattern_sequential_shift.1780450590.yaml",
+        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob086_lfsr5.evaluator.check_pattern_sequential_shift.1780816292.yaml"
       ]
     },
     {
@@ -740,27 +866,6 @@
       ],
       "paths": [
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780651628.yaml"
-      ]
-    },
-    {
-      "fingerprint": "c36788a9cf747916",
-      "count": 1,
-      "agent": "coder",
-      "name": "repair_pattern_sequential_shift",
-      "task_patterns": [
-        "sequential_shift",
-        "sequential",
-        "shift_register",
-        "verilog"
-      ],
-      "source_tasks": [
-        "verilogeval_spec_to_rtl_prob082_lfsr32"
-      ],
-      "candidate_ids": [
-        "candidate.verilogeval_spec_to_rtl_prob082_lfsr32.coder.repair_pattern_sequential_shift.1780450590"
-      ],
-      "paths": [
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob082_lfsr32.coder.repair_pattern_sequential_shift.1780450590.yaml"
       ]
     },
     {
@@ -867,27 +972,6 @@
       ],
       "paths": [
         "skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780651628.yaml"
-      ]
-    },
-    {
-      "fingerprint": "25f050b7fca15b4d",
-      "count": 1,
-      "agent": "evaluator",
-      "name": "check_pattern_sequential_shift",
-      "task_patterns": [
-        "sequential_shift",
-        "sequential",
-        "shift_register",
-        "verilog"
-      ],
-      "source_tasks": [
-        "verilogeval_spec_to_rtl_prob082_lfsr32"
-      ],
-      "candidate_ids": [
-        "candidate.verilogeval_spec_to_rtl_prob082_lfsr32.evaluator.check_pattern_sequential_shift.1780450590"
-      ],
-      "paths": [
-        "skills/candidate/candidate.verilogeval_spec_to_rtl_prob082_lfsr32.evaluator.check_pattern_sequential_shift.1780450590.yaml"
       ]
     },
     {

@@ -1,0 +1,290 @@
+{
+  "records": [
+    "results/taskset_ablation/verilogeval_seq20_cache_ablation_20260605_171144/records.jsonl"
+  ],
+  "conditions": [
+    "seq20_active_locality",
+    "seq20_seed_only_locality"
+  ],
+  "include_timeouts": false,
+  "top_k": 8,
+  "selected": [
+    {
+      "task_id": "verilogeval_spec_to_rtl_prob104_mt2015_muxdff",
+      "source": "verilogeval",
+      "family": "sequential_register",
+      "tags": [
+        "register",
+        "reset",
+        "sequential",
+        "verilog"
+      ],
+      "score": 9.3311,
+      "evidence": [
+        {
+          "condition_id": "seq20_seed_only_locality",
+          "passed": false,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 196.655,
+          "candidate_count": 2,
+          "score": 7.1388
+        },
+        {
+          "condition_id": "seq20_active_locality",
+          "passed": true,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 83.074,
+          "candidate_count": 2,
+          "score": 2.1923
+        }
+      ],
+      "task_path": "benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob104_mt2015_muxdff.yaml"
+    },
+    {
+      "task_id": "verilogeval_spec_to_rtl_prob082_lfsr32",
+      "source": "verilogeval",
+      "family": "sequential_shift",
+      "tags": [
+        "sequential",
+        "shift_register",
+        "verilog"
+      ],
+      "score": 8.5302,
+      "evidence": [
+        {
+          "condition_id": "seq20_seed_only_locality",
+          "passed": true,
+          "iterations": 1,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 158.227,
+          "candidate_count": 0,
+          "score": 1.3186
+        },
+        {
+          "condition_id": "seq20_active_locality",
+          "passed": false,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 205.388,
+          "candidate_count": 2,
+          "score": 7.2116
+        }
+      ],
+      "task_path": "benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob082_lfsr32.yaml"
+    },
+    {
+      "task_id": "verilogeval_spec_to_rtl_prob031_dff",
+      "source": "verilogeval",
+      "family": "sequential_register",
+      "tags": [
+        "register",
+        "reset",
+        "sequential",
+        "verilog"
+      ],
+      "score": 6.260700000000001,
+      "evidence": [
+        {
+          "condition_id": "seq20_seed_only_locality",
+          "passed": true,
+          "iterations": 1,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 21.103,
+          "candidate_count": 0,
+          "score": 0.1759
+        },
+        {
+          "condition_id": "seq20_active_locality",
+          "passed": false,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 70.179,
+          "candidate_count": 2,
+          "score": 6.0848
+        }
+      ],
+      "task_path": "benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob031_dff.yaml"
+    },
+    {
+      "task_id": "verilogeval_spec_to_rtl_prob034_dff8",
+      "source": "verilogeval",
+      "family": "sequential_register",
+      "tags": [
+        "register",
+        "reset",
+        "sequential",
+        "verilog"
+      ],
+      "score": 3.9829,
+      "evidence": [
+        {
+          "condition_id": "seq20_seed_only_locality",
+          "passed": true,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 71.249,
+          "candidate_count": 2,
+          "score": 2.0937
+        },
+        {
+          "condition_id": "seq20_active_locality",
+          "passed": true,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 46.701,
+          "candidate_count": 2,
+          "score": 1.8892
+        }
+      ],
+      "task_path": "benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob034_dff8.yaml"
+    },
+    {
+      "task_id": "verilogeval_spec_to_rtl_prob111_fsm2s",
+      "source": "verilogeval",
+      "family": "sequential_fsm",
+      "tags": [
+        "fsm",
+        "sequential",
+        "state_machine",
+        "verilog"
+      ],
+      "score": 3.4463,
+      "evidence": [
+        {
+          "condition_id": "seq20_seed_only_locality",
+          "passed": true,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 28.391,
+          "candidate_count": 2,
+          "score": 1.7366
+        },
+        {
+          "condition_id": "seq20_active_locality",
+          "passed": true,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 25.16,
+          "candidate_count": 2,
+          "score": 1.7097
+        }
+      ],
+      "task_path": "benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob111_fsm2s.yaml"
+    },
+    {
+      "task_id": "verilogeval_spec_to_rtl_prob096_review2015_fsmseq",
+      "source": "verilogeval",
+      "family": "sequential_fsm",
+      "tags": [
+        "fsm",
+        "sequential",
+        "state_machine",
+        "verilog"
+      ],
+      "score": 2.9111,
+      "evidence": [
+        {
+          "condition_id": "seq20_seed_only_locality",
+          "passed": true,
+          "iterations": 1,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 53.427,
+          "candidate_count": 0,
+          "score": 0.4452
+        },
+        {
+          "condition_id": "seq20_active_locality",
+          "passed": true,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 115.907,
+          "candidate_count": 2,
+          "score": 2.4659
+        }
+      ],
+      "task_path": "benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob096_review2015_fsmseq.yaml"
+    },
+    {
+      "task_id": "verilogeval_spec_to_rtl_prob063_review2015_shiftcount",
+      "source": "verilogeval",
+      "family": "sequential_counter",
+      "tags": [
+        "counter",
+        "sequential",
+        "verilog"
+      ],
+      "score": 2.8421,
+      "evidence": [
+        {
+          "condition_id": "seq20_seed_only_locality",
+          "passed": true,
+          "iterations": 1,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 99.587,
+          "candidate_count": 0,
+          "score": 0.8299
+        },
+        {
+          "condition_id": "seq20_active_locality",
+          "passed": true,
+          "iterations": 2,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 61.464,
+          "candidate_count": 2,
+          "score": 2.0122
+        }
+      ],
+      "task_path": "benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob063_review2015_shiftcount.yaml"
+    },
+    {
+      "task_id": "verilogeval_spec_to_rtl_prob086_lfsr5",
+      "source": "verilogeval",
+      "family": "sequential_shift",
+      "tags": [
+        "sequential",
+        "shift_register",
+        "verilog"
+      ],
+      "score": 2.2629,
+      "evidence": [
+        {
+          "condition_id": "seq20_seed_only_locality",
+          "passed": true,
+          "iterations": 1,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 77.054,
+          "candidate_count": 0,
+          "score": 0.6421
+        },
+        {
+          "condition_id": "seq20_active_locality",
+          "passed": true,
+          "iterations": 1,
+          "timed_out": false,
+          "infrastructure_failure": false,
+          "wall_time_s": 194.498,
+          "candidate_count": 0,
+          "score": 1.6208
+        }
+      ],
+      "task_path": "benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob086_lfsr5.yaml"
+    }
+  ]
+}

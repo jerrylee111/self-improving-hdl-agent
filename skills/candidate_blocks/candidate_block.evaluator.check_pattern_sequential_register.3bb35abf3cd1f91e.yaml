@@ -30,7 +30,7 @@ metrics:
   failures: 0
   utility_ema: 0.0
   token_cost_ema: 0.0
-  merged_candidate_count: 23
+  merged_candidate_count: 30
   evidence_count: 8
 cache:
   pin: false
@@ -44,6 +44,7 @@ version:
   - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780649599
   - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780650206
   - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780653956
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780817521
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780446808
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447028
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447191
@@ -56,11 +57,17 @@ version:
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780651681
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780652790
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780653886
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780815842
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780816712
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780817590
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780449677
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780451220
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780456574
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780652691
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780653816
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780815705
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780816434
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780817360
   fingerprint: 3bb35abf3cd1f91e
 validation:
   evidence:
@@ -154,6 +161,7 @@ provenance:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780649599.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780650206.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780653956.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780817521.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780446808.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447028.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447191.yaml
@@ -166,8 +174,14 @@ provenance:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780651681.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780652790.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780653886.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780815842.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780816712.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780817590.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780449677.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780451220.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780456574.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780652691.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780653816.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780815705.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780816434.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780817360.yaml

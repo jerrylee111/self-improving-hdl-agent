@@ -1,0 +1,25 @@
+name: verilogeval_validation_hard_probe
+max_repair_iters: 2
+skill_l1_capacity: 6
+max_task_wall_time_s: 240
+hard_timeout: true
+evaluator_profile: adversarial_v2
+conditions:
+  - id: validation_hard_no_skill
+    active_skills: false
+    policy: no_skill
+  - id: validation_hard_seed_only
+    active_skills: false
+    policy: locality_aware
+  - id: validation_hard_active
+    active_skills: true
+    policy: locality_aware
+tasks:
+  - benchmarks/tasks/external/verilogeval/validation/verilogeval_spec_to_rtl_prob037_review2015_count1k.yaml
+  - benchmarks/tasks/external/verilogeval/validation/verilogeval_spec_to_rtl_prob038_count15.yaml
+  - benchmarks/tasks/external/verilogeval/validation/verilogeval_spec_to_rtl_prob047_dff8ar.yaml
+  - benchmarks/tasks/external/verilogeval/validation/verilogeval_spec_to_rtl_prob067_countslow.yaml
+  - benchmarks/tasks/external/verilogeval/validation/verilogeval_spec_to_rtl_prob068_countbcd.yaml
+  - benchmarks/tasks/external/verilogeval/validation/verilogeval_spec_to_rtl_prob077_wire_decl.yaml
+  - benchmarks/tasks/external/verilogeval/validation/verilogeval_spec_to_rtl_prob107_fsm1s.yaml
+  - benchmarks/tasks/external/verilogeval/validation/verilogeval_spec_to_rtl_prob118_history_shift.yaml
