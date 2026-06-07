@@ -1,0 +1,35 @@
+id: verilogeval_spec_to_rtl_prob119_fsm3
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_fsm
+tags:
+- fsm
+- sequential
+- state_machine
+- verilog
+difficulty: 4
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  areset\n - input  in\n - output out\n\nThe module should\
+  \ implement a Moore state machine with the following\nstate transition table with\
+  \ one input, one output, and four states.\nImplement this state machine. Include\
+  \ a positive edge triggered\nasynchronous reset that resets the FSM to state A.\
+  \ Assume all sequential\nlogic is triggered on the positive edge of the clock.\n\
+  \n  state | next state in=0, next state in=1 | output\n  A     | A, B          \
+  \                   | 0\n  B     | C, B                             | 0\n  C   \
+  \  | A, D                             | 0\n  D     | C, B                      \
+  \       | 1"
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob119_fsm3_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob119_fsm3_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: holdout

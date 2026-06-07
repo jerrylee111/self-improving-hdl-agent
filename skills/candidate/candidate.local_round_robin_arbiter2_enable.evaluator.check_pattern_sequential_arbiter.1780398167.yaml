@@ -1,0 +1,52 @@
+id: candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398167
+name: check_pattern_sequential_arbiter
+agent: evaluator
+domain:
+  language: verilog
+  topic:
+  - sequential
+  - arbiter
+  - fairness
+  - priority
+  - reset
+  - enable
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+- enable
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: Preserve this failure signature as a regression check for similar tasks.
+    Emphasize the observed mismatch class when generating future tests.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "~\n%Error: design.v:30:27: syntax error, unexpected <=, expecting\
+      \ case or casex or casez or if\n   30 |                 priority  <= priority;\n\
+      \      |                           ^~\n%Error: design.v:33:27: syntax error,\
+      \ unexpected <=, expecting case or casex or casez or if\n   33 |           \
+      \      priority  <= priority;\n      |                           ^~\n%Error:\
+      \ design.v:35:13: syntax error, unexpected else\n   35 |         end else begin\
+      \  \n      |             ^~~~\n%Error: Exiting due to 8 error(s)\n"

@@ -1,0 +1,37 @@
+id: verilogeval_spec_to_rtl_prob081_7458
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_logic
+tags:
+- boolean_logic
+- combinational
+- sequential
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  p1a\n - input  p1b\n - input  p1c\n - input  p1d\n - input  p1e\n -\
+  \ input  p1f\n - input  p2a\n - input  p2b\n - input  p2c\n - input  p2d\n - output\
+  \ p1y\n - output p2y\n\nThe 7458 is a chip with four AND gates and two OR gates.\
+  \ Implement a\nmodule with the same functionality as the 7458 chip. It has 10 inputs\
+  \ and\n2 outputs. You may choose to use an `assign` statement to drive each of\n\
+  the output wires, or you may choose to declare (four) wires for use as\nintermediate\
+  \ signals, where each internal wire is driven by the output of\none of the AND gates.\n\
+  \nIn this circuit, p1y should be the OR of two 3-input AND gates: one that\nANDs\
+  \ p1a, p1b, and p1c, and the second that ANDs p1d, p1e, and p1f. The\noutput p2y\
+  \ is the OR of two 2-input AND gates: one that ANDs p2a and p2b,\nand the second\
+  \ that ANDs p2c and p2d."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob081_7458_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob081_7458_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

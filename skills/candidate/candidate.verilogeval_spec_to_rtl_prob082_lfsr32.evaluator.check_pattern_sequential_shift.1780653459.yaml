@@ -1,0 +1,48 @@
+id: candidate.verilogeval_spec_to_rtl_prob082_lfsr32.evaluator.check_pattern_sequential_shift.1780653459
+name: check_pattern_sequential_shift
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - sequential
+  - shift_register
+  - verilog
+task_patterns:
+- sequential_shift
+- sequential
+- shift_register
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was reported by the evaluator; preserve the exact
+    signature. For similar sequential tasks, add regression stimuli around reset release,
+    first active cycle, terminal-count or wrap cycles, and consecutive enabled cycles.
+    Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob082_lfsr32
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "does not match MODULE name: 'TopModule'\n    1 | module TopModule\
+      \ (\n      |        ^~~~~~~~~\n                       ... For warning description\
+      \ see https://verilator.org/warn/DECLFILENAME?v=5.048\n                    \
+      \   ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on around source\
+      \ to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv design.sv\
+      \ Prob082_lfsr32_ref.sv\nreturncode=1\nstdout:\n\nstderr:\ndesign.sv:10: sorry:\
+      \ Overriding the default variable lifetime is not yet supported.\n"

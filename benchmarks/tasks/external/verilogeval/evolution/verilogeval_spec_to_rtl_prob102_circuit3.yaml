@@ -1,0 +1,33 @@
+id: verilogeval_spec_to_rtl_prob102_circuit3
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  a\n - input  b\n - input  c\n - input  d\n - output q\n\nThe module\
+  \ should implement a combinational circuit. Read the simulation\nwaveforms to determine\
+  \ what the circuit does, then implement it.\n\n  time  a  b  c  d  q\n  0ns   0\
+  \  0  0  0  0\n  5ns   0  0  0  0  0\n  10ns  0  0  0  0  0\n  15ns  0  0  0  0\
+  \  0\n  20ns  0  0  0  1  0\n  25ns  0  0  1  0  0\n  30ns  0  0  1  1  0\n  35ns\
+  \  0  1  0  0  0\n  40ns  0  1  0  1  1\n  45ns  0  1  1  0  1\n  50ns  0  1  1\
+  \  1  1\n  55ns  1  0  0  0  0\n  60ns  1  0  0  1  1\n  65ns  1  0  1  0  1\n \
+  \ 70ns  1  0  1  1  1\n  75ns  1  1  0  0  0\n  80ns  1  1  0  1  1\n  85ns  1 \
+  \ 1  1  0  1\n  90ns  1  1  1  1  1"
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob102_circuit3_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob102_circuit3_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

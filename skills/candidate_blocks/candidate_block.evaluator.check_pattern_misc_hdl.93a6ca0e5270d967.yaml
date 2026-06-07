@@ -1,0 +1,52 @@
+id: candidate_block.evaluator.check_pattern_misc_hdl.93a6ca0e5270d967
+name: check_pattern_misc_hdl
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - combinational
+  - verilog
+task_patterns:
+- misc_hdl
+- combinational
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was 28 mismatches out of 100 samples on output f,
+    first seen at time 10. Preserve a regression that toggles each input independently
+    and uses asymmetric patterns to catch polarity, width, and ordering mistakes.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+  merged_candidate_count: 1
+  evidence_count: 1
+cache:
+  pin: false
+version:
+  status: candidate_block
+  revision: 1
+  parent_ids:
+  - candidate.verilogeval_spec_to_rtl_prob116_m2014_q3.evaluator.check_pattern_misc_hdl.1780456986
+  fingerprint: 93a6ca0e5270d967
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob116_m2014_q3
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "048\n                       ... Use \"/* verilator lint_off\
+      \ UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n\n\n\
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob116_m2014_q3_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:16: $finish\
+      \ called at 501 (1ps)\nHint: Output 'f' has 28 mismatches. First mismatch occurred\
+      \ at time 10.\nHint: Total mismatched samples is 28 out of 100 samples\n\nSimulation\
+      \ finished at 501 ps\nMismatches: 28 in 100 samples\n\nstderr:\n"
+provenance:
+  source_paths:
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob116_m2014_q3.evaluator.check_pattern_misc_hdl.1780456986.yaml

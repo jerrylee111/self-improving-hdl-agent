@@ -1,0 +1,34 @@
+id: verilogeval_spec_to_rtl_prob082_lfsr32
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_shift
+tags:
+- sequential
+- shift_register
+- verilog
+difficulty: 4
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  reset\n - output q (32 bits)\n\nA linear feedback shift\
+  \ register is a shift register usually with a few\nXOR gates to produce the next\
+  \ state of the shift register. A Galois LFSR\nis one particular arrangement that\
+  \ shifts right, where a bit position with\na \"tap\" is XORed with the LSB output\
+  \ bit (q[0]) to produce its next value,\nwhile bit positions without a tap shift\
+  \ right unchanged. \n\nThe module should implement a 32-bit Galois LFSR with taps\
+  \ at bit\npositions 32, 22, 2, and 1. Reset should be active high synchronous, and\n\
+  should reset the output q to 32'h1. Assume all sequential logic is\ntriggered on\
+  \ the positive edge of the clock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob082_lfsr32_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob082_lfsr32_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

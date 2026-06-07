@@ -1,0 +1,30 @@
+id: verilogeval_spec_to_rtl_prob043_vector5
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  a\n - input  b\n - input  c\n - input  d\n - input  e\n - output out\
+  \ (25 bits)\n\nImplement a module that given five 1-bit signals (a, b, c, d, and\
+  \ e),\ncompute all 25 pairwise one-bit comparisons in the 25-bit output vector.\n\
+  The output should be 1 if the two bits being compared are equal. Example:\nout[24]\
+  \ = ~a ^ a; out[23] = ~a ^ b; out[22] = ~a ^ c; ...\nout[ 1] = ~e ^ d; out[ 0] =\
+  \ ~e ^ e."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob043_vector5_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob043_vector5_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

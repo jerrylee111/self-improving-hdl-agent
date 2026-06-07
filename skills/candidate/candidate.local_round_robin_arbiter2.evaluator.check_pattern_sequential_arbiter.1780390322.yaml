@@ -1,0 +1,50 @@
+id: candidate.local_round_robin_arbiter2.evaluator.check_pattern_sequential_arbiter.1780390322
+name: check_pattern_sequential_arbiter
+agent: evaluator
+domain:
+  language: verilog
+  topic:
+  - sequential
+  - arbiter
+  - fairness
+  - priority
+  - reset
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: Preserve this failure signature as a regression check for similar tasks.
+    Emphasize the observed mismatch class when generating future tests.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2
+    policy: tag_topk
+    attempts: 3
+    failure_signature: "ng case or casex or casez or if\n   11 |             priority\
+      \ <= 1'b0;\n      |                      ^~\n%Error: design.v:15:26: syntax\
+      \ error, unexpected <=, expecting case or casex or casez or if\n   15 |    \
+      \             priority <= ~priority;\n      |                          ^~\n\
+      %Error: design.v:24:21: syntax error, unexpected priority, expecting IDENTIFIER-for-type\n\
+      \   24 |                    (priority == 1'b0) ? 2'b01 : 2'b10;\n      |   \
+      \                  ^~~~~~~~\n%Error: Exiting due to 4 error(s)\n"

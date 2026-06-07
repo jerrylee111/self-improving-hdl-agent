@@ -1,0 +1,28 @@
+id: verilogeval_spec_to_rtl_prob029_m2014_q4g
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in1\n - input  in2\n - input  in3\n - output out\n\nThe module should\
+  \ impement the following circuit: A two-input XNOR\n(connected to 'in1' and 'in2)\
+  \ has an output connected to the input of a\ntwo-input XOR. The second input of\
+  \ the XOR is 'in3.' The output of the\nXOR is 'out'."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob029_m2014_q4g_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob029_m2014_q4g_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: holdout

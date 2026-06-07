@@ -1,0 +1,37 @@
+id: verilogeval_spec_to_rtl_prob084_ece241_2013_q12
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_shift
+tags:
+- sequential
+- shift_register
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  enable\n - input  S\n - input  A\n - input  B\n - input\
+  \  C\n - output Z\n\nThe module should implement a circuit for an 8x1 memory, where\
+  \ writing to\nthe memory is accomplished by shifting-in bits, and reading is \"\
+  random\naccess\", as in a typical RAM. You will then use the circuit to realize\
+  \ a\n3-input logic function. First, create an 8-bit shift register with 8\nD-type\
+  \ flip-flops. Label the flip-flop outputs from Q[0]...Q[7]. The\nshift register\
+  \ input should be called S, which feeds the input of Q[0]\n(MSB is shifted in first).\
+  \ The enable input is synchronous active high\nand controls whether to shift. Extend\
+  \ the circuit to have 3 additional\ninputs A,B,C and an output Z. The circuit's\
+  \ behaviour should be as\nfollows: when ABC is 000, Z=Q[0], when ABC is 001, Z=Q[1],\
+  \ and so on.\nYour circuit should contain ONLY the 8-bit shift register, and\nmultiplexers.\
+  \ Assume all sequential logic is triggered on the positive\nedge of the clock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob084_ece241_2013_q12_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob084_ece241_2013_q12_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

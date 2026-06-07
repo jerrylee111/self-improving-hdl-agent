@@ -1,0 +1,29 @@
+id: verilogeval_spec_to_rtl_prob116_m2014_q3
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  x (4 bits)\n - output f\n\nThe module should implement the function\
+  \ f shown in the Karnaugh map\nbelow. d is don't-care, which means you may choose\
+  \ to output whatever\nvalue is convenient.\n\n                x[1]x[2]\n  x[3]x[4]\
+  \   00  01  11  10\n        00 | d | 0 | d | d |\n        01 | 0 | d | 1 | 0 |\n\
+  \        11 | 1 | 1 | d | d |\n        10 | 1 | 1 | 0 | d |"
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob116_m2014_q3_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob116_m2014_q3_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

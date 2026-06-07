@@ -1,0 +1,30 @@
+id: verilogeval_spec_to_rtl_prob061_2014_q4a
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_shift
+tags:
+- sequential
+- shift_register
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  w\n - input  R\n - input  E\n - input  L\n - output Q\n\
+  \nThe module will be one stage in a larger n-bit shift register circuit.\nInput\
+  \ E is for enabling shift, R for value to load, L is asserted when it\nshould load,\
+  \ and w is the input from the prevous stage of the shift\nregister. Assume all sequential\
+  \ logic is triggered on the positive edge\nof the clock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob061_2014_q4a_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob061_2014_q4a_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

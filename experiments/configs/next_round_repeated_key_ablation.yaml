@@ -1,0 +1,34 @@
+name: next_round_repeated_key_ablation
+max_repair_iters: 3
+skill_l1_capacity: 6
+conditions:
+  - id: rr_no_active_tag_topk_adv
+    task: benchmarks/tasks/local_seed/round_robin_arbiter2.yaml
+    policy: tag_topk
+    active_skills: false
+    evaluator_profile: adversarial_v2
+    max_iters: 3
+  - id: rr_active_tag_topk_adv
+    task: benchmarks/tasks/local_seed/round_robin_arbiter2.yaml
+    policy: tag_topk
+    active_skills: true
+    evaluator_profile: adversarial_v2
+    max_iters: 3
+  - id: enable_no_active_tag_topk_adv
+    task: benchmarks/tasks/local_seed/round_robin_arbiter2_enable.yaml
+    policy: tag_topk
+    active_skills: false
+    evaluator_profile: adversarial_v2
+    max_iters: 3
+  - id: enable_active_tag_topk_adv
+    task: benchmarks/tasks/local_seed/round_robin_arbiter2_enable.yaml
+    policy: tag_topk
+    active_skills: true
+    evaluator_profile: adversarial_v2
+    max_iters: 3
+  - id: enable_active_locality_adv
+    task: benchmarks/tasks/local_seed/round_robin_arbiter2_enable.yaml
+    policy: locality_aware
+    active_skills: true
+    evaluator_profile: adversarial_v2
+    max_iters: 2

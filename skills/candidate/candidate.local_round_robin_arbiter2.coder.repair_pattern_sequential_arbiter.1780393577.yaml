@@ -1,0 +1,51 @@
+id: candidate.local_round_robin_arbiter2.coder.repair_pattern_sequential_arbiter.1780393577
+name: repair_pattern_sequential_arbiter
+agent: coder
+domain:
+  language: verilog
+  topic:
+  - sequential
+  - arbiter
+  - fairness
+  - priority
+  - reset
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: repair_pattern
+  content: The evaluator observed a failure. Use the failure signature to repair the
+    specific timing, width, reset, or protocol behavior instead of repeating the same
+    implementation.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "26 |                     priority <= 1'b0;     \n      | \
+      \                             ^~\n%Error: design.v:29:25: syntax error, unexpected\
+      \ priority, expecting IDENTIFIER-for-type\n   29 |                     if (priority\
+      \ == 1'b0) begin\n      |                         ^~~~~~~~\n%Error: design.v:37:13:\
+      \ syntax error, unexpected endcase\n   37 |             endcase\n      |   \
+      \          ^~~~~~~\n%Error: Cannot continue\n        ... This fatal error may\
+      \ be caused by the earlier error(s); resolve those first.\n"

@@ -1,0 +1,33 @@
+id: verilogeval_spec_to_rtl_prob058_alwaysblock2
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_logic
+tags:
+- boolean_logic
+- combinational
+- sequential
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  a\n - input  b\n - output out_assign\n - output out_always_comb\n\
+  \ - output out_always_ff\n\nThe module should implement an XOR gate three ways,\
+  \ using an assign\nstatement (output out_assign), a combinational always block (output\n\
+  out_always_comb), and a clocked always block (output out_always_ff). Note\nthat\
+  \ the clocked always block produces a different circuit from the other\ntwo: There\
+  \ is a flip- flop so the output is delayed. Assume all\nsequential logic is triggered\
+  \ on the positive edge of the clock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob058_alwaysblock2_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob058_alwaysblock2_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: validation

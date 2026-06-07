@@ -1,0 +1,31 @@
+id: verilogeval_spec_to_rtl_prob044_vectorgates
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_logic
+tags:
+- boolean_logic
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  a              (3 bits)\n - input  b              (3 bits)\n - output\
+  \ out_or_bitwise (3 bits)\n - output out_or_logical\n - output out_not        (6\
+  \ bits)\n\nImplement a module with two 3-bit inputs that computes the bitwise-OR\
+  \ of\nthe two vectors, the logical-OR of the two vectors, and the inverse (NOT)\n\
+  of both vectors. Place the inverse of b in the upper half of out_not\n(i.e., bits\
+  \ [5:3]), and the inverse of a in the lower half."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob044_vectorgates_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob044_vectorgates_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

@@ -1,0 +1,36 @@
+id: verilogeval_spec_to_rtl_prob079_fsm3onehot
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_fsm
+tags:
+- fsm
+- sequential
+- state_machine
+- verilog
+difficulty: 4
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in\n - input  state (4 bits)\n - output next_state (4 bits)\n - output\
+  \ out\n\nThe module should implement the state transition table for a Moore state\n\
+  machine with one input, one output, and four states. Use the following\none-hot\
+  \ state encoding: A=4'b0001, B=4'b0010, C=4'b0100, D=4'b1000.\nDerive state transition\
+  \ and output logic equations by inspection assuming\na one-hot encoding. Implement\
+  \ only the state transition logic and output\nlogic (the combinational logic portion)\
+  \ for this state machine.\n\n  State | Next state in=0, Next state in=1 | Output\n\
+  \  A     | A, B                             | 0\n  B     | C, B                \
+  \             | 0\n  C     | A, D                             | 0\n  D     | C,\
+  \ B                             | 1"
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob079_fsm3onehot_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob079_fsm3onehot_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: holdout

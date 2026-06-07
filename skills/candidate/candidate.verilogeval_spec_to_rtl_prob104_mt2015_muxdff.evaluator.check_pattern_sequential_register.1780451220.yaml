@@ -1,0 +1,51 @@
+id: candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780451220
+name: check_pattern_sequential_register
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - register
+  - reset
+  - sequential
+  - verilog
+task_patterns:
+- sequential_register
+- register
+- reset
+- sequential
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was 1 mismatches out of 199 samples on output Q, first
+    seen at time 5. For similar sequential tasks, add regression stimuli around reset
+    release, first active cycle, terminal-count or wrap cycles, and consecutive enabled
+    cycles. Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob104_mt2015_muxdff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "48\n                       ... Use \"/* verilator lint_off\
+      \ DECLFILENAME */\" and lint_on around source to disable this message.\n\n\n\
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob104_mt2015_muxdff_ref.sv\n\
+      returncode=0\nstdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\n\
+      tb.sv:21: $finish called at 996 (1ps)\nHint: Output 'Q' has 1 mismatches. First\
+      \ mismatch occurred at time 5.\nHint: Total mismatched samples is 1 out of 199\
+      \ samples\n\nSimulation finished at 996 ps\nMismatches: 1 in 199 samples\n\n\
+      stderr:\n"

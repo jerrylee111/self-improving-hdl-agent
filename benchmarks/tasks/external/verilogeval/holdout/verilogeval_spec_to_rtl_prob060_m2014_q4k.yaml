@@ -1,0 +1,29 @@
+id: verilogeval_spec_to_rtl_prob060_m2014_q4k
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_shift
+tags:
+- sequential
+- shift_register
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  resetn\n - input  in\n - output out\n\nThe module should\
+  \ implement a shift register with four D flops. Assume\nall sequential logic is\
+  \ triggered on the positive edge of the clock.\nReset is active-low synchronous\
+  \ resettable."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob060_m2014_q4k_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob060_m2014_q4k_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: holdout

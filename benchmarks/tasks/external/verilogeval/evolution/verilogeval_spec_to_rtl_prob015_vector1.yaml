@@ -1,0 +1,27 @@
+id: verilogeval_spec_to_rtl_prob015_vector1
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in     (16 bits)\n - output out_hi ( 8 bits)\n - output out_lo ( 8 bits)\n\
+  \nThe module should implement a combinational circuit that splits an input\nhalf-word\
+  \ (16 bits, [15:0] ) into lower [7:0] and upper [15:8] bytes."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob015_vector1_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob015_vector1_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

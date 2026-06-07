@@ -1,0 +1,33 @@
+id: verilogeval_spec_to_rtl_prob063_review2015_shiftcount
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_counter
+tags:
+- counter
+- sequential
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  shift_ena\n - input  count_ena\n - input  data\n - output\
+  \ q (4 bits)\n\nThe module should implement a four-bit shift register that also\
+  \ acts as a\ndown counter. Data is shifted in most-significant-bit first when\n\
+  shift_ena is 1. The number currently in the shift register is decremented\nwhen\
+  \ count_ena is 1. Since the full system doesn't ever use shift_ena and\ncount_ena\
+  \ together, it does not matter what your circuit does if both\ncontrol inputs are\
+  \ 1 (this mainly means that it doesn't matter which case\ngets higher priority).\
+  \ Assume all sequential logic is triggered on the\npositive edge of the clock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob063_review2015_shiftcount_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob063_review2015_shiftcount_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

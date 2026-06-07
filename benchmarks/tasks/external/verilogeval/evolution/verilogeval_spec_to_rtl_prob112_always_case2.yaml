@@ -1,0 +1,31 @@
+id: verilogeval_spec_to_rtl_prob112_always_case2
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in  (4 bits)\n - output pos (2 bits)\n\nThe module should implement\
+  \ a priority encoder. A priority encoder is a\ncombinational circuit that, when\
+  \ given an input bit vector, outputs the\nposition of the first 1 bit in the vector.\
+  \ For example, a 8-bit priority\nencoder given the input 8'b10010000 would output\
+  \ 3'd4, because bit[4] is\nfirst bit that is high. Build a 4-bit priority encoder.\
+  \ For this problem,\nif none of the input bits are high (i.e., input is zero), output\
+  \ zero.\nNote that a 4-bit number has 16 possible combinations."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob112_always_case2_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob112_always_case2_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

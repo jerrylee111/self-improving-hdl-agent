@@ -1,0 +1,33 @@
+id: verilogeval_spec_to_rtl_prob073_dff16e
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_register
+tags:
+- register
+- reset
+- sequential
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  resetn\n - input  byteena ( 2 bits)\n - input  d    \
+  \   (16 bits)\n - output q       (16 bits)\n\nThe module should include 16 D flip-flops.\
+  \ It's sometimes useful to only\nmodify parts of a group of flip-flops. The byte-enable\
+  \ inputs control\nwhether each byte of the 16 registers should be written to on\
+  \ that cycle.\nbyteena[1] controls the upper byte d[15:8], while byteena[0] controls\
+  \ the\nlower byte d[7:0]. resetn is a synchronous, active-low reset. All DFFs\n\
+  should be triggered by the positive edge of clk."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob073_dff16e_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob073_dff16e_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

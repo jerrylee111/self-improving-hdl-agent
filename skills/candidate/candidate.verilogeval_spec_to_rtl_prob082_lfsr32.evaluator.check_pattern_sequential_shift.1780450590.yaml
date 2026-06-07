@@ -1,0 +1,80 @@
+id: candidate.verilogeval_spec_to_rtl_prob082_lfsr32.evaluator.check_pattern_sequential_shift.1780450590
+name: check_pattern_sequential_shift
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - sequential
+  - shift_register
+  - verilog
+task_patterns:
+- sequential_shift
+- sequential
+- shift_register
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was 199953 mismatches out of 200000 samples on output
+    q, first seen at time 190. For similar sequential tasks, add regression stimuli
+    around reset release, first active cycle, terminal-count or wrap cycles, and consecutive
+    enabled cycles. Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob082_lfsr32
+    policy: locality_aware
+    attempts: 2
+    failure_signature: ' "/* verilator lint_off DECLFILENAME */" and lint_on around
+      source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob082_lfsr32_ref.sv
+
+      returncode=0
+
+      stdout:
+
+
+      stderr:
+
+
+
+      $ vvp sim.out
+
+      returncode=0
+
+      stdout:
+
+      TIMEOUT
+
+      tb.sv:112: $finish called at 1000000 (1ps)
+
+      Hint: Output ''q'' has 199953 mismatches. First mismatch occurred at time 190.
+
+      Hint: Total mismatched samples is 199953 out of 200000 samples
+
+
+      Simulation finished at 1000000 ps
+
+      Mismatches: 199953 in 200000 samples
+
+
+      stderr:
+
+      '

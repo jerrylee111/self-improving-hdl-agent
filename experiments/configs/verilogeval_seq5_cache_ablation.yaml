@@ -1,0 +1,22 @@
+name: verilogeval_seq5_cache_ablation
+max_repair_iters: 2
+skill_l1_capacity: 6
+max_task_wall_time_s: 180
+hard_timeout: true
+evaluator_profile: adversarial_v2
+conditions:
+  - id: seq5_no_skill
+    active_skills: false
+    policy: no_skill
+  - id: seq5_seed_only_locality
+    active_skills: false
+    policy: locality_aware
+  - id: seq5_active_locality
+    active_skills: true
+    policy: locality_aware
+tasks:
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob031_dff.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob034_dff8.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob035_count1to10.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob063_review2015_shiftcount.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob085_shift4.yaml

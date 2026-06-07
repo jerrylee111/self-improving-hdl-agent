@@ -1,0 +1,50 @@
+id: candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780446935
+name: check_pattern_sequential_register
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - register
+  - reset
+  - sequential
+  - verilog
+task_patterns:
+- sequential_register
+- register
+- reset
+- sequential
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was 118 mismatches out of 121 samples on output q,
+    first seen at time 20. For similar sequential tasks, add regression stimuli around
+    reset release, first active cycle, terminal-count or wrap cycles, and consecutive
+    enabled cycles. Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "ut'\n                                     : ... note: In instance\
+      \ 'TopModule'\n    6 |     logic ff_out;\n      |           ^~~~~~\n\n\n$ iverilog\
+      \ -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\nstdout:\n\
+      \nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish called\
+      \ at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"

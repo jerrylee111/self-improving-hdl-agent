@@ -1,0 +1,94 @@
+skills:
+  - id: skill.eval.reset_reentry.001
+    name: reset_reentry_adversarial_check
+    agent: evaluator
+    domain: {language: verilog, topic: [reset, sequential]}
+    task_patterns: ["reset", "state", "fsm", "counter", "arbiter", "fifo"]
+    preconditions: ["clocked design with reset"]
+    anti_patterns: ["only testing reset at time zero"]
+    payload:
+      type: test_strategy
+      content: |
+        Do not only test reset at time zero. Drive the design into a nontrivial state,
+        assert reset again, and then check that all state-dependent behavior restarts
+        from the specified reset state.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.8, token_cost_ema: 54}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.eval.fsm_overlap_false_positive.001
+    name: fsm_overlap_false_positive_checks
+    agent: evaluator
+    domain: {language: verilog, topic: [fsm, pattern_detect]}
+    task_patterns: ["fsm", "pattern detect", "overlap", "sequence detector"]
+    preconditions: ["serial input pattern detector"]
+    anti_patterns: ["checking only one positive example"]
+    payload:
+      type: test_strategy
+      content: |
+        For sequence detectors, test overlapping positives, near-miss negatives,
+        false positives, one-cycle pulse width, and reset clearing of partial match history.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.85, token_cost_ema: 50}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.eval.valid_ready_backpressure.001
+    name: valid_ready_backpressure_checks
+    agent: evaluator
+    domain: {language: systemverilog, topic: [valid_ready, handshake, backpressure]}
+    task_patterns: ["valid/ready", "skid buffer", "pipeline", "backpressure"]
+    preconditions: ["ready/valid interface"]
+    anti_patterns: ["checking only out_ready high"]
+    payload:
+      type: test_strategy
+      content: |
+        For valid/ready logic, test downstream backpressure. While out_valid is high
+        and out_ready is low, out_data must remain stable and valid must not drop.
+        Check recovery after drain and same-cycle drain plus accept behavior.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.9, token_cost_ema: 58}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.eval.arbiter_invariants.001
+    name: arbiter_invariant_checks
+    agent: evaluator
+    domain: {language: verilog, topic: [arbiter, fairness, onehot]}
+    task_patterns: ["arbiter", "round robin", "priority", "fairness"]
+    preconditions: ["arbiter grant/request interface"]
+    anti_patterns: ["checking only one grant order"]
+    payload:
+      type: test_strategy
+      content: |
+        For arbiters, check grant onehot0, grant must be a subset of request,
+        idle request must produce zero grant, both-request traffic must cover all
+        eligible requesters, and reset re-entry must restore priority.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.9, token_cost_ema: 59}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.eval.fifo_boundaries.001
+    name: fifo_boundary_checks
+    agent: evaluator
+    domain: {language: verilog, topic: [fifo, full_empty, pointer]}
+    task_patterns: ["fifo", "queue", "full", "empty", "read/write"]
+    preconditions: ["FIFO or queue-like design"]
+    anti_patterns: ["not testing full/empty boundaries"]
+    payload:
+      type: test_strategy
+      content: |
+        For FIFOs, test fill to full, write while full, drain to empty, read while
+        empty, pointer wrap, and simultaneous read/write at boundary conditions.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.85, token_cost_ema: 51}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}
+  - id: skill.eval.arithmetic_width.001
+    name: arithmetic_width_signedness_checks
+    agent: evaluator
+    domain: {language: verilog, topic: [arithmetic, width, signedness]}
+    task_patterns: ["adder", "subtractor", "multiplier", "counter", "arithmetic"]
+    preconditions: ["arithmetic datapath"]
+    anti_patterns: ["testing only small non-overflow values"]
+    payload:
+      type: test_strategy
+      content: |
+        For arithmetic RTL, test boundary values, carry/borrow, overflow-sized
+        operands, signedness if specified, zero, all-ones, and maximum output width.
+    metrics: {uses: 0, successes: 0, failures: 0, utility_ema: 0.8, token_cost_ema: 48}
+    cache: {pin: false}
+    version: {status: active, revision: 1, parent_ids: []}

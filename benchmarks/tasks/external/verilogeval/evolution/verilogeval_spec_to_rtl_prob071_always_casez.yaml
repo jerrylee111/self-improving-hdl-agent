@@ -1,0 +1,29 @@
+id: verilogeval_spec_to_rtl_prob071_always_casez
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in  (8 bits)\n - output pos (3 bits)\n\nThe module should implement\
+  \ a priority encoder for an 8-bit input. Given\nan 8-bit vector, the output should\
+  \ report the first (least significant)\nbit in the vector that is 1. Report zero\
+  \ if the input vector has no bits\nthat are high. For example, the input 8'b10010000\
+  \ should output 3'd4,\nbecause bit[4] is first bit that is high."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob071_always_casez_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob071_always_casez_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

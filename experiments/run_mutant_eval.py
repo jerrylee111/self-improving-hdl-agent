@@ -43,10 +43,60 @@ endmodule
 """
 
 
+def basic_fsm_101_tb() -> str:
+    return """`timescale 1ns/1ps
+module tb;
+  reg clk=0, reset=0, bit_in=0; wire found;
+  top_module dut(.clk(clk), .reset(reset), .bit_in(bit_in), .found(found));
+  always #1 clk = ~clk;
+  task step(input b, input exp);
+    begin
+      bit_in=b; @(posedge clk); #0.1;
+      if (found !== exp) $fatal(1, "fsm mismatch");
+    end
+  endtask
+  initial begin
+    reset=1; step(0,0); reset=0;
+    step(1,0); step(0,0); step(1,1);
+    $display("PASS"); $finish;
+  end
+endmodule
+"""
+
+
+def basic_valid_ready_skid_tb() -> str:
+    return """`timescale 1ns/1ps
+module tb;
+  reg clk=0, reset=0, in_valid=0, out_ready=0; reg [7:0] in_data=0;
+  wire in_ready, out_valid; wire [7:0] out_data;
+  top_module dut(.clk(clk), .reset(reset), .in_valid(in_valid), .in_data(in_data),
+                 .in_ready(in_ready), .out_valid(out_valid), .out_data(out_data),
+                 .out_ready(out_ready));
+  always #1 clk = ~clk;
+  initial begin
+    reset=1; @(posedge clk); #0.1; reset=0;
+    in_valid=1; in_data=8'h3c; out_ready=1; @(posedge clk); #0.1;
+    if (!out_valid || out_data !== 8'h3c) $fatal(1, "transfer mismatch");
+    $display("PASS"); $finish;
+  end
+endmodule
+"""
+
+
+def basic_profile_for(task_id: str) -> str:
+    if task_id == "local_round_robin_arbiter2":
+        return basic_round_robin_tb()
+    if task_id == "local_fsm_101_detector":
+        return basic_fsm_101_tb()
+    if task_id == "local_valid_ready_skid":
+        return basic_valid_ready_skid_tb()
+    raise ValueError(f"No basic evaluator profile for {task_id}")
+
+
 def evaluator_profiles(task_path: Path) -> dict[str, str]:
     task = load_task(task_path)
     return {
-        "basic": basic_round_robin_tb(),
+        "basic": basic_profile_for(task.id),
         "adversarial_v2": generate_testbench(task),
     }
 
@@ -127,12 +177,13 @@ def main(
     ),
     out_dir: Path = typer.Option(Path("results/mutant_eval"), help="Output directory."),
 ) -> None:
+    task_obj = load_task(task)
     profiles = evaluator_profiles(task)
     designs = sorted(mutants_dir.glob("*.v"))
     if not designs:
         raise typer.Exit(code=2)
 
-    run_dir = out_dir / "round_robin_arbiter2"
+    run_dir = out_dir / task_obj.id
     records: list[dict[str, Any]] = []
     for profile, tb in profiles.items():
         for design in designs:

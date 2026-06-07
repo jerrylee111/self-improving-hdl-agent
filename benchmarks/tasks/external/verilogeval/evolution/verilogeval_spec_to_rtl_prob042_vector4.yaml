@@ -1,0 +1,32 @@
+id: verilogeval_spec_to_rtl_prob042_vector4
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in  (8  bits)\n - output out (32 bits)\n\nOne common place to see a\
+  \ replication operator is when sign-extending a\nsmaller number to a larger one,\
+  \ while preserving its signed value. This\nis done by replicating the sign bit (the\
+  \ most significant bit) of the\nsmaller number to the left. For example, sign-extending\
+  \ 4'b0101 (5) to 8\nbits results in 8'b00000101 (5), while sign-extending 4'b1101\
+  \ (-3) to 8\nbits results in 8'b11111101 (-3). Implement a module that sign-extends\
+  \ an\n8-bit number to 32 bits. This requires a concatenation of 24 copies of\nthe\
+  \ sign bit (i.e., replicate bit[7] 24 times) followed by the 8-bit\nnumber itself."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob042_vector4_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob042_vector4_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

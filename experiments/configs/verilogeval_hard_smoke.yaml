@@ -1,0 +1,12 @@
+name: verilogeval_hard_smoke
+tasks:
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob035_count1to10.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob063_review2015_shiftcount.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob082_lfsr32.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob084_ece241_2013_q12.yaml
+policies: [locality_aware]
+evaluator_profile: adversarial_v2
+active_skills: true
+skill_l1_capacity: 6
+max_repair_iters: 3
+max_task_wall_time_s: 240

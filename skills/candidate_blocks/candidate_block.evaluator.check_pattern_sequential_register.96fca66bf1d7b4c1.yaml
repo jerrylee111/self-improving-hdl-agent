@@ -1,0 +1,57 @@
+id: candidate_block.evaluator.check_pattern_sequential_register.96fca66bf1d7b4c1
+name: check_pattern_sequential_register
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - register
+  - reset
+  - sequential
+  - verilog
+task_patterns:
+- sequential_register
+- register
+- reset
+- sequential
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was reported by the evaluator; preserve the exact
+    signature. For similar sequential tasks, add regression stimuli around reset release,
+    first active cycle, terminal-count or wrap cycles, and consecutive enabled cycles.
+    Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+  merged_candidate_count: 1
+  evidence_count: 1
+cache:
+  pin: false
+version:
+  status: candidate_block
+  revision: 1
+  parent_ids:
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780651628
+  fingerprint: 96fca66bf1d7b4c1
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob104_mt2015_muxdff
+    policy: no_skill
+    attempts: 2
+    failure_signature: "ator.org/warn/PROCASSWIRE?v=5.048\n%Warning-UNUSEDSIGNAL:\
+      \ design.sv:8:11: Signal is not driven, nor used: 'mux_out'\n              \
+      \                       : ... note: In instance 'TopModule'\n    8 |     logic\
+      \ mux_out;\n      |           ^~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on\
+      \ around source to disable this message.\n%Error: Exiting due to 1 error(s)\n"
+provenance:
+  source_paths:
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780651628.yaml

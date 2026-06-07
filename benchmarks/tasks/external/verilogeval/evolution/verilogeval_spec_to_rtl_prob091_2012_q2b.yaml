@@ -1,0 +1,34 @@
+id: verilogeval_spec_to_rtl_prob091_2012_q2b
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- sequential
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  y (6 bits)\n - input  w\n - output Y1\n - output Y3\n\nConsider the\
+  \ following finite-state machine:\n\n  A (0) --1--> B\n  A (0) --0--> A\n  B (0)\
+  \ --1--> C\n  B (0) --0--> D\n  C (0) --1--> E\n  C (0) --0--> D\n  D (0) --1-->\
+  \ F\n  D (0) --0--> A\n  E (1) --1--> E\n  E (1) --0--> D\n  F (1) --1--> C\n  F\
+  \ (1) --0--> D\n\nAssume that a one-hot code is used with the state assignment y[5:0]\
+  \ =\n000001(A), 000010(B), 000100(C), 001000(D), 010000(E), 100000(F)\n\nThe module\
+  \ should implement the state output logic for this finite-state\nmachine. The output\
+  \ signal Y1 should be the input of state flip-flop\ny[1]. The output signal Y3 should\
+  \ be the input of state flip-flop y[3].\nDerive the implementation by inspection\
+  \ assuming the above one-hot\nencoding."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob091_2012_q2b_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob091_2012_q2b_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

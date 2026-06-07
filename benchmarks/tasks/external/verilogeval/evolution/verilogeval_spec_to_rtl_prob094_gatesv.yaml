@@ -1,0 +1,41 @@
+id: verilogeval_spec_to_rtl_prob094_gatesv
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_logic
+tags:
+- boolean_logic
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in            (4 bits)\n - output out_both      (4 bits)\n - output\
+  \ out_any       (4 bits)\n - output out_different (4 bits)\n\nYou are given a four-bit\
+  \ input vector. We want to know some relationships\nbetween each bit and its neighbour:\n\
+  \n  (1) out_both: Each bit of this output vector should indicate whether\n  both\
+  \ the corresponding input bit and its neighbour to the left (higher\n  index) are\
+  \ '1'. For example, out_both[2] should indicate if in[2] and\n  in[3] are both 1.\
+  \ Since in[3] has no neighbour to the left, the answer\n  is obvious so we don't\
+  \ need to know out_both[3].\n\n  (2) out_any: Each bit of this output vector should\
+  \ indicate whether any\n  of the corresponding input bit and its neighbour to the\
+  \ right are '1'.\n  For example, out_any[2] should indicate if either in[2] or in[1]\
+  \ are 1.\n  Since in[0] has no neighbour to the right, the answer is obvious so\
+  \ we\n  don't need to know out_any[0].\n\n  (3) out_different: Each bit of this\
+  \ output vector should indicate\n  whether the corresponding input bit is different\
+  \ from its neighbour to\n  the left. For example, out_different[2] should indicate\
+  \ if in[2] is\n  different from in[3]. For this part, treat the vector as wrapping\n\
+  \  around, so in[3]'s neighbour to the left is in[0]."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob094_gatesv_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob094_gatesv_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution
