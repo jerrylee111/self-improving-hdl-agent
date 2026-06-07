@@ -1,0 +1,29 @@
+id: verilogeval_spec_to_rtl_prob030_popcount255
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_arithmetic
+tags:
+- arithmetic
+- combinational
+- popcount
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in  (255 bits)\n - output out (  8 bits)\n\nA \"population count\" circuit\
+  \ counts the number of '1's in an input\nvector. The module should implement a population\
+  \ count circuit for a\n255-bit input vector."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob030_popcount255_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob030_popcount255_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: holdout

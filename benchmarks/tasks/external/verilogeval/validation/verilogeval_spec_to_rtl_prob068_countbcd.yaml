@@ -1,0 +1,31 @@
+id: verilogeval_spec_to_rtl_prob068_countbcd
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_counter
+tags:
+- counter
+- sequential
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  reset\n - output ena (3 bits)\n - output q   (16 bits)\n\
+  \nThe module should implement a 4-digit BCD (binary-coded decimal) counter.\nEach\
+  \ decimal digit is encoded using 4 bits: q[3:0] is the ones digit,\nq[7:4] is the\
+  \ tens digit, etc. For digits [3:1], also output an enable\nsignal indicating when\
+  \ each of the upper three digits should be\nincremented. Include a synchronous active-high\
+  \ reset. Assume all\nsequential logic is triggered on the positive edge of the clock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob068_countbcd_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob068_countbcd_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: validation

@@ -1,0 +1,251 @@
+id: candidate_block.evaluator.check_pattern_sequential_arbiter.05bf45006c5e8343
+name: check_pattern_sequential_arbiter
+agent: evaluator
+domain:
+  language: verilog
+  topic:
+  - sequential
+  - arbiter
+  - fairness
+  - priority
+  - reset
+  - enable
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+- enable
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: Preserve this failure signature as a regression check for similar tasks.
+    Emphasize the observed mismatch class when generating future tests.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+  merged_candidate_count: 17
+  evidence_count: 17
+cache:
+  pin: false
+version:
+  status: candidate_block
+  revision: 1
+  parent_ids:
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780387764
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780387852
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780387905
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780387966
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780388042
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780388523
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780388609
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780397885
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780397948
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780397981
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398041
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398104
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398167
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398225
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398268
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398356
+  - candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398409
+  fingerprint: 05bf45006c5e8343
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "ecting case or casex or casez or if\n   13 |             priority\
+      \ <= 1'b0;\n      |                      ^~\n%Error: design.v:22:21: syntax\
+      \ error, unexpected priority, expecting IDENTIFIER-for-type\n   22 |       \
+      \          if (priority == 1'b0) begin\n      |                     ^~~~~~~~\n\
+      %Error: design.v:30:9: syntax error, unexpected end\n   30 |         end else\
+      \ begin\n      |         ^~~\n%Error: Cannot continue\n        ... This fatal\
+      \ error may be caused by the earlier error(s); resolve those first.\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: no_skill
+    attempts: 2
+    failure_signature: "    |         ^~~~~~~~\n        ... See the manual at https://verilator.org/verilator_doc.html?v=5.048\
+      \ for more assistance.\n%Error: design.v:12:22: syntax error, unexpected <=,\
+      \ expecting case or casex or casez or if\n   12 |             priority <= 1'b0;\n\
+      \      |                      ^~\n%Error: design.v:21:21: syntax error, unexpected\
+      \ priority, expecting IDENTIFIER-for-type\n   21 |                    (priority\
+      \ ? 2'b10 : 2'b01);\n      |                     ^~~~~~~~\n%Error: Exiting due\
+      \ to 3 error(s)\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: fixed
+    attempts: 2
+    failure_signature: "       ^~~~~~~~\n        ... See the manual at https://verilator.org/verilator_doc.html?v=5.048\
+      \ for more assistance.\n%Error: design.v:12:22: syntax error, unexpected <=,\
+      \ expecting case or casex or casez or if\n   12 |             priority <= 1'b0;\n\
+      \      |                      ^~\n%Error: design.v:25:25: syntax error, unexpected\
+      \ priority, expecting IDENTIFIER-for-type\n   25 |                 grant = priority\
+      \ ? 2'b10 : 2'b01;\n      |                         ^~~~~~~~\n%Error: Exiting\
+      \ due to 3 error(s)\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: " at https://verilator.org/verilator_doc.html?v=5.048 for more\
+      \ assistance.\n%Error: design.v:12:22: syntax error, unexpected <=, expecting\
+      \ case or casex or casez or if\n   12 |             priority <= 1'b0;\n    \
+      \  |                      ^~\n%Error: design.v:20:45: syntax error, unexpected\
+      \ priority, expecting IDENTIFIER-for-type\n   20 |                       (req[0]\
+      \ && req[1]) ? (priority ? 2'b10 : 2'b01) :\n      |                       \
+      \                      ^~~~~~~~\n%Error: Exiting due to 3 error(s)\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: locality_aware
+    attempts: 2
+    failure_signature: " |             priority <= 1'b0;\n      |                \
+      \      ^~\n%Error: design.v:14:22: syntax error, unexpected <=, expecting case\
+      \ or casex or casez or if\n   14 |             priority <= ~priority;\n    \
+      \  |                      ^~\n%Error: design.v:21:43: syntax error, unexpected\
+      \ priority, expecting IDENTIFIER-for-type\n   21 |                      (req[0]\
+      \ && req[1] ? (priority ? 2'b10 : 2'b01) : 2'b00))\n      |                \
+      \                           ^~~~~~~~\n%Error: Exiting due to 4 error(s)\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: fixed
+    attempts: 2
+    failure_signature: "            ^~\n%Error: design.v:14:22: syntax error, unexpected\
+      \ <=, expecting case or casex or casez or if\n   14 |             priority <=\
+      \ ~priority;\n      |                      ^~\n%Error: design.v:26:33: syntax\
+      \ error, unexpected priority, expecting IDENTIFIER-for-type\n   26 |       \
+      \          2'b11: grant = (priority) ? 2'b10 : 2'b01;\n      |             \
+      \                    ^~~~~~~~\n%Error: Cannot continue\n        ... This fatal\
+      \ error may be caused by the earlier error(s); resolve those first.\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "    |                         ^~~~~~~~\n%Error: design.v:36:30:\
+      \ syntax error, unexpected <=, expecting case or casex or casez or if\n   36\
+      \ |                     priority <= ~priority;\n      |                    \
+      \          ^~\n%Error: design.v:38:24: syntax error, unexpected :-then-begin,\
+      \ expecting clocking or disable\n   38 |                 default: begin\n  \
+      \    |                        ^\n%Error: Cannot continue\n        ... This fatal\
+      \ error may be caused by the earlier error(s); resolve those first.\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 3
+    failure_signature: "expecting case or casex or casez or if\n   13 |          \
+      \   priority <= 1'b0;\n      |                      ^~\n%Error: design.v:15:22:\
+      \ syntax error, unexpected <=, expecting case or casex or casez or if\n   15\
+      \ |             priority <= ~priority;\n      |                      ^~\n%Error:\
+      \ design.v:23:21: syntax error, unexpected priority, expecting IDENTIFIER-for-type\n\
+      \   23 |                    (priority == 1'b0) ? 2'b01 : 2'b10) \n      |  \
+      \                   ^~~~~~~~\n%Error: Exiting due to 4 error(s)\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: " See the manual at https://verilator.org/verilator_doc.html?v=5.048\
+      \ for more assistance.\n%Error: design.v:13:22: syntax error, unexpected <=,\
+      \ expecting case or casex or casez or if\n   13 |             priority <= 1'b0;\n\
+      \      |                      ^~\n%Error: design.v:19:34: syntax error, unexpected\
+      \ priority, expecting IDENTIFIER-for-type\n   19 |                     grant\
+      \    <= (priority == 1'b0) ? 2'b01 : 2'b10;\n      |                       \
+      \           ^~~~~~~~\n%Error: Exiting due to 3 error(s)\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: ";\n      |                      ^~\n%Error: design.v:26:25:\
+      \ syntax error, unexpected priority, expecting IDENTIFIER-for-type\n   26 |\
+      \                     if (priority == 1'b0) begin\n      |                 \
+      \        ^~~~~~~~\n%Error: design.v:34:24: syntax error, unexpected :-then-begin,\
+      \ expecting clocking or disable\n   34 |                 default: begin  \n\
+      \      |                        ^\n%Error: Cannot continue\n        ... This\
+      \ fatal error may be caused by the earlier error(s); resolve those first.\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "     |         ^~~~~~~~\n        ... See the manual at https://verilator.org/verilator_doc.html?v=5.048\
+      \ for more assistance.\n%Error: design.v:12:22: syntax error, unexpected <=,\
+      \ expecting case or casex or casez or if\n   12 |             priority <= 1'b0;\n\
+      \      |                      ^~\n%Error: design.v:20:25: syntax error, unexpected\
+      \ priority, expecting IDENTIFIER-for-type\n   20 |                     if (priority\
+      \ == 1'b0)\n      |                         ^~~~~~~~\n%Error: Exiting due to\
+      \ 3 error(s)\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "   |                         ^~~~~~~~\n%Error: design.v:34:30:\
+      \ syntax error, unexpected <=, expecting case or casex or casez or if\n   34\
+      \ |                     priority <= ~priority;\n      |                    \
+      \          ^~\n%Error: design.v:36:24: syntax error, unexpected ':', expecting\
+      \ clocking or disable\n   36 |                 default: grant <= 2'b00;\n  \
+      \    |                        ^\n%Error: Cannot continue\n        ... This fatal\
+      \ error may be caused by the earlier error(s); resolve those first.\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "~\n%Error: design.v:30:27: syntax error, unexpected <=, expecting\
+      \ case or casex or casez or if\n   30 |                 priority  <= priority;\n\
+      \      |                           ^~\n%Error: design.v:33:27: syntax error,\
+      \ unexpected <=, expecting case or casex or casez or if\n   33 |           \
+      \      priority  <= priority;\n      |                           ^~\n%Error:\
+      \ design.v:35:13: syntax error, unexpected else\n   35 |         end else begin\
+      \  \n      |             ^~~~\n%Error: Exiting due to 8 error(s)\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "~\n%Error: design.v:27:29: syntax error, unexpected priority,\
+      \ expecting IDENTIFIER-for-type\n   27 |                         if (priority\
+      \ == 1'b0) begin\n      |                             ^~~~~~~~\n%Error: design.v:32:34:\
+      \ syntax error, unexpected <=, expecting case or casex or casez or if\n   32\
+      \ |                         priority <= ~priority;\n      |                \
+      \                  ^~\n%Error: Cannot continue\n        ... This fatal error\
+      \ may be caused by the earlier error(s); resolve those first.\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: locality_aware
+    attempts: 2
+    failure_signature: ";  \n      |                              ^~\n%Error: design.v:32:25:\
+      \ syntax error, unexpected priority, expecting IDENTIFIER-for-type\n   32 |\
+      \                     if (priority) begin\n      |                         ^~~~~~~~\n\
+      %Error: design.v:40:24: syntax error, unexpected :-then-begin, expecting clocking\
+      \ or disable\n   40 |                 default: begin\n      |              \
+      \          ^\n%Error: Cannot continue\n        ... This fatal error may be caused\
+      \ by the earlier error(s); resolve those first.\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "b0;\n      |                      ^~\n%Error: design.v:29:25:\
+      \ syntax error, unexpected priority, expecting IDENTIFIER-for-type\n   29 |\
+      \                     if (priority == 1'b0) begin\n      |                 \
+      \        ^~~~~~~~\n%Error: design.v:37:24: syntax error, unexpected :-then-begin,\
+      \ expecting clocking or disable\n   37 |                 default: begin\n  \
+      \    |                        ^\n%Error: Cannot continue\n        ... This fatal\
+      \ error may be caused by the earlier error(s); resolve those first.\n"
+  - task_id: local_round_robin_arbiter2_enable
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "type\n   26 |           if (priority) begin\n      |     \
+      \          ^~~~~~~~\n%Error: design.v:31:20: syntax error, unexpected <=, expecting\
+      \ case or casex or casez or if\n   31 |           priority <= ~priority;\n \
+      \     |                    ^~\n%Error: design.v:33:16: syntax error, unexpected\
+      \ ':', expecting clocking or disable\n   33 |         default: grant <= 2'b00;\n\
+      \      |                ^\n%Error: Cannot continue\n        ... This fatal error\
+      \ may be caused by the earlier error(s); resolve those first.\n"
+provenance:
+  source_paths:
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780387764.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780387852.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780387905.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780387966.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780388042.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780388523.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780388609.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780397885.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780397948.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780397981.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398041.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398104.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398167.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398225.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398268.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398356.yaml
+  - skills/candidate/candidate.local_round_robin_arbiter2_enable.evaluator.check_pattern_sequential_arbiter.1780398409.yaml

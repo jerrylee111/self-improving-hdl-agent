@@ -1,0 +1,35 @@
+id: verilogeval_spec_to_rtl_prob099_m2014_q6c
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- sequential
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  y (6 bits)\n - input  w\n - output Y1\n - output Y3\n\nConsider the\
+  \ state machine shown below:\n\n  A (0) --0--> B\n  A (0) --1--> A\n  B (0) --0-->\
+  \ C\n  B (0) --1--> D\n  C (0) --0--> E\n  C (0) --1--> D\n  D (0) --0--> F\n  D\
+  \ (0) --1--> A\n  E (1) --0--> E\n  E (1) --1--> D\n  F (1) --0--> C\n  F (1) --1-->\
+  \ D\n\nResets into state A. For this part, assume that a one-hot code is used\n\
+  with the state assignment y[5:0] = 000001, 000010, 000100, 001000,\n010000, 100000\
+  \ for states A, B,..., F, respectively.\n\nThe module shou module ment the next-state\
+  \ signals Y2 and Y4\ncorresponding to signal y[1] and y[3]. Derive the logic equations\
+  \ by\ninspection assuming the one-hot encoding.\n implement the next-state signals\
+  \  and corresponding to\nsignal y[1] and y[3]Derive the logic equations byinspection\
+  \ assuming the one-hot encoding."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob099_m2014_q6c_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob099_m2014_q6c_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: holdout

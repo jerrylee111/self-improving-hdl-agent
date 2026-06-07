@@ -1,0 +1,51 @@
+id: candidate.local_round_robin_arbiter2.coder.repair_pattern_sequential_arbiter.1780390139
+name: repair_pattern_sequential_arbiter
+agent: coder
+domain:
+  language: verilog
+  topic:
+  - sequential
+  - arbiter
+  - fairness
+  - priority
+  - reset
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: repair_pattern
+  content: The evaluator observed a failure. Use the failure signature to repair the
+    specific timing, width, reset, or protocol behavior instead of repeating the same
+    implementation.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2
+    policy: tag_topk
+    attempts: 3
+    failure_signature: "xpected <=, expecting case or casex or casez or if\n   12\
+      \ |             priority <= 1'b0;\n      |                      ^~\n%Error:\
+      \ design.v:14:22: syntax error, unexpected <=, expecting case or casex or casez\
+      \ or if\n   14 |             priority <= ~priority;\n      |               \
+      \       ^~\n%Error: design.v:21:22: syntax error, unexpected priority, expecting\
+      \ IDENTIFIER-for-type\n   21 |             grant = {priority, ~priority};\n\
+      \      |                      ^~~~~~~~\n%Error: Exiting due to 4 error(s)\n"

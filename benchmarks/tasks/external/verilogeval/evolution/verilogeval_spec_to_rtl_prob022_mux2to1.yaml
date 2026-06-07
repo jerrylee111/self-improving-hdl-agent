@@ -1,0 +1,28 @@
+id: verilogeval_spec_to_rtl_prob022_mux2to1
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_mux
+tags:
+- combinational
+- mux
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  a\n - input  b\n - input  sel\n - output out\n\nThe module should implement\
+  \ a one-bit wide, 2-to-1 multiplexer. When\nsel=0, choose a. When sel=1, choose\
+  \ b."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob022_mux2to1_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob022_mux2to1_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

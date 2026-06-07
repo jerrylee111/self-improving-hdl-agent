@@ -8,9 +8,16 @@ import yaml
 from harness.task_schema import HDLTask
 
 
-def load_seed_skills(path: Path = Path("skills/seed/rtl_rules.yaml")) -> list[dict[str, Any]]:
-    data = yaml.safe_load(path.read_text())
-    return list(data.get("skills", []))
+def load_seed_skills(path: Path = Path("skills/seed")) -> list[dict[str, Any]]:
+    if path.is_file():
+        data = yaml.safe_load(path.read_text())
+        return list(data.get("skills", []))
+    skills: list[dict[str, Any]] = []
+    for skill_path in sorted(path.glob("*.yaml")):
+        data = yaml.safe_load(skill_path.read_text())
+        if data:
+            skills.extend(data.get("skills", []))
+    return skills
 
 
 def load_active_skills(path: Path = Path("skills/active")) -> list[dict[str, Any]]:
@@ -39,15 +46,19 @@ def load_skill_store(agent: str | None = None, include_active: bool = True) -> l
 
 def _score_skill(task: HDLTask, skill: dict[str, Any]) -> tuple[float, list[str]]:
     task_terms = set(task.tags + [task.family, task.language, task.id])
+    generic_terms = {"verilog", "systemverilog", "sequential", "combinational", "reset"}
+    scoring_terms = task_terms - generic_terms
     reasons: list[str] = []
     if skill.get("cache", {}).get("pin"):
         return 100.0, ["pinned"]
     domain = skill.get("domain", {})
     topics = set(domain.get("topic", []))
     patterns = " ".join(skill.get("task_patterns", [])).lower()
-    topic_hits = sorted(task_terms & topics)
-    pattern_hits = sorted(term for term in task_terms if str(term).lower() in patterns)
+    topic_hits = sorted(scoring_terms & topics)
+    pattern_hits = sorted(term for term in scoring_terms if str(term).lower() in patterns)
     utility = float(skill.get("metrics", {}).get("utility_ema", 0.0))
+    if not topic_hits and not pattern_hits:
+        return 0.0, ["no_task_match"]
     score = len(topic_hits) * 3.0
     score += len(pattern_hits)
     score += utility

@@ -1,0 +1,31 @@
+id: verilogeval_spec_to_rtl_prob114_bugs_case
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  code (8 bits)\n - output out  (4 bits)\n - output valid\n\nThe module\
+  \ should recognize 8-bit keyboard scancodes for keys 0 through\n9. It should indicate\
+  \ whether one of the 10 cases were recognized\n(valid), and if so, which key was\
+  \ detected. If the 8-bit input is 8'h45,\n8'h16, 8'h1e, 8'h26, 8'h25, 8'h2e, 8'h36,\
+  \ 8'h3d, 8'h3e, or 8'h46, the\n4-bit output will be set to 0, 1, 2, 3, 4, 5, 6,\
+  \ 7, 8, or 9 respectively,\nthe 1-bit valid would be set to 1. If the input does\
+  \ not match any of the\ncases, both output signals would be set to 0."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob114_bugs_case_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob114_bugs_case_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

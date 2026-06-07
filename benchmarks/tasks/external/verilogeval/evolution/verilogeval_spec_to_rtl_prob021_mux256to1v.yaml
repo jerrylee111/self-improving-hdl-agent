@@ -1,0 +1,29 @@
+id: verilogeval_spec_to_rtl_prob021_mux256to1v
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_mux
+tags:
+- combinational
+- mux
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in  (1024 bits)\n - input  sel (   8 bits)\n - output out (   4 bits)\n\
+  \nThe module should implement a 4-bit wide, 256-to-1 multiplexer. The 256\n4-bit\
+  \ inputs are all packed into a single 1024-bit input vector. sel=0\nshould select\
+  \ bits in[3:0], sel=1 selects bits in[7:4], sel=2 selects\nbits in[11:8], etc."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob021_mux256to1v_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob021_mux256to1v_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

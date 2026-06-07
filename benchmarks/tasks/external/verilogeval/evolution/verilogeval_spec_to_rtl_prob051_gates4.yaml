@@ -1,0 +1,29 @@
+id: verilogeval_spec_to_rtl_prob051_gates4
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_logic
+tags:
+- boolean_logic
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in (4 bits)\n - output out_and\n - output out_or\n - output out_xor\n\
+  \nThe module should implement a combinational circuit with four inputs,\nin[3:0].\
+  \ There are 3 outputs:\n\n  (1) out_and : output of a 4-input AND gate\n  (2) out_or\
+  \  : output of a 4-input OR  gate\n  (3) out_xor : output of a 4-input XOR gate"
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob051_gates4_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob051_gates4_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

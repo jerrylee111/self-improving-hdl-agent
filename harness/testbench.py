@@ -216,17 +216,32 @@ module tb;
   top_module dut(.clk(clk), .reset(reset), .bit_in(bit_in), .found(found));
   always #1 clk = ~clk;
   reg [31:0] hist;
+  integer pulses = 0;
   task step(input b);
     reg exp;
     begin
-      bit_in=b; @(posedge clk); hist = {hist[30:0], b}; #0.1;
-      exp = (hist[2:0] == 3'b101);
+      bit_in=b; @(posedge clk);
+      if (reset) begin
+        hist = 0;
+        exp = 0;
+      end else begin
+        hist = {hist[30:0], b};
+        exp = (hist[2:0] == 3'b101);
+      end
+      #0.1;
       if (found !== exp) $fatal(1, "fsm mismatch");
+      if (found) pulses = pulses + 1;
     end
   endtask
   initial begin
-    hist=0; reset=1; step(0); reset=0;
-    step(1); step(0); step(1); step(0); step(1); step(1); step(0); step(1);
+    hist=0; pulses=0; reset=1; step(0); reset=0;
+    step(1); step(0); step(1); step(0); step(1);
+    if (pulses !== 2) $fatal(1, "overlap pulse count mismatch");
+    step(0); step(0); step(1); step(1); step(0);
+    step(1); step(0);
+    reset=1; step(0); reset=0;
+    hist=0;
+    step(1); step(0); step(1);
     $display("PASS"); $finish;
   end
 endmodule
@@ -242,12 +257,18 @@ module tb;
   always #1 clk = ~clk;
   initial begin
     reset=1; @(posedge clk); #0.1; reset=0;
+    if (!in_ready || out_valid) $fatal(1, "reset state mismatch");
     in_valid=1; in_data=8'h3c; out_ready=0; @(posedge clk); #0.1;
     if (!out_valid || out_data !== 8'h3c) $fatal(1, "did not present data");
+    if (in_ready) $fatal(1, "accepted while full under backpressure");
     in_valid=0; in_data=8'ha5; repeat (3) begin @(posedge clk); #0.1;
       if (!out_valid || out_data !== 8'h3c) $fatal(1, "data not stable under backpressure");
+      if (in_ready) $fatal(1, "ready high while full under backpressure");
     end
     out_ready=1; @(posedge clk); #0.1;
+    if (!in_ready) $fatal(1, "ready did not recover after drain");
+    in_valid=1; in_data=8'ha5; out_ready=1; @(posedge clk); #0.1;
+    if (!out_valid || out_data !== 8'ha5) $fatal(1, "transparent transfer mismatch");
     $display("PASS"); $finish;
   end
 endmodule

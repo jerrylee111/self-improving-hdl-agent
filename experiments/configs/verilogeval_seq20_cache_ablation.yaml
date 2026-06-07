@@ -1,0 +1,37 @@
+name: verilogeval_seq20_cache_ablation
+max_repair_iters: 2
+skill_l1_capacity: 6
+max_task_wall_time_s: 240
+hard_timeout: true
+evaluator_profile: adversarial_v2
+conditions:
+  - id: seq20_no_skill
+    active_skills: false
+    policy: no_skill
+  - id: seq20_seed_only_locality
+    active_skills: false
+    policy: locality_aware
+  - id: seq20_active_locality
+    active_skills: true
+    policy: locality_aware
+tasks:
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob086_lfsr5.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob082_lfsr32.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob111_fsm2s.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob096_review2015_fsmseq.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob095_review2015_fsmshift.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob115_shift18.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob105_rotate100.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob085_shift4.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob084_ece241_2013_q12.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob061_2014_q4a.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob104_mt2015_muxdff.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob073_dff16e.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob046_dff8p.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob041_dff8r.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob034_dff8.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob031_dff.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob075_counter_2bc.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob063_review2015_shiftcount.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob035_count1to10.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob116_m2014_q3.yaml

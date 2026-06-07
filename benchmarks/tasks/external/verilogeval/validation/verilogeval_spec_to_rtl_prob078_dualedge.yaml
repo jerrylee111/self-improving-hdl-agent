@@ -1,0 +1,29 @@
+id: verilogeval_spec_to_rtl_prob078_dualedge
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- sequential
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  d\n - output q\n\nA dual-edge triggered flip-flop is\
+  \ triggered on both edges of the clock.\nHowever, FPGAs don't have dual-edge triggered\
+  \ flip-flops, and using an\nalways @(posedge clk or negedge clk) is not accepted\
+  \ as a legal\nsensitivity list. Build a circuit that functionally behaves like a\n\
+  dual-edge triggered flip-flop."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob078_dualedge_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob078_dualedge_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: validation

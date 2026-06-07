@@ -1,0 +1,28 @@
+id: verilogeval_spec_to_rtl_prob062_bugs_mux2
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_mux
+tags:
+- combinational
+- mux
+- verilog
+difficulty: 2
+prompt: "Consider the following implementation of an 8-bit 2-to-1 mux:\n\n  module\
+  \ TopModule (\n      input        sel,\n      input  [7:0] a,\n      input  [7:0]\
+  \ b,\n      output       out\n  );\n\n      assign out = (~sel & a) | (sel & b);\n\
+  \n  endmodule\n\nUnfortunately, this module has a bug. Implement a new version of\
+  \ this\nmodule that fixes the bug."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob062_bugs_mux2_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob062_bugs_mux2_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

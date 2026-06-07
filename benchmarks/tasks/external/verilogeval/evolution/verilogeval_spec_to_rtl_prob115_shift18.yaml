@@ -1,0 +1,36 @@
+id: verilogeval_spec_to_rtl_prob115_shift18
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_shift
+tags:
+- combinational
+- sequential
+- shift_register
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  load\n - input  ena\n - input  amount (2 bits)\n - input\
+  \  data (64 bits)\n - output q (64 bits)\n\nThe module should implement a 64-bit\
+  \ arithmetic shift register, with\nsynchronous load. The shifter can shift both\
+  \ left and right, and by 1 or\n8 bit positions, selected by \"amount.\" Assume the\
+  \ right shit is an\narithmetic right shift.\n\nSignals are defined as below:\n\n\
+  \  (1) load: Loads shift register with data[63:0] instead of shifting.\n       Active\
+  \ high.\n  (2) ena: Chooses whether to shift. Active high.\n  (3) amount: Chooses\
+  \ which direction and how much to shift.\n      (a) 2'b00: shift left by 1 bit.\n\
+  \      (b) 2'b01: shift left by 8 bits.\n      (c) 2'b10: shift right by 1 bit.\n\
+  \      (d) 2'b11: shift right by 8 bits.\n  (4) q: The contents of the shifter."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob115_shift18_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob115_shift18_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

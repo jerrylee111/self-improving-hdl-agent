@@ -1,0 +1,30 @@
+id: verilogeval_spec_to_rtl_prob036_ringer
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  ring\n - input  vibrate_mode\n - output ringer\n - output motor\n\n\
+  The module should implement a circuit to control a cellphone's ringer and\nvibration\
+  \ motor. Whenever the phone needs to ring from an incoming call\n(input ring), your\
+  \ circuit must either turn on the ringer (output ringer\n= 1) or the motor (output\
+  \ motor = 1), but not both. If the phone is in\nvibrate mode (input vibrate_mode\
+  \ = 1), turn on the motor. Otherwise, turn\non the ringer."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob036_ringer_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob036_ringer_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

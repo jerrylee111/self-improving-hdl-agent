@@ -1,0 +1,53 @@
+id: candidate.local_round_robin_arbiter2_enable.coder.repair_pattern_sequential_arbiter.1780398104
+name: repair_pattern_sequential_arbiter
+agent: coder
+domain:
+  language: verilog
+  topic:
+  - sequential
+  - arbiter
+  - fairness
+  - priority
+  - reset
+  - enable
+task_patterns:
+- sequential_arbiter
+- sequential
+- arbiter
+- fairness
+- priority
+- reset
+- enable
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: repair_pattern
+  content: The evaluator observed a failure. Use the failure signature to repair the
+    specific timing, width, reset, or protocol behavior instead of repeating the same
+    implementation.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: local_round_robin_arbiter2_enable
+    policy: tag_topk
+    attempts: 2
+    failure_signature: "   |                         ^~~~~~~~\n%Error: design.v:34:30:\
+      \ syntax error, unexpected <=, expecting case or casex or casez or if\n   34\
+      \ |                     priority <= ~priority;\n      |                    \
+      \          ^~\n%Error: design.v:36:24: syntax error, unexpected ':', expecting\
+      \ clocking or disable\n   36 |                 default: grant <= 2'b00;\n  \
+      \    |                        ^\n%Error: Cannot continue\n        ... This fatal\
+      \ error may be caused by the earlier error(s); resolve those first.\n"

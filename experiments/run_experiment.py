@@ -32,6 +32,8 @@ def main(
     max_iters = int(data.get("max_repair_iters", 3))
     evaluator_profile = data.get("evaluator_profile", "adversarial_v2")
     active_skills = bool(data.get("active_skills", True))
+    max_wall_time_s = data.get("max_task_wall_time_s")
+    max_wall_time_s = None if max_wall_time_s is None else float(max_wall_time_s)
 
     table = Table(title="Experiment Plan")
     table.add_column("Field")
@@ -42,6 +44,7 @@ def main(
     table.add_row("evaluator_profile", evaluator_profile)
     table.add_row("active_skills", str(active_skills))
     table.add_row("max_iters", str(max_iters))
+    table.add_row("max_task_wall_time_s", str(max_wall_time_s))
     table.add_row("dry_run", str(dry_run))
     console.print(table)
     for task_path in tasks:
@@ -75,6 +78,7 @@ def main(
                     llm=llm,
                     skill_cache=skill_cache,
                     evaluator_profile=evaluator_profile,
+                    max_wall_time_s=max_wall_time_s,
                 )
                 records.append(record)
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")

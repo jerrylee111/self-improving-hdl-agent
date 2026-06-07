@@ -1,0 +1,29 @@
+id: verilogeval_spec_to_rtl_prob025_reduction
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  in     (8 bits)\n - output parity\n\nParity checking is often used as\
+  \ a simple method of detecting errors when\ntransmitting data through an imperfect\
+  \ channel. The module should compute\na parity bit for an 8-bit byte (which will\
+  \ add a 9th bit to the byte). We\nwill use \"even\" parity, where the parity bit\
+  \ is just the XOR of all 8\ndata bits."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob025_reduction_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob025_reduction_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

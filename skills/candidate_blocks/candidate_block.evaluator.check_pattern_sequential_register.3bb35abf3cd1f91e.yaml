@@ -1,0 +1,173 @@
+id: candidate_block.evaluator.check_pattern_sequential_register.3bb35abf3cd1f91e
+name: check_pattern_sequential_register
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - register
+  - reset
+  - sequential
+  - verilog
+task_patterns:
+- sequential_register
+- register
+- reset
+- sequential
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was 118 mismatches out of 121 samples on output q,
+    first seen at time 20. For similar sequential tasks, add regression stimuli around
+    reset release, first active cycle, terminal-count or wrap cycles, and consecutive
+    enabled cycles. Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+  merged_candidate_count: 23
+  evidence_count: 8
+cache:
+  pin: false
+version:
+  status: candidate_block
+  revision: 1
+  parent_ids:
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780446935
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780447146
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780456697
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780649599
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780650206
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780653956
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780446808
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447028
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447191
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780449818
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780451338
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780456633
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780650000
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780650222
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780650482
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780651681
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780652790
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780653886
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780449677
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780451220
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780456574
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780652691
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780653816
+  fingerprint: 3bb35abf3cd1f91e
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "ut'\n                                     : ... note: In instance\
+      \ 'TopModule'\n    6 |     logic ff_out;\n      |           ^~~~~~\n\n\n$ iverilog\
+      \ -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\nstdout:\n\
+      \nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish called\
+      \ at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "_int'\n                                     : ... note: In\
+      \ instance 'TopModule'\n    7 |     logic q_int;\n      |           ^~~~~\n\n\
+      \n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "d: 'q_int'\n                                    : ... note:\
+      \ In instance 'TopModule'\n    7 |   logic q_int;\n      |         ^~~~~\n\n\
+      \n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 1
+    failure_signature: " used: 'q_reg'\n                                    : ...\
+      \ note: In instance 'TopModule'\n    7 |   reg q_reg;\n      |       ^~~~~\n\
+      \n\n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob034_dff8
+    policy: no_skill
+    attempts: 2
+    failure_signature: "ENAME?v=5.048\n                       ... Use \"/* verilator\
+      \ lint_off DECLFILENAME */\" and lint_on around source to disable this message.\n\
+      \n\n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob034_dff8_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:36: $finish\
+      \ called at 206 (1ps)\nHint: Output 'q' has 1 mismatches. First mismatch occurred\
+      \ at time 5.\nHint: Total mismatched samples is 1 out of 41 samples\n\nSimulation\
+      \ finished at 206 ps\nMismatches: 1 in 41 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob034_dff8
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "ENAME?v=5.048\n                       ... Use \"/* verilator\
+      \ lint_off DECLFILENAME */\" and lint_on around source to disable this message.\n\
+      \n\n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob034_dff8_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:36: $finish\
+      \ called at 206 (1ps)\nHint: Output 'q' has 1 mismatches. First mismatch occurred\
+      \ at time 5.\nHint: Total mismatched samples is 1 out of 41 samples\n\nSimulation\
+      \ finished at 206 ps\nMismatches: 1 in 41 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob104_mt2015_muxdff
+    policy: no_skill
+    attempts: 2
+    failure_signature: "48\n                       ... Use \"/* verilator lint_off\
+      \ DECLFILENAME */\" and lint_on around source to disable this message.\n\n\n\
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob104_mt2015_muxdff_ref.sv\n\
+      returncode=0\nstdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\n\
+      tb.sv:21: $finish called at 996 (1ps)\nHint: Output 'Q' has 1 mismatches. First\
+      \ mismatch occurred at time 5.\nHint: Total mismatched samples is 1 out of 199\
+      \ samples\n\nSimulation finished at 996 ps\nMismatches: 1 in 199 samples\n\n\
+      stderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob104_mt2015_muxdff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "48\n                       ... Use \"/* verilator lint_off\
+      \ DECLFILENAME */\" and lint_on around source to disable this message.\n\n\n\
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob104_mt2015_muxdff_ref.sv\n\
+      returncode=0\nstdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\n\
+      tb.sv:21: $finish called at 996 (1ps)\nHint: Output 'Q' has 1 mismatches. First\
+      \ mismatch occurred at time 5.\nHint: Total mismatched samples is 1 out of 199\
+      \ samples\n\nSimulation finished at 996 ps\nMismatches: 1 in 199 samples\n\n\
+      stderr:\n"
+provenance:
+  source_paths:
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780446935.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780447146.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780456697.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780649599.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780650206.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780653956.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780446808.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447028.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780447191.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780449818.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780451338.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780456633.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780650000.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780650222.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780650482.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780651681.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780652790.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.evaluator.check_pattern_sequential_register.1780653886.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780449677.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780451220.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780456574.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780652691.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.evaluator.check_pattern_sequential_register.1780653816.yaml

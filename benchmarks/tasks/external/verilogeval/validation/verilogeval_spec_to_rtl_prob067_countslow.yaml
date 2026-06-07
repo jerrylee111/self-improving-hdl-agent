@@ -1,0 +1,32 @@
+id: verilogeval_spec_to_rtl_prob067_countslow
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_counter
+tags:
+- counter
+- sequential
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  reset\n - input  slowena\n - output q (4 bits)\n\nThe\
+  \ module should implement a decade counter that counts from 0 through\n9, inclusive,\
+  \ with a period of 10. The reset input is active high\nsynchronous, and should reset\
+  \ the counter to 0. We want to be able to\npause the counter rather than always\
+  \ incrementing every clock cycle, so\nthe \"slowena\" input if high indicates when\
+  \ the counter should increment.\nAssume all sequential logic is triggered on the\
+  \ positive edge of the\nclock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob067_countslow_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob067_countslow_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: validation

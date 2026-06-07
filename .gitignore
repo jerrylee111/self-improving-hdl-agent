@@ -1,10 +1,17 @@
 .venv/
 .env
+benchmarks/external/raw/
+benchmarks/external/imported/
 results/runs/
 results/runs*/
 results/experiments/
 results/mutant_eval*/
 results/four_phase/
+results/next_round/
+results/candidate_validation/
+results/dataset_import_smoke/
+results/taskset_ablation/
+results/verilogeval_smoke/
 *.pyc
 __pycache__/
 *.egg-info/

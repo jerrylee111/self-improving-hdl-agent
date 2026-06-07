@@ -22,6 +22,8 @@ class Evaluation(BaseModel):
     lint: bool = True
     simulation: bool = True
     formal: bool = False
+    testbench_file: str | None = None
+    pass_regex: str | None = None
 
 
 class Split(BaseModel):

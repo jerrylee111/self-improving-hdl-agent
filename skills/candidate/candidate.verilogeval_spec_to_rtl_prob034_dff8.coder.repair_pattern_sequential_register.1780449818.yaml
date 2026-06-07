@@ -1,0 +1,50 @@
+id: candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780449818
+name: repair_pattern_sequential_register
+agent: coder
+domain:
+  language: systemverilog
+  topic:
+  - register
+  - reset
+  - sequential
+  - verilog
+task_patterns:
+- sequential_register
+- register
+- reset
+- sequential
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: repair_pattern
+  content: The observed failure was 1 mismatches out of 41 samples on output q, first
+    seen at time 5. For similar sequential tasks, repair by checking reset value,
+    posedge update order, nonblocking assignments, enable conditions, terminal-count
+    behavior, and whether outputs should reflect the current state or the next state.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob034_dff8
+    policy: no_skill
+    attempts: 2
+    failure_signature: "ENAME?v=5.048\n                       ... Use \"/* verilator\
+      \ lint_off DECLFILENAME */\" and lint_on around source to disable this message.\n\
+      \n\n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob034_dff8_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:36: $finish\
+      \ called at 206 (1ps)\nHint: Output 'q' has 1 mismatches. First mismatch occurred\
+      \ at time 5.\nHint: Total mismatched samples is 1 out of 41 samples\n\nSimulation\
+      \ finished at 206 ps\nMismatches: 1 in 41 samples\n\nstderr:\n"

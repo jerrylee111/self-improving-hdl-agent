@@ -1,0 +1,29 @@
+id: verilogeval_spec_to_rtl_prob076_always_case
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  sel   (3 bits)\n - input  data0 (4 bits)\n - input  data1 (4 bits)\n\
+  \ - input  data2 (4 bits)\n - input  data3 (4 bits)\n - input  data4 (4 bits)\n\
+  \ - input  data5 (4 bits)\n - output out   (4 bits)\n);\n\nThe module should implement\
+  \ a 6-to-1 multiplexer. When sel is between 0\nand 5, choose the corresponding data\
+  \ input. Otherwise, output 0. The data\ninputs and outputs are all 4 bits wide."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob076_always_case_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob076_always_case_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

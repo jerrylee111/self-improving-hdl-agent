@@ -1,0 +1,14 @@
+name: verilogeval_evolution_smoke
+tasks:
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob001_zero.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob002_m2014_q4i.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob003_step_one.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob004_vector2.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob005_notgate.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob006_vectorr.yaml
+policies: [locality_aware]
+evaluator_profile: adversarial_v2
+active_skills: true
+skill_l1_capacity: 6
+max_repair_iters: 2
+max_task_wall_time_s: 180

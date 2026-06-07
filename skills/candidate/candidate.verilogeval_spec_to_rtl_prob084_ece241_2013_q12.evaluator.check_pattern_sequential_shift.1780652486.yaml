@@ -1,0 +1,70 @@
+id: candidate.verilogeval_spec_to_rtl_prob084_ece241_2013_q12.evaluator.check_pattern_sequential_shift.1780652486
+name: check_pattern_sequential_shift
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - sequential
+  - shift_register
+  - verilog
+task_patterns:
+- sequential_shift
+- sequential
+- shift_register
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was 263 mismatches out of 530 samples on output Z,
+    first seen at time 40. For similar sequential tasks, add regression stimuli around
+    reset release, first active cycle, terminal-count or wrap cycles, and consecutive
+    enabled cycles. Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob084_ece241_2013_q12
+    policy: locality_aware
+    attempts: 2
+    failure_signature: 'are not fully supported (the process will be sensitive to
+      all bits in ''Q[7:0]'').
+
+      design.sv:29: sorry: constant selects in always_* processes are not fully supported
+      (the process will be sensitive to all bits in ''Q[7:0]'').
+
+
+
+      $ vvp sim.out
+
+      returncode=0
+
+      stdout:
+
+      tb.sv:55: $finish called at 2650 (1ps)
+
+      Hint: Output ''Z'' has 263 mismatches. First mismatch occurred at time 40.
+
+      Hint: Total mismatched samples is 263 out of 530 samples
+
+
+      Simulation finished at 2650 ps
+
+      Mismatches: 263 in 530 samples
+
+
+      stderr:
+
+      '

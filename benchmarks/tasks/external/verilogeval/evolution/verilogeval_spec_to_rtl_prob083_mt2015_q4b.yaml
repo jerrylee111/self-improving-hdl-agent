@@ -1,0 +1,30 @@
+id: verilogeval_spec_to_rtl_prob083_mt2015_q4b
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- combinational
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  x\n - input  y\n - output z\n\nThe module can be described by the following\
+  \ simulation waveform:\n\n  time  x  y  z\n  0ns   0  0  1\n  5ns   0  0  1\n  10ns\
+  \  0  0  1\n  15ns  0  0  1\n  20ns  0  0  1\n  25ns  1  0  0\n  30ns  1  0  0\n\
+  \  35ns  0  1  0\n  40ns  0  1  0\n  45ns  1  1  1\n  50ns  1  1  1\n  55ns  0 \
+  \ 0  1\n  60ns  0  1  0\n  65ns  0  1  0\n  70ns  1  1  1\n  75ns  0  1  0\n  80ns\
+  \  0  1  0\n  85ns  0  1  0\n  90ns  1  0  0"
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob083_mt2015_q4b_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob083_mt2015_q4b_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

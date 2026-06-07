@@ -1,0 +1,30 @@
+id: verilogeval_spec_to_rtl_prob066_edgecapture
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: misc_hdl
+tags:
+- sequential
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  reset\n - input  in    (32 bits)\n - output out   (32\
+  \ bits)\n\nThe module should examine each bit in the 32-bit input vector, and\n\
+  capture when the input signal changes from 1 in one clock cycle to 0 the\nnext.\
+  \ \"Capture\" means that the output will remain 1 until the register is\nreset (active\
+  \ high synchronous reset). Assume all sequential logic is\ntriggered on the positive\
+  \ edge of the clock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob066_edgecapture_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob066_edgecapture_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

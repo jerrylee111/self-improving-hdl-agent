@@ -1,0 +1,16 @@
+name: verilogeval_hard_timeout_smoke
+max_repair_iters: 1
+skill_l1_capacity: 6
+max_task_wall_time_s: 90
+hard_timeout: true
+evaluator_profile: adversarial_v2
+conditions:
+  - id: ht_no_skill
+    active_skills: false
+    policy: no_skill
+  - id: ht_seed_only
+    active_skills: false
+    policy: locality_aware
+tasks:
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob031_dff.yaml
+  - benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob035_count1to10.yaml

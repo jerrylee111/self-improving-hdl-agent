@@ -53,6 +53,72 @@ def _candidate(
     }
 
 
+def _failure_observation(task: HDLTask, failure_summary: str) -> dict[str, str | int | None]:
+    output_match = re.search(
+        r"Output '([^']+)' has (\d+) mismatches\. First mismatch occurred at time (\d+)",
+        failure_summary,
+    )
+    total_match = re.search(r"Mismatches:\s+(\d+)\s+in\s+(\d+)\s+samples", failure_summary)
+    compile_failed = "error:" in failure_summary.lower() and "Mismatches:" not in failure_summary
+    return {
+        "failure_kind": "simulation_mismatch" if total_match else ("compile_or_lint_failure" if compile_failed else "unknown"),
+        "output": output_match.group(1) if output_match else None,
+        "first_mismatch_time": int(output_match.group(3)) if output_match else None,
+        "mismatches": int(total_match.group(1)) if total_match else None,
+        "samples": int(total_match.group(2)) if total_match else None,
+        "family": task.family,
+    }
+
+
+def _generic_specs(task: HDLTask, failure_summary: str) -> tuple[list[str], list[str], list[tuple[str, str, str]]]:
+    observation = _failure_observation(task, failure_summary)
+    topics = list(dict.fromkeys(task.tags))
+    anti_patterns = ["repeating a failed implementation without addressing the failure signature"]
+    output = observation["output"] or "the failing output"
+    mismatch_note = (
+        f"The observed failure was {observation['mismatches']} mismatches out of "
+        f"{observation['samples']} samples on output {output}, first seen at time "
+        f"{observation['first_mismatch_time']}."
+        if observation["mismatches"] is not None
+        else "The observed failure was reported by the evaluator; preserve the exact signature."
+    )
+
+    if task.family.startswith("sequential"):
+        coder_payload = (
+            f"{mismatch_note} For similar sequential tasks, repair by checking reset value, "
+            "posedge update order, nonblocking assignments, enable conditions, terminal-count behavior, "
+            "and whether outputs should reflect the current state or the next state."
+        )
+        evaluator_payload = (
+            f"{mismatch_note} For similar sequential tasks, add regression stimuli around reset release, "
+            "first active cycle, terminal-count or wrap cycles, and consecutive enabled cycles. Compare "
+            "the named output cycle-by-cycle against a reference model."
+        )
+    elif "mux" in task.family:
+        coder_payload = (
+            f"{mismatch_note} For similar mux tasks, verify select bit ordering, vector part-select bounds, "
+            "and default behavior for all select values."
+        )
+        evaluator_payload = (
+            f"{mismatch_note} For similar mux tasks, sweep every select value and include distinct data "
+            "patterns so bit-order inversions cannot pass."
+        )
+    else:
+        coder_payload = (
+            f"{mismatch_note} Repair the exact expression, width, polarity, and concatenation order before "
+            "changing unrelated structure."
+        )
+        evaluator_payload = (
+            f"{mismatch_note} Preserve a regression that toggles each input independently and uses asymmetric "
+            "patterns to catch polarity, width, and ordering mistakes."
+        )
+
+    return topics, anti_patterns, [
+        ("coder", f"repair_pattern_{_slug(task.family)}", coder_payload),
+        ("evaluator", f"check_pattern_{_slug(task.family)}", evaluator_payload),
+    ]
+
+
 def mine_candidate_skills_from_failure(
     task: HDLTask,
     *,
@@ -87,22 +153,7 @@ def mine_candidate_skills_from_failure(
             ),
         ]
     else:
-        topics = list(dict.fromkeys(task.tags))
-        anti_patterns = ["repeating a failed implementation without addressing the failure signature"]
-        specs = [
-            (
-                "coder",
-                f"repair_pattern_{_slug(task.family)}",
-                "The evaluator observed a failure. Use the failure signature to repair the specific "
-                "timing, width, reset, or protocol behavior instead of repeating the same implementation.",
-            ),
-            (
-                "evaluator",
-                f"check_pattern_{_slug(task.family)}",
-                "Preserve this failure signature as a regression check for similar tasks. Emphasize the "
-                "observed mismatch class when generating future tests.",
-            ),
-        ]
+        topics, anti_patterns, specs = _generic_specs(task, failure_summary)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     events_path.parent.mkdir(parents=True, exist_ok=True)

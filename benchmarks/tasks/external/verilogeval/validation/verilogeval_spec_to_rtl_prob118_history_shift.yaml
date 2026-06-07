@@ -1,0 +1,42 @@
+id: verilogeval_spec_to_rtl_prob118_history_shift
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_counter
+tags:
+- counter
+- sequential
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  areset\n - input  predict_valid\n - input  predict_taken\n\
+  \ - input  train_mispredicted\n - input  train_taken\n - input  train_history  \
+  \ (32 bits)\n - output predict_history (32 bits)\n\nThe module should implement\
+  \ a 32-bit global history shift register,\nincluding support for rolling back state\
+  \ in response to a pipeline flush\ncaused by a branch misprediction. When a branch\
+  \ prediction is made\n(predict_valid = 1), shift in predict_taken from the LSB side\
+  \ to update\nthe branch history for the predicted branch. (predict_history[0] is\
+  \ the\ndirection of the youngest branch.) When a branch misprediction occurs\n(train_mispredicted\
+  \ = 1), load the branch history register with the\nhistory after the completion\
+  \ of the mispredicted branch. This is the\nhistory before the mispredicted branch\
+  \ (train_history) concatenated with\nthe actual result of the branch (train_taken).\
+  \ If both a prediction and\nmisprediction occur at the same time, the misprediction\
+  \ takes precedence,\nbecause the pipeline flush will also flush out the branch that\
+  \ is\ncurrently making a prediction. predict_history is the value of the branch\n\
+  history register. areset is a positive edge triggered asynchronous reset\nthat resets\
+  \ the history counter to zero. Assume all sequential logic is\ntriggered on the\
+  \ positive edge of the clock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob118_history_shift_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob118_history_shift_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: validation

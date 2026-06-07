@@ -1,0 +1,36 @@
+id: verilogeval_spec_to_rtl_prob105_rotate100
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_shift
+tags:
+- combinational
+- sequential
+- shift_register
+- verilog
+difficulty: 3
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  load\n - input  ena  (  2 bits)\n - input  data (100\
+  \ bits)\n - output q    (100 bits)\n\nThe module should implement a 100-bit left/right\
+  \ rotator, with\nsynchronous load and left/right enable. A rotator shifts-in the\n\
+  shifted-out bit from the other end of the register, unlike a shifter that\ndiscards\
+  \ the shifted-out bit and shifts in a zero. If enabled, a rotator\nrotates the bits\
+  \ around and does not modify/discard them.\n\n  (1) load: Loads shift register with\
+  \ data[99:0] instead of rotating.\n      Synchronous active high.\n\n  (2) ena[1:0]:\
+  \ Synchronous. Chooses whether and which direction to\n      rotate:\n      (a)\
+  \ 2'b01 rotates right by one bit,\n      (b) 2'b10 rotates left by one bit,\n  \
+  \    (c) 2'b00 and 2'b11 do not rotate.\n\n  (3) q: The contents of the rotator."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob105_rotate100_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob105_rotate100_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

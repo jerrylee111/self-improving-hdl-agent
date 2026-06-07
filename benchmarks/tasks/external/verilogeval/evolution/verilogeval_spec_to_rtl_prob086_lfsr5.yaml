@@ -1,0 +1,36 @@
+id: verilogeval_spec_to_rtl_prob086_lfsr5
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: sequential_shift
+tags:
+- sequential
+- shift_register
+- verilog
+difficulty: 4
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  clk\n - input  reset\n - output q (5 bits)\n\nA linear feedback shift\
+  \ register is a shift register usually with a few\nXOR gates to produce the next\
+  \ state of the shift register. A Galois LFSR\nis one particular arrangement that\
+  \ shifts right, where a bit position with\na \"tap\" is XORed with the LSB output\
+  \ bit (q[0]) to produce its next value,\nwhile bit positions without a tap shift\
+  \ right unchanged.  If the taps positions\nare carefully chosen, the LFSR can be\
+  \ made to be \"maximum-length\". A maximum-length\nLFSR of n bits cycles through\
+  \ 2**n-1 states before repeating (the all-zero state is\nnever reached).\n\nThe\
+  \ module should implement a 5-bit maximal-length Galois LFSR with taps\nat bit positions\
+  \ 5 and 3. The active-high synchronous reset should reset\nthe LFSR output to 1.\
+  \ Assume all sequential logic is triggered on the\npositive edge of the clock."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob086_lfsr5_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob086_lfsr5_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution

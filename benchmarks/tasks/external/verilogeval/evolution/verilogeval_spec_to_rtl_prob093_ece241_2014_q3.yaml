@@ -1,0 +1,37 @@
+id: verilogeval_spec_to_rtl_prob093_ece241_2014_q3
+source: verilogeval
+license: verilog-eval
+language: systemverilog
+family: combinational_mux
+tags:
+- combinational
+- mux
+- verilog
+difficulty: 2
+prompt: "I would like you to implement a module named TopModule with the following\n\
+  interface. All input and output ports are one bit unless otherwise\nspecified.\n\
+  \n - input  c\n - input  d\n - output mux_in (4 bits)\n\nFor the following Karnaugh\
+  \ map, give the circuit implementation using one\n4-to-1 multiplexer and as many\
+  \ 2-to-1 multiplexers as required, but using\nas few as possible. You are not allowed\
+  \ to use any other logic gate and\nyou must use _a_ and _b_ as the multiplexer selector\
+  \ inputs, as shown on\nthe 4-to-1 multiplexer below.\n\n      ab\n  cd  00  01 \
+  \ 11  10\n  00 | 0 | 0 | 0 | 1 |\n  01 | 1 | 0 | 0 | 0 |\n  11 | 1 | 0 | 1 | 1 |\n\
+  \  10 | 1 | 0 | 0 | 1 |\n\nConsider a block diagram with inputs 'c' and 'd' going\
+  \ into a module\ncalled \"TopModule\". This \"TopModule\" has four outputs, mux_in[3:0],\
+  \ that\nconnect to a four input mux. The mux takes as input {a,b} and ab = 00 is\n\
+  connected to mux_in[0], ab=01 is connected to mux_in[1], and so in. You\nare implementing\
+  \ in Verilog just the portion labelled \"TopModule\", such\nthat the entire circuit\
+  \ (including the 4-to-1 mux) implements the K-map."
+top_module: TopModule
+ports: []
+expected:
+  type: reference_module
+  file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob093_ece241_2014_q3_ref.sv
+evaluation:
+  lint: true
+  simulation: true
+  formal: false
+  testbench_file: benchmarks/external/raw/verilogeval/c498220d0a52248f8e3fdffe279075215bde2da6/dataset_spec-to-rtl/Prob093_ece241_2014_q3_test.sv
+  pass_regex: Mismatches:\s+0\s+in\s+\d+\s+samples
+split:
+  default: evolution
