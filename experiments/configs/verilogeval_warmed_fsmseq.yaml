@@ -1,0 +1,19 @@
+name: verilogeval_warmed_fsmseq
+max_repair_iters: 2
+skill_l1_capacity: 6
+max_task_wall_time_s: 180
+hard_timeout: true
+evaluator_profile: adversarial_v2
+conditions:
+- id: warmed_fsmseq_no_skill
+  active_skills: false
+  policy: no_skill
+- id: warmed_fsmseq_seed_only
+  active_skills: false
+  policy: locality_aware
+- id: warmed_fsmseq_active
+  active_skills: true
+  policy: locality_aware
+tasks:
+- benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob111_fsm2s.yaml
+- benchmarks/tasks/external/verilogeval/evolution/verilogeval_spec_to_rtl_prob096_review2015_fsmseq.yaml
