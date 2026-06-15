@@ -1,0 +1,68 @@
+id: candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780825138
+name: repair_pattern_sequential_fsm
+agent: coder
+domain:
+  language: systemverilog
+  topic:
+  - fsm
+  - sequential
+  - state_machine
+  - verilog
+task_patterns:
+- sequential_fsm
+- fsm
+- sequential
+- state_machine
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: repair_pattern
+  content: The observed failure was reported by the evaluator; preserve the exact
+    signature. For similar sequential tasks, repair by checking reset value, posedge
+    update order, nonblocking assignments, enable conditions, terminal-count behavior,
+    and whether outputs should reflect the current state or the next state.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: no_skill
+    attempts: 2
+    failure_signature: '    ... Use "/* verilator lint_off DECLFILENAME */" and lint_on
+      around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=4
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:30: error: This assignment requires an explicit cast.
+
+      design.sv:31: error: This assignment requires an explicit cast.
+
+      design.sv:32: error: This assignment requires an explicit cast.
+
+      design.sv:33: error: This assignment requires an explicit cast.
+
+      4 error(s) during elaboration.
+
+      '

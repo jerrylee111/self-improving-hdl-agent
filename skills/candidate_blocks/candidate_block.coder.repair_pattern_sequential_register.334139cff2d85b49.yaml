@@ -30,8 +30,8 @@ metrics:
   failures: 0
   utility_ema: 0.0
   token_cost_ema: 0.0
-  merged_candidate_count: 30
-  evidence_count: 8
+  merged_candidate_count: 57
+  evidence_count: 16
 cache:
   pin: false
 version:
@@ -45,6 +45,14 @@ version:
   - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780650206
   - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780653956
   - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780817521
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780822781
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780823291
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780825479
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780833414
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1781509035
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1781509201
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1781509536
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1781509757
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780446808
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780447028
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780447191
@@ -60,6 +68,23 @@ version:
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780815842
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780816712
   - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780817590
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780819176
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780819634
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780820163
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780822377
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780822824
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780823330
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780824986
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780825525
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780833034
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780833198
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780833486
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781508881
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509080
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509276
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509413
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509567
+  - candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509817
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780449677
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780451220
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780456574
@@ -68,6 +93,8 @@ version:
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780815705
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780816434
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780817360
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780819518
+  - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780820026
   fingerprint: 334139cff2d85b49
 validation:
   evidence:
@@ -107,6 +134,86 @@ validation:
     failure_signature: " used: 'q_reg'\n                                    : ...\
       \ note: In instance 'TopModule'\n    7 |   reg q_reg;\n      |       ^~~~~\n\
       \n\n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "_reg'\n                                     : ... note: In\
+      \ instance 'TopModule'\n    7 |     logic q_reg;\n      |           ^~~~~\n\n\
+      \n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: " used: 'ff'\n                                     : ... note:\
+      \ In instance 'TopModule'\n    7 |     logic ff;\n      |           ^~\n\n\n\
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "ot used: 'dff'\n                                    : ...\
+      \ note: In instance 'TopModule'\n    6 |   logic dff;\n      |         ^~~\n\
+      \n\n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "d: 'state'\n                                    : ... note:\
+      \ In instance 'TopModule'\n    8 |     reg state;\n      |         ^~~~~\n\n\
+      \n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "s not used: 'ff'\n                                    : ...\
+      \ note: In instance 'TopModule'\n    6 |     reg ff;\n      |         ^~\n\n\
+      \n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "\n                                    : ... note: In instance\
+      \ 'TopModule'\n    7 |   logic q_internal;\n      |         ^~~~~~~~~~\n\n\n\
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "eg_q'\n                                     : ... note: In\
+      \ instance 'TopModule'\n    6 |     logic reg_q;\n      |           ^~~~~\n\n\
+      \n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
+      stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
+      \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
+      \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
+      Simulation finished at 605 ps\nMismatches: 118 in 121 samples\n\nstderr:\n"
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "ed: 'dff'\n                                     : ... note:\
+      \ In instance 'TopModule'\n    6 |     logic dff;\n      |           ^~~\n\n\
+      \n$ iverilog -g2012 -o sim.out tb.sv design.sv Prob031_dff_ref.sv\nreturncode=0\n\
       stdout:\n\nstderr:\n\n\n$ vvp sim.out\nreturncode=0\nstdout:\ntb.sv:37: $finish\
       \ called at 605 (1ps)\nHint: Output 'q' has 118 mismatches. First mismatch occurred\
       \ at time 20.\nHint: Total mismatched samples is 118 out of 121 samples\n\n\
@@ -162,6 +269,14 @@ provenance:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780650206.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780653956.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780817521.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780822781.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780823291.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780825479.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780833414.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1781509035.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1781509201.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1781509536.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1781509757.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780446808.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780447028.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780447191.yaml
@@ -177,6 +292,23 @@ provenance:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780815842.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780816712.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780817590.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780819176.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780819634.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780820163.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780822377.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780822824.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780823330.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780824986.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780825525.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780833034.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780833198.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1780833486.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781508881.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509080.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509276.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509413.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509567.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob034_dff8.coder.repair_pattern_sequential_register.1781509817.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780449677.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780451220.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780456574.yaml
@@ -185,3 +317,5 @@ provenance:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780815705.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780816434.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780817360.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780819518.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780820026.yaml

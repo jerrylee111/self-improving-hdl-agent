@@ -30,8 +30,8 @@ metrics:
   failures: 0
   utility_ema: 0.0
   token_cost_ema: 0.0
-  merged_candidate_count: 18
-  evidence_count: 16
+  merged_candidate_count: 40
+  evidence_count: 33
 cache:
   pin: false
 version:
@@ -46,9 +46,21 @@ version:
   - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780815993
   - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780816809
   - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780817702
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780819261
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780819770
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780822460
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780822959
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780825138
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780833345
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780833661
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1781508987
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1781509488
+  - candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1781509721
   - candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780814333
   - candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780814348
   - candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780815152
+  - candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780832779
+  - candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780832811
   - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780456054
   - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780651037
   - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780652283
@@ -56,6 +68,16 @@ version:
   - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780815868
   - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780816733
   - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780817625
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780819662
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780822409
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780822864
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780833529
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781508913
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509114
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509308
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509439
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509600
+  - candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509845
   fingerprint: 43e4ce22df583720
 validation:
   evidence:
@@ -284,6 +306,261 @@ validation:
       4 error(s) during elaboration.
 
       '
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: no_skill
+    attempts: 2
+    failure_signature: '    ... Use "/* verilator lint_off DECLFILENAME */" and lint_on
+      around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=4
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:29: error: This assignment requires an explicit cast.
+
+      design.sv:30: error: This assignment requires an explicit cast.
+
+      design.sv:31: error: This assignment requires an explicit cast.
+
+      design.sv:32: error: This assignment requires an explicit cast.
+
+      4 error(s) during elaboration.
+
+      '
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: locality_aware
+    attempts: 2
+    failure_signature: '    ... Use "/* verilator lint_off DECLFILENAME */" and lint_on
+      around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=4
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:20: error: This assignment requires an explicit cast.
+
+      design.sv:21: error: This assignment requires an explicit cast.
+
+      design.sv:22: error: This assignment requires an explicit cast.
+
+      design.sv:23: error: This assignment requires an explicit cast.
+
+      4 error(s) during elaboration.
+
+      '
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: no_skill
+    attempts: 2
+    failure_signature: '    ... Use "/* verilator lint_off DECLFILENAME */" and lint_on
+      around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=4
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:21: error: This assignment requires an explicit cast.
+
+      design.sv:22: error: This assignment requires an explicit cast.
+
+      design.sv:23: error: This assignment requires an explicit cast.
+
+      design.sv:24: error: This assignment requires an explicit cast.
+
+      4 error(s) during elaboration.
+
+      '
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: locality_aware
+    attempts: 2
+    failure_signature: 'around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=5
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:21: error: This assignment requires an explicit cast.
+
+      design.sv:22: error: This assignment requires an explicit cast.
+
+      design.sv:23: error: This assignment requires an explicit cast.
+
+      design.sv:24: error: This assignment requires an explicit cast.
+
+      design.sv:25: error: This assignment requires an explicit cast.
+
+      5 error(s) during elaboration.
+
+      '
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: no_skill
+    attempts: 2
+    failure_signature: '    ... Use "/* verilator lint_off DECLFILENAME */" and lint_on
+      around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=4
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:30: error: This assignment requires an explicit cast.
+
+      design.sv:31: error: This assignment requires an explicit cast.
+
+      design.sv:32: error: This assignment requires an explicit cast.
+
+      design.sv:33: error: This assignment requires an explicit cast.
+
+      4 error(s) during elaboration.
+
+      '
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: locality_aware
+    attempts: 2
+    failure_signature: 'around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=5
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:39: error: This assignment requires an explicit cast.
+
+      design.sv:40: error: This assignment requires an explicit cast.
+
+      design.sv:41: error: This assignment requires an explicit cast.
+
+      design.sv:42: error: This assignment requires an explicit cast.
+
+      design.sv:43: error: This assignment requires an explicit cast.
+
+      5 error(s) during elaboration.
+
+      '
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: locality_aware
+    attempts: 2
+    failure_signature: '    ... Use "/* verilator lint_off DECLFILENAME */" and lint_on
+      around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=4
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:25: error: This assignment requires an explicit cast.
+
+      design.sv:29: error: This assignment requires an explicit cast.
+
+      design.sv:33: error: This assignment requires an explicit cast.
+
+      design.sv:46: error: This assignment requires an explicit cast.
+
+      4 error(s) during elaboration.
+
+      '
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: no_skill
+    attempts: 2
+    failure_signature: '    ... Use "/* verilator lint_off DECLFILENAME */" and lint_on
+      around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=4
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:26: error: This assignment requires an explicit cast.
+
+      design.sv:27: error: This assignment requires an explicit cast.
+
+      design.sv:28: error: This assignment requires an explicit cast.
+
+      design.sv:29: error: This assignment requires an explicit cast.
+
+      4 error(s) during elaboration.
+
+      '
+  - task_id: verilogeval_spec_to_rtl_prob096_review2015_fsmseq
+    policy: locality_aware
+    attempts: 2
+    failure_signature: 'around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob096_review2015_fsmseq_ref.sv
+
+      returncode=5
+
+      stdout:
+
+
+      stderr:
+
+      design.sv:24: error: This assignment requires an explicit cast.
+
+      design.sv:25: error: This assignment requires an explicit cast.
+
+      design.sv:26: error: This assignment requires an explicit cast.
+
+      design.sv:27: error: This assignment requires an explicit cast.
+
+      design.sv:28: error: This assignment requires an explicit cast.
+
+      5 error(s) during elaboration.
+
+      '
   - task_id: verilogeval_spec_to_rtl_prob107_fsm1s
     policy: locality_aware
     attempts: 1
@@ -313,6 +590,26 @@ validation:
       \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
       \ design.sv Prob107_fsm1s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:15:\
       \ error: This assignment requires an explicit cast.\ndesign.sv:16: error: This\
+      \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
+  - task_id: verilogeval_spec_to_rtl_prob107_fsm1s
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "        ^~~~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/DECLFILENAME?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on\
+      \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
+      \ design.sv Prob107_fsm1s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:14:\
+      \ error: This assignment requires an explicit cast.\ndesign.sv:15: error: This\
+      \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
+  - task_id: verilogeval_spec_to_rtl_prob107_fsm1s
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "        ^~~~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/DECLFILENAME?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on\
+      \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
+      \ design.sv Prob107_fsm1s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:19:\
+      \ error: This assignment requires an explicit cast.\ndesign.sv:20: error: This\
       \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
   - task_id: verilogeval_spec_to_rtl_prob111_fsm2s
     policy: locality_aware
@@ -364,6 +661,66 @@ validation:
       \ design.sv Prob111_fsm2s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:23:\
       \ error: This assignment requires an explicit cast.\ndesign.sv:24: error: This\
       \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
+  - task_id: verilogeval_spec_to_rtl_prob111_fsm2s
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "        ^~~~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/DECLFILENAME?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on\
+      \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
+      \ design.sv Prob111_fsm2s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:21:\
+      \ error: This assignment requires an explicit cast.\ndesign.sv:22: error: This\
+      \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
+  - task_id: verilogeval_spec_to_rtl_prob111_fsm2s
+    policy: no_skill
+    attempts: 2
+    failure_signature: "        ^~~~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/DECLFILENAME?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on\
+      \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
+      \ design.sv Prob111_fsm2s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:21:\
+      \ error: This assignment requires an explicit cast.\ndesign.sv:22: error: This\
+      \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
+  - task_id: verilogeval_spec_to_rtl_prob111_fsm2s
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "        ^~~~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/DECLFILENAME?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on\
+      \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
+      \ design.sv Prob111_fsm2s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:18:\
+      \ error: This assignment requires an explicit cast.\ndesign.sv:19: error: This\
+      \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
+  - task_id: verilogeval_spec_to_rtl_prob111_fsm2s
+    policy: no_skill
+    attempts: 2
+    failure_signature: "        ^~~~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/DECLFILENAME?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on\
+      \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
+      \ design.sv Prob111_fsm2s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:22:\
+      \ error: This assignment requires an explicit cast.\ndesign.sv:23: error: This\
+      \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
+  - task_id: verilogeval_spec_to_rtl_prob111_fsm2s
+    policy: no_skill
+    attempts: 2
+    failure_signature: "        ^~~~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/DECLFILENAME?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on\
+      \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
+      \ design.sv Prob111_fsm2s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:15:\
+      \ error: This assignment requires an explicit cast.\ndesign.sv:16: error: This\
+      \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
+  - task_id: verilogeval_spec_to_rtl_prob111_fsm2s
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "        ^~~~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/DECLFILENAME?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on\
+      \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
+      \ design.sv Prob111_fsm2s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:14:\
+      \ error: This assignment requires an explicit cast.\ndesign.sv:15: error: This\
+      \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"
 provenance:
   source_paths:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780449282.yaml
@@ -374,9 +731,21 @@ provenance:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780815993.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780816809.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780817702.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780819261.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780819770.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780822460.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780822959.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780825138.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780833345.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1780833661.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1781508987.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1781509488.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob096_review2015_fsmseq.coder.repair_pattern_sequential_fsm.1781509721.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780814333.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780814348.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780815152.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780832779.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob107_fsm1s.coder.repair_pattern_sequential_fsm.1780832811.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780456054.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780651037.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780652283.yaml
@@ -384,3 +753,13 @@ provenance:
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780815868.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780816733.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780817625.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780819662.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780822409.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780822864.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1780833529.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781508913.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509114.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509308.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509439.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509600.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob111_fsm2s.coder.repair_pattern_sequential_fsm.1781509845.yaml

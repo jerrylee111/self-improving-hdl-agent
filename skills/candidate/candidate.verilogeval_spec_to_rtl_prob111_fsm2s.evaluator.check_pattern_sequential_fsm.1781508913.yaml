@@ -1,0 +1,50 @@
+id: candidate.verilogeval_spec_to_rtl_prob111_fsm2s.evaluator.check_pattern_sequential_fsm.1781508913
+name: check_pattern_sequential_fsm
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - fsm
+  - sequential
+  - state_machine
+  - verilog
+task_patterns:
+- sequential_fsm
+- fsm
+- sequential
+- state_machine
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was reported by the evaluator; preserve the exact
+    signature. For similar sequential tasks, add regression stimuli around reset release,
+    first active cycle, terminal-count or wrap cycles, and consecutive enabled cycles.
+    Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob111_fsm2s
+    policy: no_skill
+    attempts: 2
+    failure_signature: "        ^~~~~~~~~\n                       ... For warning\
+      \ description see https://verilator.org/warn/DECLFILENAME?v=5.048\n        \
+      \               ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on\
+      \ around source to disable this message.\n\n\n$ iverilog -g2012 -o sim.out tb.sv\
+      \ design.sv Prob111_fsm2s_ref.sv\nreturncode=2\nstdout:\n\nstderr:\ndesign.sv:22:\
+      \ error: This assignment requires an explicit cast.\ndesign.sv:23: error: This\
+      \ assignment requires an explicit cast.\n2 error(s) during elaboration.\n"

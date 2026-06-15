@@ -1,0 +1,78 @@
+id: candidate.verilogeval_spec_to_rtl_prob063_review2015_shiftcount.evaluator.check_pattern_sequential_counter.1780819857
+name: check_pattern_sequential_counter
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - counter
+  - sequential
+  - verilog
+task_patterns:
+- sequential_counter
+- counter
+- sequential
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was 1886 mismatches out of 2071 samples on output
+    q, first seen at time 10. For similar sequential tasks, add regression stimuli
+    around reset release, first active cycle, terminal-count or wrap cycles, and consecutive
+    enabled cycles. Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob063_review2015_shiftcount
+    policy: locality_aware
+    attempts: 2
+    failure_signature: '  ... Use "/* verilator lint_off DECLFILENAME */" and lint_on
+      around source to disable this message.
+
+
+
+      $ iverilog -g2012 -o sim.out tb.sv design.sv Prob063_review2015_shiftcount_ref.sv
+
+      returncode=0
+
+      stdout:
+
+
+      stderr:
+
+
+
+      $ vvp sim.out
+
+      returncode=0
+
+      stdout:
+
+      tb.sv:63: $finish called at 10356 (1ps)
+
+      Hint: Output ''q'' has 1886 mismatches. First mismatch occurred at time 10.
+
+      Hint: Total mismatched samples is 1886 out of 2071 samples
+
+
+      Simulation finished at 10356 ps
+
+      Mismatches: 1886 in 2071 samples
+
+
+      stderr:
+
+      '

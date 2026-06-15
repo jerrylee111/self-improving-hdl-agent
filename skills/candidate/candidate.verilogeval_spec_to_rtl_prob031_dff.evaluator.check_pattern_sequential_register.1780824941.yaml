@@ -1,0 +1,50 @@
+id: candidate.verilogeval_spec_to_rtl_prob031_dff.evaluator.check_pattern_sequential_register.1780824941
+name: check_pattern_sequential_register
+agent: evaluator
+domain:
+  language: systemverilog
+  topic:
+  - register
+  - reset
+  - sequential
+  - verilog
+task_patterns:
+- sequential_register
+- register
+- reset
+- sequential
+- verilog
+preconditions:
+- generated from evaluator-observed failure
+anti_patterns:
+- repeating a failed implementation without addressing the failure signature
+payload:
+  type: test_strategy
+  content: The observed failure was reported by the evaluator; preserve the exact
+    signature. For similar sequential tasks, add regression stimuli around reset release,
+    first active cycle, terminal-count or wrap cycles, and consecutive enabled cycles.
+    Compare the named output cycle-by-cycle against a reference model.
+metrics:
+  uses: 0
+  successes: 0
+  failures: 0
+  utility_ema: 0.0
+  token_cost_ema: 0.0
+cache:
+  pin: false
+version:
+  status: candidate
+  revision: 1
+  parent_ids: []
+validation:
+  evidence:
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: no_skill
+    attempts: 2
+    failure_signature: "n/DECLFILENAME?v=5.048\n                       ... Use \"\
+      /* verilator lint_off DECLFILENAME */\" and lint_on around source to disable\
+      \ this message.\n%Error-PROCASSWIRE: design.sv:7:9: Procedural assignment to\
+      \ wire, perhaps intended var (IEEE 1800-2023 6.5): 'q'\n                   \
+      \              : ... note: In instance 'TopModule'\n    7 |         q <= d;\n\
+      \      |         ^\n                    ... For error description see https://verilator.org/warn/PROCASSWIRE?v=5.048\n\
+      %Error: Exiting due to 1 error(s)\n"

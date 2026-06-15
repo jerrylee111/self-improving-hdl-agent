@@ -30,18 +30,40 @@ metrics:
   failures: 0
   utility_ema: 0.0
   token_cost_ema: 0.0
-  merged_candidate_count: 1
-  evidence_count: 1
+  merged_candidate_count: 3
+  evidence_count: 3
 cache:
   pin: false
 version:
   status: candidate_block
   revision: 1
   parent_ids:
+  - candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780824941
+  - candidate.verilogeval_spec_to_rtl_prob047_dff8ar.coder.repair_pattern_sequential_register.1780832629
   - candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780651628
   fingerprint: f3a7d6ece2505697
 validation:
   evidence:
+  - task_id: verilogeval_spec_to_rtl_prob031_dff
+    policy: no_skill
+    attempts: 2
+    failure_signature: "n/DECLFILENAME?v=5.048\n                       ... Use \"\
+      /* verilator lint_off DECLFILENAME */\" and lint_on around source to disable\
+      \ this message.\n%Error-PROCASSWIRE: design.sv:7:9: Procedural assignment to\
+      \ wire, perhaps intended var (IEEE 1800-2023 6.5): 'q'\n                   \
+      \              : ... note: In instance 'TopModule'\n    7 |         q <= d;\n\
+      \      |         ^\n                    ... For error description see https://verilator.org/warn/PROCASSWIRE?v=5.048\n\
+      %Error: Exiting due to 1 error(s)\n"
+  - task_id: verilogeval_spec_to_rtl_prob047_dff8ar
+    policy: locality_aware
+    attempts: 2
+    failure_signature: "6.5): 'q'\n                                  : ... note: In\
+      \ instance 'TopModule'\n    9 |             q <= 8'd0;\n      |            \
+      \ ^\n                    ... For error description see https://verilator.org/warn/PROCASSWIRE?v=5.048\n\
+      %Error-PROCASSWIRE: design.sv:11:13: Procedural assignment to wire, perhaps\
+      \ intended var (IEEE 1800-2023 6.5): 'q'\n                                 \
+      \  : ... note: In instance 'TopModule'\n   11 |             q <= d;\n      |\
+      \             ^\n%Error: Exiting due to 2 error(s)\n"
   - task_id: verilogeval_spec_to_rtl_prob104_mt2015_muxdff
     policy: no_skill
     attempts: 2
@@ -54,4 +76,6 @@ validation:
       \ around source to disable this message.\n%Error: Exiting due to 1 error(s)\n"
 provenance:
   source_paths:
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob031_dff.coder.repair_pattern_sequential_register.1780824941.yaml
+  - skills/candidate/candidate.verilogeval_spec_to_rtl_prob047_dff8ar.coder.repair_pattern_sequential_register.1780832629.yaml
   - skills/candidate/candidate.verilogeval_spec_to_rtl_prob104_mt2015_muxdff.coder.repair_pattern_sequential_register.1780651628.yaml
