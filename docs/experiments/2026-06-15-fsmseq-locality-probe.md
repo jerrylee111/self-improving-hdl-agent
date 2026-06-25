@@ -179,3 +179,95 @@ L1 skill cache 的行为确实具有时间局部性。
 2. 实现 per-skill utility event，记录每个 loaded skill 的 pass/fail、ACPS delta、timeout penalty。
 3. 增加 utility-aware eviction：hit 后失败或 timeout 的 skill 降权，hit 后降低 ACPS 的 skill 升权。
 4. 构造 `warmed_register`：用 `dff -> dff8` 验证 register 类 skill 为什么冷启动经常 miss。
+
+## 追加：Warmed FSMSeq 三轮重复实验
+
+在用户提交 `0570b3b Record fsmseq locality probe experiments` 后，继续运行 `warmed_fsmseq` 两轮，使 warmed sequence 达到三轮。
+
+新增输出目录：
+
+```text
+results/taskset_ablation/verilogeval_warmed_fsmseq_20260615_173958/
+results/taskset_ablation/verilogeval_warmed_fsmseq_20260615_174614/
+```
+
+三轮汇总：
+
+| condition | solved runs | pass@k runs | mean pass@k | pass@k std | ACPS runs | mean ACPS | ACPS std | L1 hit runs |
+| --- | --- | --- | ---: | ---: | --- | ---: | ---: | --- |
+| no-skill | 1/2, 2/2, 1/2 | 0.5, 1.0, 0.5 | 0.6667 | 0.2887 | 4.0, 2.0, 4.0 | 3.3333 | 1.1547 | 0, 0, 0 |
+| seed-only | 2/2, 2/2, 1/2 | 1.0, 1.0, 0.5 | 0.8333 | 0.2887 | 2.0, 1.5, 3.0 | 2.1667 | 0.7638 | 1, 1, 1 |
+| active | 2/2, 2/2, 2/2 | 1.0, 1.0, 1.0 | 1.0 | 0.0 | 1.5, 1.5, 1.5 | 1.5 | 0.0 | 1, 1, 1 |
+
+第二轮结果：
+
+| condition | solved | pass@k | ACPS-Iter | L1 hit | candidates | timeouts |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| no-skill | 2/2 | 1.0 | 2.0 | 0/2 | 4 | 0 |
+| seed-only | 2/2 | 1.0 | 1.5 | 1/2 | 2 | 0 |
+| active | 2/2 | 1.0 | 1.5 | 1/2 | 2 | 0 |
+
+第三轮结果：
+
+| condition | solved | pass@k | ACPS-Iter | L1 hit | candidates | timeouts |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| no-skill | 1/2 | 0.5 | 4.0 | 0/2 | 4 | 0 |
+| seed-only | 1/2 | 0.5 | 3.0 | 1/2 | 2 | 0 |
+| active | 2/2 | 1.0 | 1.5 | 1/2 | 2 | 0 |
+
+### 三轮后的结论修正
+
+时间局部性命中是稳定的：
+
+```text
+seed-only fsmseq probe: 3/3 L1 hit
+active fsmseq probe:    3/3 L1 hit
+```
+
+但 hit utility 不是稳定正收益：
+
+- seed-only 三轮都 hit，但第三轮 hit 后 `fsmseq` 失败；
+- active 三轮都 hit，且三轮均通过；
+- active 的整体 ACPS 三轮稳定为 `1.5`，方差为 `0.0`。
+
+因此，warmed FSMSeq 给出了目前最强的一组缓存证据：
+
+```text
+时间局部性可以稳定触发 L1 hit；
+active skill 在该 warmed FSM 序列上能稳定把 hit 转化为通过和较低 ACPS；
+seed-only 也能 hit，但不能稳定把 hit 转化为正确性。
+```
+
+这进一步说明论文中应拆开报告两个指标：
+
+1. cache behavior：是否 hit；
+2. cache utility：hit 后是否提升 pass@k、降低 ACPS、避免 timeout。
+
+## 三轮 Hit Utility 明细
+
+只看 probe 任务 `Prob096 fsmseq`：
+
+| run | condition | L1 event | result | iterations | wall time | utility note |
+| --- | --- | --- | --- | ---: | ---: | --- |
+| 1 | no-skill | miss | fail | 2 | 58.821s | baseline fail |
+| 1 | seed-only | hit | pass | 2 | 71.194s | hit 后通过，但不降迭代 |
+| 1 | active | hit | pass | 1 | 37.294s | hit 后通过且降迭代 |
+| 2 | no-skill | miss | pass | 2 | 77.999s | baseline pass |
+| 2 | seed-only | hit | pass | 2 | 132.581s | hit 后通过，但 wall time 高 |
+| 2 | active | hit | pass | 2 | 77.044s | hit 后通过，接近 baseline 时间 |
+| 3 | no-skill | miss | fail | 2 | 65.378s | baseline fail |
+| 3 | seed-only | hit | fail | 2 | 95.267s | hit 后失败，负 utility |
+| 3 | active | hit | pass | 1 | 63.722s | hit 后通过且降迭代 |
+
+这个表直接支持 per-skill utility event 的必要性。仅靠 `L1 hit` 不足以判断 skill 是否有用；必须记录 hit 后的 pass/fail、iterations、wall time 和 timeout penalty。
+
+## 下一步更新
+
+1. 实现 `skill_utility_events.jsonl`，把上表这种信息自动结构化记录下来。
+2. 给 L1 eviction 增加 utility-aware 权重：
+   - hit 后 pass 且 ACPS 下降：升权；
+   - hit 后 pass 但 ACPS 不降：小幅升权或保持；
+   - hit 后 fail：降权；
+   - hit 后 timeout：强降权。
+3. 做 `warmed_register`：用 `dff -> dff8` 验证 register 任务族是否也存在时间局部性。
+4. 在 utility-aware eviction 后重跑 `warmed_fsmseq`，看 active 是否仍保持 `1.0 pass@k / 1.5 ACPS`，seed-only 的负 utility 是否能被降权。
